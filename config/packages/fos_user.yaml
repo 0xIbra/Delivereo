@@ -1,0 +1,7 @@
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: App\Entity\User
+    from_email:
+        address: 'admin@foodhub.io'
+        sender_name: 'admin@foodhub.io'
