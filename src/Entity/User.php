@@ -10,6 +10,7 @@ namespace App\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class User
@@ -31,11 +32,13 @@ class User extends BaseUser
 
     /**
      * @ORM\Column(name="first_name", type="string", nullable=true)
+     * @Assert\NotBlank(message="Le prénom ne doit pas être vide.")
      */
     private $firstName;
 
     /**
      * @ORM\Column(name="last_name", type="string", nullable=true)
+     * @Assert\NotBlank(message="Le nom ne doit pas être vide.")
      */
     private $lastName;
 
