@@ -40,16 +40,19 @@ class AuthController extends AbstractController
 
         if ($this->createUser($user, $userManager))
         {
+            $code = Response::HTTP_BAD_REQUEST;
             $status = 'success';
             $message = "User created successfully.";
         }else
         {
+            $code = Response::HTTP_CREATED;
             $status = 'failure';
             $message = 'Email or username already exists.';
         }
 
         return new JsonResponse([
             'status' => $status,
+            'code' => $code,
             'message' => $message
         ], Response::HTTP_CREATED);
     }
