@@ -27,6 +27,11 @@ class Menu
     private $price;
 
     /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Image", cascade={"persist"})
+     */
+    private $image;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="menus")
      */
     private $category;
@@ -92,6 +97,18 @@ class Menu
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getImage(): ?Image
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Image $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
