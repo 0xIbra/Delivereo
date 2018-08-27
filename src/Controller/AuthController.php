@@ -51,7 +51,7 @@ class AuthController extends AbstractController
         return new JsonResponse([
             'status' => $status,
             'message' => $message
-        ]);
+        ], Response::HTTP_CREATED);
     }
 
 
