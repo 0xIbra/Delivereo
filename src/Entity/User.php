@@ -12,6 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -20,6 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Entity
  * @ORM\Table(name="user")
+ * @Serializer\ExclusionPolicy("all")
  */
 class User extends BaseUser
 {
@@ -29,12 +31,16 @@ class User extends BaseUser
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Serializer\Expose()
+     * @Serializer\Type("string")
      */
     protected $id;
 
     /**
      * @ORM\Column(name="first_name", type="string", nullable=true)
      * @Assert\NotBlank(message="Le prénom ne doit pas être vide.")
+     * @Serializer\Expose()
+     * @Serializer\Type("string")
      */
     private $firstName;
 
@@ -47,20 +53,30 @@ class User extends BaseUser
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Restaurant", mappedBy="owner", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
      */
     private $restaurants;
 
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Order", mappedBy="consumer")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $orders;
+
+    /**
+     * @var Comment
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="commentedBy", cascade={"persist", "remove"})
+     */
+    private $comments;
 
     public function __construct()
     {
         parent::__construct();
         $this->restaurants = new ArrayCollection();
         $this->orders = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     /**
@@ -152,6 +168,37 @@ class User extends BaseUser
             // set the owning side to null (unless already changed)
             if ($order->getConsumer() === $this) {
                 $order->setConsumer(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setCommentedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getCommentedBy() === $this) {
+                $comment->setCommentedBy(null);
             }
         }
 

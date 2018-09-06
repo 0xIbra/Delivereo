@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use FOS\UserBundle\Model\UserManagerInterface;
+use JMS\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,6 +14,23 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class AuthController extends AbstractController
 {
+
+    /**
+     * @param SerializerInterface $serializer
+     * @return Response
+     *
+     * @Route("/api/auth/me", name="get_user", methods={"GET", "POST"})
+     */
+    public function me(SerializerInterface $serializer)
+    {
+        $res = [
+            'code' => Response::HTTP_OK,
+            'user' => $this->getUser()
+        ];
+        $response = new Response($serializer->serialize($res, 'json'));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
 
     /**
      * @param Request $request

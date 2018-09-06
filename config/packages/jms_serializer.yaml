@@ -1,10 +1,14 @@
 jms_serializer:
+#    enable_short_alias: false
     visitors:
         xml:
             format_output: '%kernel.debug%'
-#    metadata:
-#        auto_detection: false
-#        directories:
+    metadata:
+        auto_detection: true
+        directories:
+            FOSUB:
+                namespace_prefix: FOS\UserBundle
+                path: "%kernel.root_dir%/../var/serializer/FOSUB"
 #            any-name:
 #                namespace_prefix: "My\\FooBundle"
 #                path: "@MyFooBundle/Resources/config/serializer"
