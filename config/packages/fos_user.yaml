@@ -5,3 +5,6 @@ fos_user:
     from_email:
         address: 'admin@foodhub.io'
         sender_name: 'admin@foodhub.io'
+    registration:
+        form:
+            type: App\Form\RegistrationFormType

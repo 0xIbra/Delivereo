@@ -1,0 +1,33 @@
+<header class="main">
+    <nav class="top">
+        <div class="container-fluid">
+            <div class="nav-wrapper">
+                <a href="{{ path('home') }}" class="brand-logo left bold">Delivereo</a>
+                <a href="#" data-target="sidebar-nav" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="{{ path('fos_user_security_login') }}">Se connecter</a></li>
+                    <li><a href="{{ path('fos_user_registration_register') }}">S'inscrire</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<ul id="sidebar-nav" class="sidenav">
+    <li>
+        <div class="user-view">
+            <div class="background">
+                <div class="background-overlay"></div>
+                <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=cbbd27149a8243a42eb2bd0bd918ba8f&auto=format&fit=crop&w=750&q=80">
+            </div>
+            <a href="void:javascript;"><img class="circle" src="https://images.unsplash.com/photo-1512667281074-84fc588aa399?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=29d596fae399949ae232a48dd88f8d95&auto=format&fit=crop&w=750&q=80"></a>
+            <a href="void:javascript;"><span class="white-text name">Ibragim Abubakarov</span></a>
+            <a href="mailto:ibrahim.tchee@gmail.com"><span class="white-text email">ibrahim.tchee@gmail.com</span></a>
+        </div>
+    </li>
+    <li><a href="#!"><i class="material-icons">cloud</i>Check on Gitlab</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Member</a></li>
+    <li><a class="waves-effect" href="{{ path('fos_user_security_login') }}"><i class="material-icons">account_circle</i>Connexion</a></li>
+    <li><a class="waves-effect" href="{{ path('fos_user_registration_register') }}"><i class="material-icons">format_align_left</i>Inscription</a></li>
+</ul>

@@ -1,0 +1,68 @@
+{% extends "bundles/FOSUserBundle/layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}Inscription | Delivereo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+{% endblock %}
+
+
+{% block fos_user_content %}
+
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col s12 m6 offset-m3">
+                <div class="card">
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="container-fluid">
+                                <h3 class="heading">Inscription</h3>
+                                {#{% if error  %}#}
+                                    {#<div class="alerts">#}
+                                        {#<div class="alert danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
+                                    {#</div>#}
+                                {#{% endif %}#}
+
+                                {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
+                                {{ form_widget(form._token) }}
+
+                                <div class="input-field">
+                                    {{ form_widget(form.firstName, { 'attr': {'class': 'modernize', 'placeholder': 'Prénom'} }) }}
+                                </div>
+
+                                <div class="input-field">
+                                    {{ form_widget(form.lastName, { 'attr': {'class': 'modernize', 'placeholder': 'Nom'} }) }}
+                                </div>
+
+                                <div class="input-field">
+                                    {{ form_widget(form.email, { 'attr': {'class': 'modernize', 'placeholder': 'Adresse e-mail'} }) }}
+                                </div>
+
+                                <div class="input-field">
+                                    {{ form_widget(form.username, { 'attr': {'class': 'modernize', 'placeholder': 'Nom d\'utilisateur'} }) }}
+                                </div>
+
+                                <div class="input-field">
+                                    {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'modernize', 'placeholder': 'Mot de passe'} }) }}
+                                </div>
+
+                                <div class="input-field">
+                                    {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'modernize', 'placeholder': 'Confirmez'} }) }}
+                                </div>
+
+                                <div class="input-field submit-wrapper">
+                                    <input type="submit" value="{{ 'registration.submit'|trans }}" class="modernize btn" />
+                                </div>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock fos_user_content %}
