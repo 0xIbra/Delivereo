@@ -42,11 +42,14 @@ security:
 
         main:
             pattern: ^/
-#            form_login:
-#                provider: fos_userbundle
-#                csrf_token_generator: security.csrf.token_manager
-#
-            logout:       true
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+                check_path: fos_user_security_check
+#            logout:       true
+            logout:
+                path: fos_user_security_logout
+                target: fos_user_security_login
             anonymous:    true
 
             # activate different ways to authenticate

@@ -11,12 +11,12 @@
             <div class="showcase-content">
                 <h2 class="slogan">Je clique, je commande</h2>
                 <h4 class="sub-slogan">Commandez vos plats préférés chez les restaurants dans votre ville</h4>
-                <form method="get" action="search.html">
-                    <div class="input-field flex ">
-                        <input type="text" class="modernize" placeholder="Choisir une ville">
-                        <input type="submit" class="modernize" value="Trouver">
+                {{ form_start(form) }}
+                    <div class="input-field flex">
+                        {{ form_widget(form.search, { 'attr': { 'class': 'modernize', 'placeholder': 'Choisir une ville' } }) }}
+                        {{ form_widget(form.Trouver, { 'attr': { 'class': 'modernize' } }) }}
                     </div>
-                </form>
+                {{ form_end(form) }}
             </div>
         </div>
     </section>
@@ -150,58 +150,75 @@
             </div>
             <div class="showcase-content no-padding">
                 <div class="row">
-                    <div class="col s12 m6 l3">
-                        <div class="modern-card">
-                            <a href="void:javascript;" class="waves-effect linkify">
-                                <div class="modern-card-image">
-                                    <div class="modern-overlay"></div>
-                                    <img src="{{ asset('img/burger.jpg') }}" alt="" class="modern-image">
-                                </div>
-                                <div class="modern-card-body">
-                                    <span>Burger</span>
-                                </div>
-                            </a>
+
+                    {% for category in categories %}
+                        <div class="col s12 m6 l3">
+                            <div class="modern-card">
+                                <a href="void:javascript;" class="waves-effect linkify">
+                                    <div class="modern-card-image">
+                                        <div class="modern-overlay"></div>
+                                        <img src="{{ category.image.url }}" alt="{{ category.image.title }}">
+                                    </div>
+                                    <div class="modern-card-body">
+                                        <span>{{ category.name }}</span>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <div class="modern-card">
-                            <a href="void:javascript;" class="waves-effect linkify">
-                                <div class="modern-card-image">
-                                    <div class="modern-overlay"></div>
-                                    <img src="{{ asset('img/fastfood.jpg') }}" alt="" class="modern-image">
-                                </div>
-                                <div class="modern-card-body">
-                                    <span>FastFood</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <div class="modern-card">
-                            <a href="void:javascript;" class="waves-effect linkify">
-                                <div class="modern-card-image">
-                                    <div class="modern-overlay"></div>
-                                    <img src="{{ asset('img/pizza.jpg') }}" alt="" class="modern-image">
-                                </div>
-                                <div class="modern-card-body">
-                                    <span>Pizza</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <div class="modern-card">
-                            <a href="void:javascript;" class="waves-effect linkify">
-                                <div class="modern-card-image">
-                                    <div class="modern-overlay"></div>
-                                    <img src="{{ asset('img/desserts.jpg') }}" alt="" class="modern-image">
-                                </div>
-                                <div class="modern-card-body">
-                                    <span>Desserts</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                    {% endfor %}
+
+                    {#<div class="col s12 m6 l3">#}
+                        {#<div class="modern-card">#}
+                            {#<a href="void:javascript;" class="waves-effect linkify">#}
+                                {#<div class="modern-card-image">#}
+                                    {#<div class="modern-overlay"></div>#}
+                                    {#<img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1537554627/Delivereo/Assets/burger.jpg" alt="" class="modern-image">#}
+                                {#</div>#}
+                                {#<div class="modern-card-body">#}
+                                    {#<span>Burger</span>#}
+                                {#</div>#}
+                            {#</a>#}
+                        {#</div>#}
+                    {#</div>#}
+                    {#<div class="col s12 m6 l3">#}
+                        {#<div class="modern-card">#}
+                            {#<a href="void:javascript;" class="waves-effect linkify">#}
+                                {#<div class="modern-card-image">#}
+                                    {#<div class="modern-overlay"></div>#}
+                                    {#<img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1537554627/Delivereo/Assets/fastfood.jpg" alt="" class="modern-image">#}
+                                {#</div>#}
+                                {#<div class="modern-card-body">#}
+                                    {#<span>FastFood</span>#}
+                                {#</div>#}
+                            {#</a>#}
+                        {#</div>#}
+                    {#</div>#}
+                    {#<div class="col s12 m6 l3">#}
+                        {#<div class="modern-card">#}
+                            {#<a href="void:javascript;" class="waves-effect linkify">#}
+                                {#<div class="modern-card-image">#}
+                                    {#<div class="modern-overlay"></div>#}
+                                    {#<img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1537554631/Delivereo/Assets/pizza.jpg" alt="" class="modern-image">#}
+                                {#</div>#}
+                                {#<div class="modern-card-body">#}
+                                    {#<span>Pizza</span>#}
+                                {#</div>#}
+                            {#</a>#}
+                        {#</div>#}
+                    {#</div>#}
+                    {#<div class="col s12 m6 l3">#}
+                        {#<div class="modern-card">#}
+                            {#<a href="void:javascript;" class="waves-effect linkify">#}
+                                {#<div class="modern-card-image">#}
+                                    {#<div class="modern-overlay"></div>#}
+                                    {#<img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1537554627/Delivereo/Assets/desserts.jpg" alt="" class="modern-image">#}
+                                {#</div>#}
+                                {#<div class="modern-card-body">#}
+                                    {#<span>Desserts</span>#}
+                                {#</div>#}
+                            {#</a>#}
+                        {#</div>#}
+                    {#</div>#}
                 </div>
                 <div class="row">
                     <div class="col s12">
@@ -221,14 +238,14 @@
                 <div class="row">
                     <div class="col s12 m6 l4 offset-l1">
                         <div class="image-card">
-                            <img src="{{ asset('img/Android.png') }}" alt="Android version">
+                            <img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1537554628/Delivereo/Assets/Android.png" alt="Android version">
                         </div>
                     </div>
                     <div class="col s12 m6 l7" id="content">
                         <h4 class="heading">Essayez la version Android</h4>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci cum delectus distinctio, dolore doloremque doloribus dolorum est illo ipsum libero magnam nam nihil nisi numquam quo quos repellat sed, voluptas.</p>
                         <a href="void:javascript;">
-                            <img src="assets/img/google-play-badge.svg" alt="">
+                            <img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1537554628/Delivereo/Assets/google-play-badge.svg" alt="">
                         </a>
                     </div>
                 </div>

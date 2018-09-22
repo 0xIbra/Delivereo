@@ -25,6 +25,14 @@ class Category
 
 
     /**
+     * @var Image
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade={"persist"})
+     */
+    private $image;
+
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="category", cascade={"persist"})
      */
     private $menus;
@@ -78,6 +86,18 @@ class Category
                 $menu->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?Image
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Image $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

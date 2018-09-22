@@ -19,11 +19,8 @@
                         <div class="col s12">
                             <div class="container-fluid">
                                 <h3 class="heading">Inscription</h3>
-                                {#{% if error  %}#}
-                                    {#<div class="alerts">#}
-                                        {#<div class="alert danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
-                                    {#</div>#}
-                                {#{% endif %}#}
+
+                                {% include 'inc/form_errors.html.twig' %}
 
                                 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
 

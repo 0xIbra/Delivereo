@@ -1,0 +1,44 @@
+{% extends "bundles/FOSUserBundle/layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}Réinitialisation | Delivereo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+{% endblock %}
+
+{% block fos_user_content %}
+
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col s12 m6 offset-m3">
+                <div class="card">
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="container-fluid">
+                                <h3 class="heading">Réinitialisation</h3>
+                                {% include 'inc/form_errors.html.twig' %}
+                                {{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
+
+                                <div class="input-field">
+                                    {{ form_widget(form.plainPassword.first, { 'attr': { 'class': 'modernize', placeholder: 'Nouveau mot de passe' } }) }}
+                                </div>
+                                <div class="input-field">
+                                    {{ form_widget(form.plainPassword.second, { 'attr': { 'class': 'modernize', placeholder: 'Confirmez' } }) }}
+                                </div>
+
+                                {{ form_widget(form) }}
+                                <div class="input-field submit-wrapper">
+                                    <input type="submit" class="modernize btn" value="{{ 'resetting.reset.submit'|trans }}" />
+                                </div>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock fos_user_content %}

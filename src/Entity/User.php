@@ -52,6 +52,14 @@ class User extends BaseUser
 
 
     /**
+     * @var
+     *
+     * @Assert\Length(min="6", minMessage="Le mot de passe est trop court, il doit avoir au minimum 6 caractères.")
+     */
+    protected $plainPassword;
+
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Restaurant", mappedBy="owner", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */

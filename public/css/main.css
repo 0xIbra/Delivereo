@@ -74,6 +74,10 @@ li, ul {
 .flex span {
   margin-right: 5px; }
 
+.pad-20-0{
+  padding: 20px 0 !important;
+}
+
 span {
   display: block; }
   span.status {
@@ -132,7 +136,7 @@ header {
     .showcase#mobileversion .showcase-content .col#content {
       padding-top: 5%; }
   .showcase.bg {
-    background: url("../img/bg-delivreo.jpg") center;
+    background: url("https://res.cloudinary.com/dqwg570oo/image/upload/v1537554628/Delivereo/Assets/bg-delivreo.jpg") center;
     background-size: cover; }
   .showcase .overlay {
     position: absolute;
@@ -245,14 +249,14 @@ div.input-field.search {
       -webkit-transition: .2s opacity ease-out, .2s color ease-out;
       transition: .2s opacity ease-out, .2s color ease-out; }
 
-input[type="submit"].modernize {
+input[type="submit"].modernize, button[type="submit"].modernize {
   height: 40px;
   border: none !important;
   background: #333333;
   padding: 5px 10px;
   color: #eeeeee;
   border-radius: 0 3px 3px 0; }
-  input[type="submit"].modernize:hover {
+  input[type="submit"].modernize:hover, button[type="submit"].modernize:hover {
     background: #222;
     -webkit-box-shadow: none !important;
     box-shadow: none !important; }

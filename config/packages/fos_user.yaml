@@ -3,8 +3,19 @@ fos_user:
     firewall_name: main
     user_class: App\Entity\User
     from_email:
-        address: 'admin@foodhub.io'
-        sender_name: 'admin@foodhub.io'
+        address: 'admin@delivereo.io'
+        sender_name: 'Admin'
+    service:
+        mailer: fos_user.mailer.twig_swift
     registration:
+        confirmation:
+            enabled: true
+            template: 'FOSUserBundle:Registration:email.txt.twig'
         form:
             type: App\Form\RegistrationFormType
+    resetting:
+        email:
+            from_email:
+                address: 'admin@delivereo.io'
+                sender_name: 'Ibragim'
+            template: '@FOSUser/Resetting/email.txt.twig'
