@@ -4,7 +4,7 @@ fos_user:
     user_class: App\Entity\User
     from_email:
         address: 'admin@delivereo.io'
-        sender_name: 'Admin'
+        sender_name: 'Delivereo'
     service:
         mailer: fos_user.mailer.twig_swift
     registration:
@@ -17,5 +17,5 @@ fos_user:
         email:
             from_email:
                 address: 'admin@delivereo.io'
-                sender_name: 'Ibragim'
+                sender_name: 'Delivereo'
             template: '@FOSUser/Resetting/email.txt.twig'
