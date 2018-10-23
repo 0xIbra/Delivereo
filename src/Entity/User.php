@@ -60,6 +60,14 @@ class User extends BaseUser
 
 
     /**
+     * @var Image
+     * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $image;
+
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Restaurant", mappedBy="owner", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */
@@ -209,6 +217,18 @@ class User extends BaseUser
                 $comment->setCommentedBy(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?Image
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Image $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
