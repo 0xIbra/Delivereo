@@ -2,27 +2,27 @@
 
 namespace App\Form;
 
-use App\Entity\Gender;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use FOS\UserBundle\Form\Type\RegistrationFormType as BaseRegistrationFormType;
+use FOS\UserBundle\Form\Type\ProfileFormType as BaseProfileFormType;
 
-class RegistrationFormType extends AbstractType
+class ProfileFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('firstName')
             ->add('lastName')
-            ->add('gender', EntityType::class, ['class' => Gender::class])
+            ->add('gender')
+            ->remove('email')
+            ->remove('current_password')
         ;
     }
 
     public function getParent()
     {
-        return BaseRegistrationFormType::class;
+        return BaseProfileFormType::class;
     }
 
     public function configureOptions(OptionsResolver $resolver)

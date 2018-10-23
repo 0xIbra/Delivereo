@@ -26,7 +26,7 @@
                             <div class="profile-cred">
                                 <span class="profile-title">{{ app.user.firstName }} {{ app.user.lastName }}</span>
                                 <div class="location flex align-center justify-center">
-                                    <span class="ville">Consommateur</span>
+                                    {% include 'inc/user_type.html.twig' %}
                                 </div>
                             </div>
                         </div>
@@ -46,32 +46,30 @@
                                     </div>
                                     <div class="info">
                                         <span class="material-icons">wc</span>
-                                        <span class="value">Homme</span>
+                                        <span class="value">{{ app.user.gender.name }}</span>
                                     </div>
                                     <span class="subheader">Reseaux sociaux</span>
                                     <div class="social-icons flex align-center">
-                                        <a href="https://www.instagram.com/ibrahim_tchee" target="_blank" class="icon-wrapper">
-                                            <span class="icon fa fa-instagram"></span>
-                                        </a>
-                                        <a href="https://www.linkedin.com/in/ibragim64000" target="_blank" class="icon-wrapper">
-                                            <span class="icon fa fa-linkedin"></span>
-                                        </a>
-                                        <a href="void:javascript;" class="icon-wrapper">
-                                            <span class="icon fa fa-facebook"></span>
-                                        </a>
-                                        <a href="void:javascript;" class="icon-wrapper">
-                                            <span class="icon fa fa-twitter"></span>
+                                        {% for social in app.user.socialLinks %}
+                                            <a href="{{ social.url }}" target="_blank" class="icon-wrapper">
+                                                <span class="icon fa fa-{{ social.type.shortcode }}"></span>
+                                            </a>
+                                        {% endfor %}
+
+                                        <a href="#socialmodal" class="icon-wrapper modal-trigger">
+                                            <span class="icon fa fa-plus-square-o"></span>
                                         </a>
                                     </div>
+                                    {% include 'inc/single_error.html.twig' %}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="flex buttons-row">
-                                    <a href="profile_edit.html" class="modernize flex justify-center">
+                                    <a href="{{ path('fos_user_profile_edit') }}" class="modernize flex justify-center">
                                         <span class="material-icons">account_circle</span>
                                         <span>Modifier</span>
                                     </a>
-                                    <a href="password_change.html" class="modernize flex justify-center">
+                                    <a href="{{ path('fos_user_change_password') }}" class="modernize flex justify-center">
                                         <span class="material-icons">lock</span>
                                         <span>Mot de passe</span>
                                     </a>
@@ -83,12 +81,33 @@
                 <div class="col s12 m7 l8">
                     <div class="card">
                         <div class="card-content">
-                            <div class="row">
 
-                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="modal" id="socialmodal">
+            <div class="modal-content">
+                <h4 class="modal-title">Ajouter un reseau</h4>
+                <br>
+                <div class="divider"></div>
+                <form method="post" action="{{ path('add_address') }}">
+                    <div class="input-field modernize">
+                        <select name="socialtype">
+                            <option value="1">Facebook</option>
+                            <option value="2">Instagram</option>
+                            <option value="3">LinkedIn</option>
+                            <option value="4">Twitter</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" class="modernize" name="socialurl" placeholder="Url">
+                    </div>
+                    <div class="input-field flex justify-center">
+                        <input type="submit" class="modernize btn" value="Ajouter">
+                    </div>
+                </form>
             </div>
         </div>
     </div>

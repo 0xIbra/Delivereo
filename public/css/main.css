@@ -539,7 +539,8 @@ input[type="submit"].modernize.btn {
     background: #0bc9a9; }
 
 a.redirect {
-  color: #0ee9c3; }
+  color: #0ee9c3;
+  padding: 10px 0;  }
   a.redirect.default {
     color: #f9f9f9 !important; }
   a.redirect.danger {

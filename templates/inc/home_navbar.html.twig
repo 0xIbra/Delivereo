@@ -9,7 +9,8 @@
                         <li><a href="{{ path('fos_user_security_login') }}">Se connecter</a></li>
                         <li><a href="{{ path('fos_user_registration_register') }}">S'inscrire</a></li>
                     {% elseif is_granted('ROLE_USER') %}
-                        <li><a href="{{ path('fos_user_security_logout') }}">Deconnecter</a></li>
+                        <li><a href="{{ path('fos_user_profile_show') }}">Mon compte</a></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -23,17 +24,24 @@
             <div class="user-view">
                 <div class="background">
                     <div class="background-overlay"></div>
-                    <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=cbbd27149a8243a42eb2bd0bd918ba8f&auto=format&fit=crop&w=750&q=80">
+                    <img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540311324/businessman.jpg">
                 </div>
-                <a href="void:javascript;"><img class="circle" src="https://images.unsplash.com/photo-1512667281074-84fc588aa399?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=29d596fae399949ae232a48dd88f8d95&auto=format&fit=crop&w=750&q=80"></a>
+                {% if app.user.gender.id == 1 %}
+                    <img class="circle" src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540289616/boss.png">
+                {% elseif app.user.gender.id == 2 %}
+                    <img class="circle" src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540298272/croupier.png">
+                {% endif %}
                 <a href="void:javascript;"><span class="white-text name">{{ app.user.firstName }} {{ app.user.lastName }}</span></a>
                 <a href="mailto:{{ app.user.email }}"><span class="white-text email">{{ app.user.email }}</span></a>
             </div>
         </li>
     {% endif %}
-    <li><a href="#!"><i class="material-icons">cloud</i>Check on Gitlab</a></li>
-    <li><div class="divider"></div></li>
     <li><a class="subheader">Member</a></li>
-    <li><a class="waves-effect" href="{{ path('fos_user_security_login') }}"><i class="material-icons">account_circle</i>Connexion</a></li>
-    <li><a class="waves-effect" href="{{ path('fos_user_registration_register') }}"><i class="material-icons">format_align_left</i>Inscription</a></li>
+    {% if not is_granted('ROLE_USER') %}
+        <li><a class="waves-effect" href="{{ path('fos_user_security_login') }}"><i class="material-icons">account_circle</i>Connexion</a></li>
+        <li><a class="waves-effect" href="{{ path('fos_user_registration_register') }}"><i class="material-icons">format_align_left</i>Inscription</a></li>
+    {% else %}
+        <li><a href="{{ path('fos_user_profile_show') }}" class="waves-effect">Mon compte</a></li>
+        <li><a href="{{ path('fos_user_security_logout') }}" class="waves-effect">Déconnexion</a></li>
+    {% endif %}
 </ul>

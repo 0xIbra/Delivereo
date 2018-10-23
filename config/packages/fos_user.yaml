@@ -19,3 +19,6 @@ fos_user:
                 address: 'admin@delivereo.io'
                 sender_name: 'Delivereo'
             template: '@FOSUser/Resetting/email.txt.twig'
+    profile:
+        form:
+            type: App\Form\ProfileFormType

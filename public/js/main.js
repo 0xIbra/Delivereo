@@ -2,6 +2,7 @@ $(document).ready(function(){
     $('.sidenav').sidenav({ edge: 'right' });
     $('.tabs').tabs();
     $('.modal').modal();
+    $('select').formSelect();
 
     $(window).scroll(function(){
         if ($(window).scrollTop() < 2)

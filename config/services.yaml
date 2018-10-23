@@ -32,5 +32,10 @@ services:
         tags:
             - { name: form.type }
 
+    app.form.profile:
+        class: App\Form\ProfileFormType
+        tags:
+            - { name: form.type }
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

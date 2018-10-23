@@ -66,6 +66,26 @@ class User extends BaseUser
      */
     private $image;
 
+    /**
+     * @var Gender
+     * @ORM\ManyToOne(targetEntity="App\Entity\Gender")
+     */
+    private $gender;
+
+    /**
+     * @var Address
+     * @ORM\OneToMany(targetEntity="App\Entity\Address", mappedBy="user", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $addresses;
+
+    /**
+     * @var SocialLink
+     * @ORM\OneToMany(targetEntity="App\Entity\SocialLink", mappedBy="user", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $socialLinks;
+
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Restaurant", mappedBy="owner", cascade={"persist"})
@@ -94,6 +114,8 @@ class User extends BaseUser
         $this->orders = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->addRole('ROLE_CONSUMER');
+        $this->addresses = new ArrayCollection();
+        $this->socialLinks = new ArrayCollection();
     }
 
     /**
@@ -230,6 +252,84 @@ class User extends BaseUser
     public function setImage(?Image $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getGender(): ?Gender
+    {
+        return $this->gender;
+    }
+
+    public function setGender(?Gender $gender): self
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getAddresses(): ?Address
+    {
+        return $this->addresses;
+    }
+
+    public function setAddresses(?Address $addresses): self
+    {
+        $this->addresses = $addresses;
+
+        return $this;
+    }
+
+    public function addAddress(Address $address): self
+    {
+        if (!$this->addresses->contains($address)) {
+            $this->addresses[] = $address;
+            $address->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAddress(Address $address): self
+    {
+        if ($this->addresses->contains($address)) {
+            $this->addresses->removeElement($address);
+            // set the owning side to null (unless already changed)
+            if ($address->getUser() === $this) {
+                $address->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SocialLink[]
+     */
+    public function getSocialLinks(): Collection
+    {
+        return $this->socialLinks;
+    }
+
+    public function addSocialLink(SocialLink $socialLink): self
+    {
+        if (!$this->socialLinks->contains($socialLink)) {
+            $this->socialLinks[] = $socialLink;
+            $socialLink->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSocialLink(SocialLink $socialLink): self
+    {
+        if ($this->socialLinks->contains($socialLink)) {
+            $this->socialLinks->removeElement($socialLink);
+            // set the owning side to null (unless already changed)
+            if ($socialLink->getUser() === $this) {
+                $socialLink->setUser(null);
+            }
+        }
 
         return $this;
     }
