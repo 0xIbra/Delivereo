@@ -74,10 +74,6 @@ li, ul {
 .flex span {
   margin-right: 5px; }
 
-.pad-20-0{
-  padding: 20px 0 !important;
-}
-
 span {
   display: block; }
   span.status {
@@ -136,7 +132,7 @@ header {
     .showcase#mobileversion .showcase-content .col#content {
       padding-top: 5%; }
   .showcase.bg {
-    background: url("https://res.cloudinary.com/dqwg570oo/image/upload/v1537554628/Delivereo/Assets/bg-delivreo.jpg") center;
+    background: url("../img/bg-delivreo.jpg") center;
     background-size: cover; }
   .showcase .overlay {
     position: absolute;
@@ -552,6 +548,8 @@ a.redirect {
 @media (max-width: 601px) {
   a.modernize {
     padding: 10px !important; } }
+.sidenav li .user-view .background img {
+  max-width: 100% !important; }
 .sidenav li .user-view .background .background-overlay {
   position: absolute;
   width: 100%;
@@ -584,12 +582,14 @@ a.redirect {
   .pagination li:hover a {
     color: #eeeeee !important; }
 
-.modal.modernize .modal-success {
-  background: #5cb85c;
-  color: #eeeeee; }
-.modal.modernize .modal-danger {
-  background: #d9534f;
-  color: #eeeeee; }
+.modal.modernize {
+  overflow-y: hidden !important; }
+  .modal.modernize .modal-success {
+    background: #5cb85c;
+    color: #eeeeee; }
+  .modal.modernize .modal-danger {
+    background: #d9534f;
+    color: #eeeeee; }
 
 @media (max-width: 601px) {
   .modal {
@@ -599,27 +599,28 @@ a.redirect {
     color: #444444; }
     .modal.modernize .modal-content .modal-title {
       text-align: center; } }
+.input-field.modernize .select-wrapper {
+  background: #eeeeee;
+  padding: 0 5px; }
+  .input-field.modernize .select-wrapper input {
+    border-bottom: none !important; }
+  .input-field.modernize .select-wrapper ul.dropdown-content li span {
+    color: #444 !important; }
+
 .quantity.input {
   display: flex;
   align-items: center; }
   .quantity.input button.modernize {
     background: transparent;
     border: 1px solid rgba(0, 0, 0, 0.14);
-    font-size: 18pt;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
     margin: 0 10px;
-    transition: ease-in .1s;
+    border-radius: 3px;
     cursor: pointer; }
-    .quantity.input button.modernize:nth-child(1) {
-      margin-left: 0 !important; }
-    .quantity.input button.modernize:last-child {
-      margin-right: 0 !important; }
-    .quantity.input button.modernize.dec {
-      font-size: 22pt !important; }
     .quantity.input button.modernize:hover {
-      background: rgba(0, 0, 0, 0.1); }
+      background: rgba(0, 0, 0, 0.14); }
+    .quantity.input button.modernize span {
+      padding: 7px 3px;
+      color: #666; }
   .quantity.input .quantity.count {
     font-size: 17pt; }
 

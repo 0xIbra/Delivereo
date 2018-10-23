@@ -1,0 +1,95 @@
+{% extends 'bundles/FOSUserBundle/layout.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}{{ app.user.firstName }} {{ app.user.lastName }} | Delivereo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/restaurant.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+{% endblock %}
+
+{% block fos_user_content %}
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col s12 m5 l4">
+                    <div class="card" id="profileimage">
+                        <div class="card-content">
+                            <div class="image-wrapper">
+                                {% if app.user.image is null %}
+                                    <img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540289616/boss.png" alt="Default photo">
+                                {% else %}
+                                    <img src="{{ app.user.image.url }}" alt="Photo de {{ app.user.firstname }} {{ app.user.lastName }}">
+                                {% endif %}
+                            </div>
+                            <div class="profile-cred">
+                                <span class="profile-title">{{ app.user.firstName }} {{ app.user.lastName }}</span>
+                                <div class="location flex align-center justify-center">
+                                    <span class="ville">Consommateur</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" id="profileinfo">
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="col s12">
+                                    <span class="subheader">Informations</span>
+                                    <div class="info">
+                                        <span class="material-icons">account_circle</span>
+                                        <span class="value">{{ app.user.username }}</span>
+                                    </div>
+                                    <div class="info">
+                                        <span class="material-icons">mail</span>
+                                        <span><a href="mailto:{{ app.user.email }}">{{ app.user.email }}</a></span>
+                                    </div>
+                                    <div class="info">
+                                        <span class="material-icons">wc</span>
+                                        <span class="value">Homme</span>
+                                    </div>
+                                    <span class="subheader">Reseaux sociaux</span>
+                                    <div class="social-icons flex align-center">
+                                        <a href="https://www.instagram.com/ibrahim_tchee" target="_blank" class="icon-wrapper">
+                                            <span class="icon fa fa-instagram"></span>
+                                        </a>
+                                        <a href="https://www.linkedin.com/in/ibragim64000" target="_blank" class="icon-wrapper">
+                                            <span class="icon fa fa-linkedin"></span>
+                                        </a>
+                                        <a href="void:javascript;" class="icon-wrapper">
+                                            <span class="icon fa fa-facebook"></span>
+                                        </a>
+                                        <a href="void:javascript;" class="icon-wrapper">
+                                            <span class="icon fa fa-twitter"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="flex buttons-row">
+                                    <a href="profile_edit.html" class="modernize flex justify-center">
+                                        <span class="material-icons">account_circle</span>
+                                        <span>Modifier</span>
+                                    </a>
+                                    <a href="password_change.html" class="modernize flex justify-center">
+                                        <span class="material-icons">lock</span>
+                                        <span>Mot de passe</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m7 l8">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="row">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

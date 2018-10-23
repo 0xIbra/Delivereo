@@ -93,6 +93,7 @@ class User extends BaseUser
         $this->restaurants = new ArrayCollection();
         $this->orders = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->addRole('ROLE_CONSUMER');
     }
 
     /**
