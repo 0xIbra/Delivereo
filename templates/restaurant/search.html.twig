@@ -1,0 +1,141 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ city.name }} | Delivereo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/restaurant.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <div class="search-area">
+                {#{{ form_start(form) }}#}
+                {#<div class="input-field search">#}
+                    {#{{ form_widget(form.search, { 'attr': { 'class': 'modernize search field', 'placeholder': 'Entrer un nouveau code postal' } }) }}#}
+                    {#<i class="material-icons">search</i>#}
+                {#</div>#}
+                {#{{ form_end(form) }}#}
+            </div>
+
+            <div class="row">
+                <div class="col s12">
+                    Resultats pour la ville "{{ city.name }}"
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 m12 l3">
+                    <div class="card" id="sidedashboard">
+                        <div class="card-content bg-white">
+                            <span class="small-header">Trier par</span>
+                            <li class="divider"></li>
+                            <div class="categories">
+                                <span class="small-subheader">Categories</span>
+                                <p>
+                                    <label>
+                                        <input type="checkbox">
+                                        <span>FastFood</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox">
+                                        <span>Burger</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox">
+                                        <span>Italien</span>
+                                    </label>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m12 l9">
+                    <div class="card">
+                        <div class="card-content bg-white">
+                            <div class="results">
+
+                                {% if restaurants|length > 0 %}
+                                    {% for restaurant in restaurants %}
+                                        <div class="hr-card">
+                                            <div class="row">
+                                                <div class="col s12 m6 l4">
+                                                    <div class="image">
+                                                        <a href="void:javascript;">
+                                                            <img src="{{ restaurant.image.url }}" alt="Photo de {{ restaurant.name }}">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col s12 m6 l8">
+                                                    <div class="card-body">
+                                                        <span class="title"><a href="void:javascript;">{{ restaurant.name }}</a></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <span class="card-title">Aucun resultat</span>
+                                {% endif %}
+
+                                <div class="hr-card">
+                                    <div class="row">
+                                        <div class="col s12 m6 l4">
+                                            <div class="image">
+                                                <a href="restaurant.html">
+                                                    <img src="assets/img/kfc.jpeg" alt="KFC">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m6 l8">
+                                            <div class="card-body">
+                                                <span class="title"><a href="restaurant.html">KFC</a></span>
+                                                <div class="rating">
+                                                    <div class="icon success">
+                                                        <i class="material-icons">thumb_up</i>
+                                                        <span>23</span>
+                                                    </div>
+                                                    <div class="icon danger">
+                                                        <i class="material-icons">thumb_down</i>
+                                                        <span>3</span>
+                                                    </div>
+                                                </div>
+                                                <div class="category-list">
+                                                    <span>FastFood •</span>
+                                                    <span>Burger •</span>
+                                                    <span>Pizza</span>
+                                                </div>
+                                                <div class="info">
+                                                    <span>Pau, 64000</span>
+                                                    <span>20 - 30 min</span>
+                                                    <span class="status danger">Fermé</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {#<div class="row">#}
+                                {#<br>#}
+                                {#<div class="col s6 l2 offset-s4 offset-l5">#}
+                                {#<a href="void:javascript;" class="modernize bold waves-effect flex justify-center">#}
+                                {#<span>Voir tout</span>#}
+                                {#</a>#}
+                                {#</div>#}
+                                {#</div>#}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

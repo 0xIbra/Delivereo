@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AddressRepository")
@@ -18,11 +19,13 @@ class Address
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le champ libellé ne doit pas être vide.")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le champ adresse ne doit pas être vide.")
      */
     private $line1;
 
@@ -34,12 +37,14 @@ class Address
     /**
      * @var City
      * @ORM\ManyToOne(targetEntity="App\Entity\City")
+     * @Assert\NotNull()
      */
     private $city;
 
     /**
      * @var User
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="addresses")
+     * @Assert\NotNull()
      */
     private $user;
 
@@ -53,7 +58,7 @@ class Address
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
@@ -65,7 +70,7 @@ class Address
         return $this->line1;
     }
 
-    public function setLine1(string $line1): self
+    public function setLine1(?string $line1): self
     {
         $this->line1 = $line1;
 

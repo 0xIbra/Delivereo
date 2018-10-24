@@ -19,10 +19,17 @@ class DefaultController extends AbstractController
      * @param ObjectManager $manager
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(ObjectManager $manager)
+    public function index(Request $request, ObjectManager $manager)
     {
         $categories = $manager->getRepository(Category::class)->findBy(['name' => ['Burger', 'Pizza', 'Fast food', 'Desserts']]);
         $searchform = $this->createForm(HomeSearchType::class);
+        $searchform->handleRequest($request);
+        if ($searchform->isSubmitted() && $searchform->isValid())
+        {
+            $data = $searchform->getData();
+            $data = $data['search'];
+            return $this->redirectToRoute('search_city', ['zipCode' => $data]);
+        }
         return $this->render('home.html.twig',
             [
                 'form' => $searchform->createView(),

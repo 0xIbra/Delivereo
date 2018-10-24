@@ -2,9 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Address;
+use App\Entity\City;
 use App\Entity\Image;
 use App\Entity\Social;
 use App\Entity\SocialLink;
+use App\Form\AddressCustomFormType;
+use App\Form\AddressFormType;
 use App\Uploader\Uploader;
 use App\Utils\Validation;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -17,7 +21,7 @@ class UserController extends AbstractController
 {
 
     /**
-     * @Route("/user/address/add", name="add_social_link", methods={"POST"})
+     * @Route("/user/sociallink/add", name="add_social_link", methods={"POST"})
      * @param Request $request
      * @param ValidatorInterface $validator
      * @param ObjectManager $om
@@ -38,6 +42,7 @@ class UserController extends AbstractController
         {
             $om->persist($socialLink);
             $om->flush();
+            $this->get('session')->getFlashBag()->add('success', 'Réseau ajoutée.');
             return $this->redirectToRoute('fos_user_profile_show');
         }
     }
@@ -68,6 +73,7 @@ class UserController extends AbstractController
             $user->setImage($image);
             $om->persist($user);
             $om->flush();
+            $this->get('session')->getFlashBag()->add('success', 'Image ajoutée.');
             return $this->redirectToRoute('fos_user_profile_show');
         }
     }
@@ -83,19 +89,84 @@ class UserController extends AbstractController
         $user->setImage(null);
         $om->persist($user);
         $om->flush();
+        $this->get('session')->getFlashBag()->add('danger', 'Image supprimée.');
         return $this->redirectToRoute('fos_user_profile_show');
     }
 
 
     /**
-     * @Route("/user/address/add", name="add_address", methods={"GET"})
+     * @Route("/user/address/add", name="add_address", methods={"GET", "POST"})
      * @param Request $request
      * @param ValidatorInterface $validator
      * @param ObjectManager $om
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function addAddress(Request $request, ValidatorInterface $validator, ObjectManager $om)
     {
-        
+        $address = new Address();
+        $form = $this->createForm(AddressCustomFormType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $data = $form->getData();
+            $city = $om->getRepository(City::class)->findOneBy(['name' => $data['city'], 'zipCode' => $data['zipCode']]);
+            if ($city == null)
+            {
+                $this->get('session')->getFlashBag()->add('danger', 'Merci d\'entrer une ville correctement.');
+                return $this->redirectToRoute('add_address');
+            }
+            $address->setName($data['name']);
+            $address->setLine1($data['line1']);
+            $address->setLine2($data['line2']);
+            $address->setCity($city);
+            $address->setUser($this->getUser());
+            $validation = Validation::validate($validator, $address, $this->get('session')->getFlashBag());
+            if (!$validation)
+            {
+                return $this->redirectToRoute('add_address');
+            }else
+            {
+                $om->persist($address);
+                $om->flush();
+                $this->get('session')->getFlashBag()->add('success', 'Adresse ajouté.');
+                return $this->redirectToRoute('fos_user_profile_show');
+            }
+        }
+        return $this->render('user/add_address.html.twig', ['form' => $form->createView()]);
+    }
+
+    /**
+     * @Route("/user/address/edit/{address}", name="edit_address", requirements={"address"="\d+"}, methods={"GET", "POST"})
+     * @param Address $address
+     * @param Request $request
+     * @param ObjectManager $om
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function editAddress(Address $address, Request $request, ObjectManager $om)
+    {
+        $form = $this->createForm(AddressFormType::class, $address);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $om->persist($address);
+            $om->flush();
+            $this->get('session')->getFlashBag()->add('success', 'La modifcation à été effectué.');
+            return $this->redirectToRoute('fos_user_profile_show');
+        }
+
+        return $this->render('user/edit_address.html.twig', ['form' => $form->createView()]);
+    }
+
+    /**
+     * @Route("/user/address/delete/{address}", name="delete_address", requirements={"address"="\d+"}, methods={"GET"})
+     */
+    public function deleteAddress(Address $address, ObjectManager $om)
+    {
+        $om->remove($address);
+        $om->flush();
+        $this->get('session')->getFlashBag()->add('danger', 'Suppression effectuée');
+        return $this->redirectToRoute('fos_user_profile_show');
     }
 
 }

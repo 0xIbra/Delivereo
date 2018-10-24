@@ -34,6 +34,12 @@ class Restaurant
      */
     private $closesAt;
 
+    /**
+     * @var Image
+     * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade={"persist", "remove"})
+     */
+    private $image;
+
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="restaurants")
@@ -150,6 +156,18 @@ class Restaurant
     public function setCity(?City $city): self
     {
         $this->city = $city;
+
+        return $this;
+    }
+
+    public function getImage(): ?Image
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Image $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

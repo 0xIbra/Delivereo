@@ -29,6 +29,15 @@ class CityRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult(Query::HYDRATE_OBJECT);
     }
 
+    public function findByZipCode($zipCode)
+    {
+        $qb = $this->createQueryBuilder('c');
+        $qb->where('c.zipCode = :zip')
+            ->setParameter('zip', $zipCode);
+
+        return $qb->getQuery()->getResult(Query::HYDRATE_OBJECT);
+    }
+
 //    /**
 //     * @return City[] Returns an array of City objects
 //     */

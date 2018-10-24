@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout adresse | Delivereo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="page-wrapper">
+        <div class="row">
+            <div class="col s12 m6 offset-m3">
+                <div class="card">
+                    <div class="card-content">
+                        {% include 'inc/errors.html.twig' %}
+                        {{ form_start(form) }}
+                        <div class="input-field">
+                            {{ form_widget(form.name, { 'attr': { 'class': 'modernize', 'placeholder': 'Libellé' } }) }}
+                        </div>
+                        <div class="input-field">
+                            {{ form_widget(form.line1, { 'attr': { 'class': 'modernize', 'placeholder': 'Adresse' } }) }}
+                        </div>
+                        <div class="input-field">
+                            {{ form_widget(form.line2, { 'attr': { 'class': 'modernize', 'placeholder': 'Apartement, Batiment...' } }) }}
+                        </div>
+                        <div class="input-field">
+                            {{ form_widget(form.city, { 'attr': { 'class': 'modernize', 'placeholder': 'Ville' } }) }}
+                        </div>
+                        <div class="input-field">
+                            {{ form_widget(form.zipCode, { 'attr': { 'class': 'modernize', 'placeholder': 'Code postal' } }) }}
+                        </div>
+                        <div class="input-field justify-center flex">
+                            <input type="submit" value="Valider" class="modernize btn">
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

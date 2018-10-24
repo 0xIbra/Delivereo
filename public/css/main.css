@@ -625,6 +625,9 @@ a.redirect {
   .quantity.input .quantity.count {
     font-size: 17pt; }
 
+a.btn-flat.red, a.btn-flat.green{
+  color: #fff !important;
+}
 
 a.add-btn{
   border: 1px solid rgba(0,0,0,0.14) !important;
@@ -645,6 +648,22 @@ a.add-btn span.material-icons{
   font-size: 18pt !important;
   margin-right: 0 !important;
   padding: 0 2px;
+}
+
+.collection.modernize{
+  border: none !important;
+}
+
+.collection .collection-item.modernize{
+  color: #333333 !important;
+  margin: 5px 0;
+  box-shadow: none !important;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.collection .collection-item.modernize:hover{
+  color: #0ee9c3 !important;
+  background: rgba(0,0,0,0.04) !important;
 }
 
 /*# sourceMappingURL=main.css.map */

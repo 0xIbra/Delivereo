@@ -64,7 +64,6 @@
                                             <span class="icon fa fa-plus-square-o"></span>
                                         </a>
                                     </div>
-                                    {% include 'inc/single_error.html.twig' %}
                                 </div>
                             </div>
                             <div class="row">
@@ -87,9 +86,21 @@
                         <div class="card-content">
                             <div class="row">
                                 <div class="col s12">
+                                    {% include 'inc/errors.html.twig' %}
+                                    <div class="flex align-center">
+                                        <div class="row-header">Commandes</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="col s12">
                                     <div class="flex align-center">
                                         <div class="row-header">Adresses</div>
-                                        <a href="#addressmodal" class="modal-trigger flex align-center add-btn">
+                                        <a href="{{ path('add_address') }}" class="modal-trigger flex align-center add-btn">
                                             <span class="material-icons">add</span>
                                         </a>
                                     </div>
@@ -97,7 +108,9 @@
                                 {% for address in app.user.addresses %}
                                     <div class="col s12 m6 l4">
                                         <div class="card basic modernize">
-                                            <a href="void:javascript;">
+                                            <a href="#addressmodal" class="modal-trigger address" data-id="{{ address.id }}" data-title="{{ address.name }}"
+                                               data-line1="{{ address.line1 }}" data-city="{{ address.city.name }}, {{ address.city.zipCode }}"
+                                                    {% if address.line2 is not null %}data-line2="{{ address.line2 }}"{% endif %}>
                                                 <div class="card-content">
                                                     <span class="card-title">{{ address.name }}</span>
                                                     <span class="address">{{ address.line1 }}</span>
@@ -111,6 +124,23 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+
+        <div class="modal" id="addressmodal">
+            <div class="modal-content">
+                <h4 class="modal-title">Titre</h4>
+                <br>
+                <div class="divider"></div>
+                <br>
+                <span id="address" class="address">Adresse</span>
+                <span class="address" id="line2">Complementaire</span>
+                <span class="address" id="city">Ville</span>
+            </div>
+            <div class="modal-footer">
+                <a href="" class="waves-effect btn-flat red" id="deletebtn">Supprimer</a>
+                <a href="#" class="waves-effect btn-flat" id="editbtn">Modifier</a>
             </div>
         </div>
 
@@ -138,4 +168,24 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('a.modal-trigger.address').click(function(){
+            $('#addressmodal #deletebtn').attr('href', '/user/address/delete/' + $(this).data('id'));
+            $('#addressmodal #editbtn').attr('href', '/user/address/edit/' + $(this).data('id'));
+            $('#addressmodal .modal-title').html($(this).data('title'));
+            $('#addressmodal #address').html($(this).data('line1'));
+            if ($(this).data('line2') !== undefined)
+            {
+                $('#addressmodal #line2').html($(this).data('line2'));
+            }else
+            {
+                $('#addressmodal #line2').html('');
+            }
+            $('#addressmodal #city').html($(this).data('city'));
+        });
+    </script>
 {% endblock %}

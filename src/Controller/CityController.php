@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\City;
+use App\Form\SearchCustomFormType;
 use Doctrine\Common\Persistence\ObjectManager;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,10 +21,27 @@ class CityController extends AbstractController
      * @param SerializerInterface $serializer
      * @return Response
      */
-    public function searchCity($city, ObjectManager $om, SerializerInterface $serializer)
+    public function searchCityJson($city, ObjectManager $om, SerializerInterface $serializer)
     {
         $cities = $om->getRepository(City::class)->findByName($city);
         return JSON::JSONResponse($cities, Response::HTTP_OK, $serializer);
+    }
+
+    /**
+     * @Route("/city/{zipCode}", name="search_city", requirements={"zipCode"});
+     * @param $search
+     * @param ObjectManager $om
+     * @return Response
+     */
+    public function searchCity($zipCode, ObjectManager $om)
+    {
+        $form = $this->createForm(SearchCustomFormType::class);
+        $cities = $om->getRepository(City::class)->findByZipCode($zipCode);
+        return $this->render('city/search.html.twig', [
+            'cities' => $cities,
+            'search' => $zipCode,
+            'form' => $form->createView()
+        ]);
     }
 
 }
