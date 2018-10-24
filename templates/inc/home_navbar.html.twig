@@ -5,6 +5,7 @@
                 <a href="{{ path('homepage') }}" class="brand-logo left bold">Delivereo</a>
                 <a href="#" data-target="sidebar-nav" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
+                    <li><a href="void:javascript;">Ouvrir votre restaurant</a></li>
                     {% if not is_granted('ROLE_USER') %}
                         <li><a href="{{ path('fos_user_security_login') }}">Se connecter</a></li>
                         <li><a href="{{ path('fos_user_registration_register') }}">S'inscrire</a></li>

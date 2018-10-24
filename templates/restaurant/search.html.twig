@@ -75,6 +75,26 @@
                                                 <div class="col s12 m6 l8">
                                                     <div class="card-body">
                                                         <span class="title"><a href="void:javascript;">{{ restaurant.name }}</a></span>
+                                                        <div class="rating">
+                                                            <div class="icon success">
+                                                                <i class="material-icons">thumb_up</i>
+                                                                <span>0</span>
+                                                            </div>
+                                                            <div class="icon danger">
+                                                                <i class="material-icons">thumb_down</i>
+                                                                <span>0</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="category-list flex">
+                                                            <span>FastFood •</span>
+                                                            <span>Burger •</span>
+                                                            <span>Pizza</span>
+                                                        </div>
+                                                        <div class="info">
+                                                            <span>{{ restaurant.city.name }}, {{ restaurant.city.zipCode }}</span>
+                                                            <span>20 - 30 min</span>
+                                                            <span class="status danger">Fermé</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -84,42 +104,42 @@
                                     <span class="card-title">Aucun resultat</span>
                                 {% endif %}
 
-                                <div class="hr-card">
-                                    <div class="row">
-                                        <div class="col s12 m6 l4">
-                                            <div class="image">
-                                                <a href="restaurant.html">
-                                                    <img src="assets/img/kfc.jpeg" alt="KFC">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col s12 m6 l8">
-                                            <div class="card-body">
-                                                <span class="title"><a href="restaurant.html">KFC</a></span>
-                                                <div class="rating">
-                                                    <div class="icon success">
-                                                        <i class="material-icons">thumb_up</i>
-                                                        <span>23</span>
-                                                    </div>
-                                                    <div class="icon danger">
-                                                        <i class="material-icons">thumb_down</i>
-                                                        <span>3</span>
-                                                    </div>
-                                                </div>
-                                                <div class="category-list">
-                                                    <span>FastFood •</span>
-                                                    <span>Burger •</span>
-                                                    <span>Pizza</span>
-                                                </div>
-                                                <div class="info">
-                                                    <span>Pau, 64000</span>
-                                                    <span>20 - 30 min</span>
-                                                    <span class="status danger">Fermé</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {#<div class="hr-card">#}
+                                    {#<div class="row">#}
+                                        {#<div class="col s12 m6 l4">#}
+                                            {#<div class="image">#}
+                                                {#<a href="restaurant.html">#}
+                                                    {#<img src="assets/img/kfc.jpeg" alt="KFC">#}
+                                                {#</a>#}
+                                            {#</div>#}
+                                        {#</div>#}
+                                        {#<div class="col s12 m6 l8">#}
+                                            {#<div class="card-body">#}
+                                                {#<span class="title"><a href="restaurant.html">KFC</a></span>#}
+                                                {#<div class="rating">#}
+                                                    {#<div class="icon success">#}
+                                                        {#<i class="material-icons">thumb_up</i>#}
+                                                        {#<span>23</span>#}
+                                                    {#</div>#}
+                                                    {#<div class="icon danger">#}
+                                                        {#<i class="material-icons">thumb_down</i>#}
+                                                        {#<span>3</span>#}
+                                                    {#</div>#}
+                                                {#</div>#}
+                                                {#<div class="category-list">#}
+                                                    {#<span>FastFood •</span>#}
+                                                    {#<span>Burger •</span>#}
+                                                    {#<span>Pizza</span>#}
+                                                {#</div>#}
+                                                {#<div class="info">#}
+                                                    {#<span>Pau, 64000</span>#}
+                                                    {#<span>20 - 30 min</span>#}
+                                                    {#<span class="status danger">Fermé</span>#}
+                                                {#</div>#}
+                                            {#</div>#}
+                                        {#</div>#}
+                                    {#</div>#}
+                                {#</div>#}
 
                                 {#<div class="row">#}
                                 {#<br>#}

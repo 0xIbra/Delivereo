@@ -40,6 +40,17 @@ class Restaurant
      */
     private $image;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Like", mappedBy="target", cascade={"persist", "remove"})
+     */
+    private $likes;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\DisLike", mappedBy="target", cascade={"persist", "remove"})
+     */
+    private $dislikes;
+
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="restaurants")
@@ -61,6 +72,8 @@ class Restaurant
     public function __construct()
     {
         $this->menus = new ArrayCollection();
+        $this->likes = new ArrayCollection();
+        $this->dislikes = new ArrayCollection();
     }
 
 
@@ -171,4 +184,68 @@ class Restaurant
 
         return $this;
     }
+
+    /**
+     * @return Collection|Like[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Like $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setTarget($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Like $like): self
+    {
+        if ($this->likes->contains($like)) {
+            $this->likes->removeElement($like);
+            // set the owning side to null (unless already changed)
+            if ($like->getTarget() === $this) {
+                $like->setTarget(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|DisLike[]
+     */
+    public function getDislikes(): Collection
+    {
+        return $this->dislikes;
+    }
+
+    public function addDislike(DisLike $dislike): self
+    {
+        if (!$this->dislikes->contains($dislike)) {
+            $this->dislikes[] = $dislike;
+            $dislike->setTarget($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDislike(DisLike $dislike): self
+    {
+        if ($this->dislikes->contains($dislike)) {
+            $this->dislikes->removeElement($dislike);
+            // set the owning side to null (unless already changed)
+            if ($dislike->getTarget() === $this) {
+                $dislike->setTarget(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

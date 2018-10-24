@@ -16,6 +16,15 @@ class RestaurantController extends AbstractController
 {
 
     /**
+     * @Route("/restaurant", name="restaurant_info", methods={"GET"})
+     */
+    public function restaurant()
+    {
+
+    }
+
+
+    /**
      * @Route("/api/restaurant/{city}", name="restaurantsByCity", methods={"GET"}, requirements={"city"="\d+"})
      * @param City $city
      * @param SerializerInterface $serializer
@@ -28,8 +37,9 @@ class RestaurantController extends AbstractController
 
 
     /**
-     * @Route("/restaurants/{city}", name="find_restaursnts_by_city", requirements={"city"="\d+"})
+     * @Route("/restaurants/{city}", name="find_restaurants_by_city", requirements={"city"="\d+"})
      * @param City $city
+     * @return Response
      */
     public function findRestaurantsByCity(City $city, ObjectManager $om)
     {

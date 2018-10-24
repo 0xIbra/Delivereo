@@ -63,7 +63,7 @@
                                 <div class="collection modernize">
                                     {% if cities|length > 0 %}
                                         {% for city in cities %}
-                                            <a href="#" class="collection-item modernize">{{ city.name }}, {{ city.zipCode }}</a>
+                                            <a href="{{ path('find_restaurants_by_city', { 'city': city.id }) }}" class="collection-item modernize">{{ city.name }}, {{ city.zipCode }}</a>
                                         {% endfor %}
                                     {% else %}
                                         <span class="card-title">Aucun resultat</span>

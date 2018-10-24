@@ -80,6 +80,17 @@ class User extends BaseUser
     private $addresses;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Like", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $likes;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\DisLike", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $dislikes;
+
+
+    /**
      * @var SocialLink
      * @ORM\OneToMany(targetEntity="App\Entity\SocialLink", mappedBy="user", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
@@ -116,6 +127,8 @@ class User extends BaseUser
         $this->addRole('ROLE_CONSUMER');
         $this->addresses = new ArrayCollection();
         $this->socialLinks = new ArrayCollection();
+        $this->likes = new ArrayCollection();
+        $this->dislikes = new ArrayCollection();
     }
 
     /**
@@ -324,6 +337,68 @@ class User extends BaseUser
             // set the owning side to null (unless already changed)
             if ($address->getUser() === $this) {
                 $address->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Like[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Like $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Like $like): self
+    {
+        if ($this->likes->contains($like)) {
+            $this->likes->removeElement($like);
+            // set the owning side to null (unless already changed)
+            if ($like->getUser() === $this) {
+                $like->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|DisLike[]
+     */
+    public function getDislikes(): Collection
+    {
+        return $this->dislikes;
+    }
+
+    public function addDislike(DisLike $dislike): self
+    {
+        if (!$this->dislikes->contains($dislike)) {
+            $this->dislikes[] = $dislike;
+            $dislike->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDislike(DisLike $dislike): self
+    {
+        if ($this->dislikes->contains($dislike)) {
+            $this->dislikes->removeElement($dislike);
+            // set the owning side to null (unless already changed)
+            if ($dislike->getUser() === $this) {
+                $dislike->setUser(null);
             }
         }
 
