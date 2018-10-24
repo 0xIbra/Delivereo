@@ -26,10 +26,14 @@
                     <div class="background-overlay"></div>
                     <img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540311324/businessman.jpg">
                 </div>
-                {% if app.user.gender.id == 1 %}
-                    <img class="circle" src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540289616/boss.png">
-                {% elseif app.user.gender.id == 2 %}
-                    <img class="circle" src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540298272/croupier.png">
+                {% if app.user.image is null %}
+                    {% if app.user.gender.id == 1 %}
+                        <img class="circle" src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540289616/boss.png" alt="Default photo">
+                    {% elseif app.user.gender.id == 2 %}
+                        <img class="circle" src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540298272/croupier.png" alt="Default photo">
+                    {% endif %}
+                {% else %}
+                    <img src="{{ app.user.image.url }}" alt="Photo de {{ app.user.firstName }}" class="circle">
                 {% endif %}
                 <a href="void:javascript;"><span class="white-text name">{{ app.user.firstName }} {{ app.user.lastName }}</span></a>
                 <a href="mailto:{{ app.user.email }}"><span class="white-text email">{{ app.user.email }}</span></a>

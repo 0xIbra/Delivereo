@@ -268,41 +268,6 @@ class User extends BaseUser
         return $this;
     }
 
-    public function getAddresses(): ?Address
-    {
-        return $this->addresses;
-    }
-
-    public function setAddresses(?Address $addresses): self
-    {
-        $this->addresses = $addresses;
-
-        return $this;
-    }
-
-    public function addAddress(Address $address): self
-    {
-        if (!$this->addresses->contains($address)) {
-            $this->addresses[] = $address;
-            $address->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAddress(Address $address): self
-    {
-        if ($this->addresses->contains($address)) {
-            $this->addresses->removeElement($address);
-            // set the owning side to null (unless already changed)
-            if ($address->getUser() === $this) {
-                $address->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
     /**
      * @return Collection|SocialLink[]
      */
@@ -328,6 +293,37 @@ class User extends BaseUser
             // set the owning side to null (unless already changed)
             if ($socialLink->getUser() === $this) {
                 $socialLink->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Address[]
+     */
+    public function getAddresses(): Collection
+    {
+        return $this->addresses;
+    }
+
+    public function addAddress(Address $address): self
+    {
+        if (!$this->addresses->contains($address)) {
+            $this->addresses[] = $address;
+            $address->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAddress(Address $address): self
+    {
+        if ($this->addresses->contains($address)) {
+            $this->addresses->removeElement($address);
+            // set the owning side to null (unless already changed)
+            if ($address->getUser() === $this) {
+                $address->setUser(null);
             }
         }
 

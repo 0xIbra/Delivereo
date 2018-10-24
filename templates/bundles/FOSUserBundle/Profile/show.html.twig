@@ -18,7 +18,11 @@
                         <div class="card-content">
                             <div class="image-wrapper">
                                 {% if app.user.image is null %}
-                                    <img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540289616/boss.png" alt="Default photo">
+                                    {% if app.user.gender.id == 1 %}
+                                        <img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540289616/boss.png" alt="Default photo">
+                                    {% elseif app.user.gender.id == 2 %}
+                                        <img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540298272/croupier.png" alt="Default photo">
+                                    {% endif %}
                                 {% else %}
                                     <img src="{{ app.user.image.url }}" alt="Photo de {{ app.user.firstname }} {{ app.user.lastName }}">
                                 {% endif %}
@@ -81,18 +85,41 @@
                 <div class="col s12 m7 l8">
                     <div class="card">
                         <div class="card-content">
-
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="flex align-center">
+                                        <div class="row-header">Adresses</div>
+                                        <a href="#addressmodal" class="modal-trigger flex align-center add-btn">
+                                            <span class="material-icons">add</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                {% for address in app.user.addresses %}
+                                    <div class="col s12 m6 l4">
+                                        <div class="card basic modernize">
+                                            <a href="void:javascript;">
+                                                <div class="card-content">
+                                                    <span class="card-title">{{ address.name }}</span>
+                                                    <span class="address">{{ address.line1 }}</span>
+                                                    <span class="address">{{ address.city.name }}, {{ address.city.zipCode }}</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="modal" id="socialmodal">
             <div class="modal-content">
                 <h4 class="modal-title">Ajouter un reseau</h4>
                 <br>
                 <div class="divider"></div>
-                <form method="post" action="{{ path('add_address') }}">
+                <form method="post" action="{{ path('add_social_link') }}">
                     <div class="input-field modernize">
                         <select name="socialtype">
                             <option value="1">Facebook</option>

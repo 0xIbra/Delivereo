@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
@@ -20,6 +21,7 @@ class Image
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255, nullable=true)
+     * @Assert\NotBlank()
      */
     private $title;
 
@@ -27,6 +29,11 @@ class Image
      * @ORM\Column(type="string", length=255)
      */
     private $url;
+
+    /**
+     * @Assert\Image()
+     */
+    private $image;
 
     public function getId(): ?int
     {
@@ -53,6 +60,18 @@ class Image
     public function setTitle(?string $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

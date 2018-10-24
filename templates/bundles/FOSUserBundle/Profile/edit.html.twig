@@ -17,17 +17,33 @@
                     <div class="card" id="profileimage">
                         <div class="card-content">
                             <div class="image-wrapper">
-                                {% if app.user.image is null %}
-                                    <img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540289616/boss.png" alt="Default photo">
-                                {% else %}
-                                    <img src="{{ app.user.image.url }}" alt="Photo de {{ app.user.firstname }} {{ app.user.lastName }}">
-                                {% endif %}
+                                <form method="post" action="{{ path('add_image') }}" enctype="multipart/form-data">
+                                    {% if app.user.image is null %}
+                                        <span class="material-icons">camera_alt</span>
+                                        <input type="file" accept="image/*" name="image" class="image-uploader" title="Ajouter votre image">
+                                    {% else %}
+                                        <img src="{{ app.user.image.url }}" alt="Photo de {{ app.user.firstName }}">
+                                        <input type="file" accept="image/*" name="image" class="image-uploader" title="Changer votre image">
+                                    {% endif %}
+                                </form>
+                            </div>
+                            <div class="row">
+                                <div class="col s12 m8 offset-m2">
+                                    <div style="padding-top: 10px;">
+                                        {% if app.user.image is not null %}
+                                            <div class="flex justify-center">
+                                                <a href="{{ path('image_delete') }}" class="modernize danger center-align">Supprimer image</a>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
                             </div>
                             <div class="profile-cred">
                                 <span class="profile-title">{{ app.user.firstName }} {{ app.user.lastName }}</span>
                                 <div class="location flex align-center justify-center">
                                     {% include 'inc/user_type.html.twig' %}
                                 </div>
+                                {% include 'inc/single_error.html.twig' %}
                             </div>
                         </div>
                     </div>
@@ -35,6 +51,7 @@
                 <div class="col s12 m7 l8">
                     <div class="card">
                         <div class="card-content">
+                            {% include 'inc/form_errors.html.twig' %}
                             {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
                             {{ form_widget(form._token) }}
                             <div class="input-field ">
@@ -59,4 +76,14 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('input[type=file].image-uploader').on('change', function(){
+            $('.image-wrapper form').submit();
+            $(this).val('');
+        });
+    </script>
 {% endblock %}

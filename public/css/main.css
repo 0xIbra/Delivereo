@@ -625,4 +625,26 @@ a.redirect {
   .quantity.input .quantity.count {
     font-size: 17pt; }
 
+
+a.add-btn{
+  border: 1px solid rgba(0,0,0,0.14) !important;
+  border-radius: 2px;
+  margin-left: 10px;
+  justify-content: center;
+  transition: ease-in .1s;
+}
+a.add-btn:hover{
+  background: rgba(0,0,0,0.04);
+}
+
+a.add-btn:hover span.material-icons{
+  color: #0ee9c3 !important;
+}
+
+a.add-btn span.material-icons{
+  font-size: 18pt !important;
+  margin-right: 0 !important;
+  padding: 0 2px;
+}
+
 /*# sourceMappingURL=main.css.map */
