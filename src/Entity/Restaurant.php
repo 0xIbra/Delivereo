@@ -329,6 +329,17 @@ class Restaurant
         return $this;
     }
 
+    public function isEnabled()
+    {
+        if ($this->enabled)
+        {
+            return true;
+        }else
+        {
+            return false;
+        }
+    }
+
     public function getNumber(): ?string
     {
         return $this->number;

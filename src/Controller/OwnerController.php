@@ -86,4 +86,13 @@ class OwnerController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/owner/restaurant/edit/{id}", name="edit_restaurant", requirements={"id"="\d+"})
+     */
+    public function editRestaurant(Restaurant $id)
+    {
+        return $this->render('dump.html.twig', ['dump' => $id]);
+    }
+
 }

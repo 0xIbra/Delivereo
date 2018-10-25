@@ -3,9 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\LikeRepository")
+ * @ORM\Table(name="liked")
+ * @UniqueEntity(message="Vous avez déjà effectuée cette action.", fields={"target", "user"})
  */
 class Like
 {
@@ -18,17 +22,19 @@ class Like
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Restaurant", inversedBy="likes")
+     * @Assert\NotNull()
      */
     private $target;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="likes")
+     * @Assert\NotNull()
      */
     private $user;
 
 
     /**
-     * @ORM\Column(name="liked_at", type="datetime", nullable=true)
+     * @ORM\Column(name="issued_at", type="datetime", nullable=true)
      */
     private $liked_at;
 

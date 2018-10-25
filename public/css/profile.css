@@ -117,6 +117,11 @@ span {
   cursor: pointer;
 }
 
+
+#profileinfo .col{
+  padding: 3px 10px !important;
+}
+
 @media (max-width: 601px) {
   .overflow-x-visible {
     overflow-x: scroll !important; }

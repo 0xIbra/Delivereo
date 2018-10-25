@@ -10,6 +10,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
@@ -36,6 +37,16 @@ class DefaultController extends AbstractController
                 'categories' => $categories
             ]
         );
+    }
+
+
+    /**
+     * @Route("/404", name="error", methods={"GET"})
+     * @return Response
+     */
+    public function error()
+    {
+        return new Response('404', 404);
     }
 
 

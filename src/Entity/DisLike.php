@@ -3,9 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DisLikeRepository")
+ * @UniqueEntity(message="Vous avez déjà effectuée cette action.", fields={"target", "user"})
  */
 class DisLike
 {
@@ -19,11 +22,13 @@ class DisLike
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Restaurant", inversedBy="dislikes")
+     * @Assert\NotNull()
      */
     private $target;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="dislikes")
+     * @Assert\NotNull()
      */
     private $user;
 

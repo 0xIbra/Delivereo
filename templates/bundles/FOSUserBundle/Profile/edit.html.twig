@@ -18,6 +18,7 @@
                         <div class="card-content">
                             <div class="image-wrapper">
                                 <form method="post" action="{{ path('add_image') }}" enctype="multipart/form-data">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('intention') }}">
                                     {% if app.user.image is null %}
                                         <span class="material-icons">camera_alt</span>
                                         <input type="file" accept="image/*" name="image" class="image-uploader" title="Ajouter votre image">

@@ -4,6 +4,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
     <link rel="stylesheet" href="{{ asset('css/restaurant.css') }}">
 {% endblock %}
 
@@ -28,14 +29,29 @@
                                     <span class="ville">{{ restaurant.city.name }}, {{ restaurant.city.zipCode }}</span>
                                 </div>
                                 <div class="rating flex justify-center">
-                                    <div class="icon success">
-                                        <i class="material-icons">thumb_up</i>
-                                        <span>0</span>
-                                    </div>
-                                    <div class="icon danger">
-                                        <i class="material-icons">thumb_down</i>
-                                        <span>0</span>
-                                    </div>
+                                    {% if is_granted('ROLE_USER') %}
+                                        <a href="{{ path('add_like_restaurant', { 'restaurant': restaurant.id }) }}">
+                                            <div class="icon success">
+                                                <i class="material-icons">thumb_up</i>
+                                                <span>{{ restaurant.likes.count }}</span>
+                                            </div>
+                                        </a>
+                                        <a href="{{ path('add_dislike_restaurant', { 'restaurant': restaurant.id }) }}">
+                                            <div class="icon danger">
+                                                <i class="material-icons">thumb_down</i>
+                                                <span>{{ restaurant.dislikes.count }}</span>
+                                            </div>
+                                        </a>
+                                    {% else %}
+                                        <div class="icon success">
+                                            <i class="material-icons">thumb_up</i>
+                                            <span>{{ restaurant.likes.count }}</span>
+                                        </div>
+                                        <div class="icon danger">
+                                            <i class="material-icons">thumb_down</i>
+                                            <span>{{ restaurant.dislikes.count }}</span>
+                                        </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -85,6 +101,16 @@
 
                                     </div>
                                 </div>
+                                {% if is_granted('edit', restaurant) %}
+                                    <div class="row">
+                                        <div class="col s12 ">
+                                            <a href="{{ path('edit_restaurant', { 'id': restaurant.id }) }}" class="modernize flex justify-center">
+                                                <span class="material-icons">account_circle</span>
+                                                <span>Modifier</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -93,10 +119,13 @@
                     <div class="card" id="profilecontent">
                         <div class="card-content">
                             <div class="row">
+                                <div class="col s12">
+                                    <span class="row-header">Menus</span>
+                                </div>
+                                <div class="col s12">
+                                    {% include 'inc/errors.html.twig' %}
+                                </div>
                                 {% if restaurant.menus|length > 0 %}
-                                    <div class="col s12">
-                                        <span class="row-header">Menus</span>
-                                    </div>
                                     {% for menu in restaurant.menus %}
                                         <div class="col s12 m6">
                                             <div class="card basic modernize">

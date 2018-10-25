@@ -29,6 +29,13 @@ class UserController extends AbstractController
      */
     public function addSocialLink(Request $request, ValidatorInterface $validator, ObjectManager $om)
     {
+        $token = $request->request->get('_token');
+        if (!$this->isCsrfTokenValid('intention', $token))
+        {
+            $this->get('session')->getFlashBag()->add('danger', 'le CSRF token n\'est pas valide.');
+            return $this->redirectToRoute('fos_user_profile_show');
+        }
+
         $socialApp = $om->getRepository(Social::class)->find($request->request->get('socialtype'));
         $socialLink = new SocialLink();
         $socialLink->setType($socialApp);
@@ -57,6 +64,13 @@ class UserController extends AbstractController
      */
     public function addImage(Request $request, ValidatorInterface $validator, ObjectManager $om)
     {
+        $token = $request->request->get('_token');
+        if (!$this->isCsrfTokenValid('intention', $token))
+        {
+            $this->get('session')->getFlashBag()->add('danger', 'le CSRF token n\'est pas valide.');
+            return $this->redirectToRoute('fos_user_profile_show');
+        }
+
         $user = $this->getUser();
         $file = $request->files->get('image');
         $image = new Image();
