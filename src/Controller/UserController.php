@@ -119,14 +119,15 @@ class UserController extends AbstractController
             $address->setLine1($data['line1']);
             $address->setLine2($data['line2']);
             $address->setCity($city);
-            $address->setUser($this->getUser());
             $validation = Validation::validate($validator, $address, $this->get('session')->getFlashBag());
             if (!$validation)
             {
                 return $this->redirectToRoute('add_address');
             }else
             {
-                $om->persist($address);
+                $user = $this->getUser();
+                $user->addAddress($address);
+                $om->persist($user);
                 $om->flush();
                 $this->get('session')->getFlashBag()->add('success', 'Adresse ajouté.');
                 return $this->redirectToRoute('fos_user_profile_show');

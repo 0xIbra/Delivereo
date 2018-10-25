@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RestaurantRepository")
@@ -21,18 +22,38 @@ class Restaurant
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le nom du restaurant est obligatoire.")
      */
     private $name;
 
     /**
+     * @ORM\Column(name="number", type="string", length=20, nullable=true)
+     */
+    private $number;
+
+    /**
      * @ORM\Column(type="time")
+     * @Assert\NotNull(message="Les horaires sont obligatoires.")
      */
     private $opensAt;
 
     /**
      * @ORM\Column(type="time")
+     * @Assert\NotNull(message="Les horaires sont obligatoires.")
      */
     private $closesAt;
+
+
+    /**
+     * @ORM\Column(name="enabled", type="boolean")
+     */
+    private $enabled;
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="restaurants", cascade={"persist"})
+     */
+    private $categories;
 
     /**
      * @var Image
@@ -54,14 +75,23 @@ class Restaurant
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="restaurants")
+     * @Assert\NotNull()
      */
     private $owner;
 
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\City", inversedBy="restaurants")
+     * @Assert\NotNull(message="Merci de entrer une ville valide.")
      */
     private $city;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Address", cascade={"persist", "remove"})
+     * @Assert\NotNull(message="L'adresse est obligatoire.")
+     */
+    private $address;
 
 
     /**
@@ -74,6 +104,8 @@ class Restaurant
         $this->menus = new ArrayCollection();
         $this->likes = new ArrayCollection();
         $this->dislikes = new ArrayCollection();
+        $this->categories = new ArrayCollection();
+        $this->enabled = false;
     }
 
 
@@ -99,7 +131,7 @@ class Restaurant
         return $this->opensAt;
     }
 
-    public function setOpensAt(\DateTimeInterface $opensAt): self
+    public function setOpensAt(?\DateTimeInterface $opensAt): self
     {
         $this->opensAt = $opensAt;
 
@@ -111,7 +143,7 @@ class Restaurant
         return $this->closesAt;
     }
 
-    public function setClosesAt(\DateTimeInterface $closesAt): self
+    public function setClosesAt(?\DateTimeInterface $closesAt): self
     {
         $this->closesAt = $closesAt;
 
@@ -243,6 +275,68 @@ class Restaurant
                 $dislike->setTarget(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->categories->contains($category)) {
+            $this->categories->removeElement($category);
+        }
+
+        return $this;
+    }
+
+    public function getAddress(): ?Address
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?Address $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled(bool $enabled): self
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    public function getNumber(): ?string
+    {
+        return $this->number;
+    }
+
+    public function setNumber(?string $number): self
+    {
+        $this->number = $number;
 
         return $this;
     }

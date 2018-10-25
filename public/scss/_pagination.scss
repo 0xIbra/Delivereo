@@ -1,0 +1,16 @@
+.pagination{
+
+  li{
+
+    &.active{
+      background: $greenLight !important;
+    }
+
+    &:hover{
+      background: $greenLight !important;
+      a{
+        color: #eeeeee !important;
+      }
+    }
+  }
+}

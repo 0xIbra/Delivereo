@@ -1,0 +1,33 @@
+@import "breakpoints";
+
+.modal.modernize{
+  overflow-y: hidden !important;
+  .modal-success{
+    background: $success;
+    color: #eeeeee;
+  }
+
+  .modal-danger{
+    background: $danger;
+    color: #eeeeee;
+  }
+}
+
+
+
+
+@media (max-width: $small){
+  .modal{
+    width: 95% !important;
+  }
+
+  .modal.modernize{
+    color: $dark;
+
+    .modal-content{
+      .modal-title{
+        text-align: center;
+      }
+    }
+  }
+}

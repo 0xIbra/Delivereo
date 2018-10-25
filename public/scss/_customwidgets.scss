@@ -1,0 +1,25 @@
+.quantity.input{
+  display: flex;
+  align-items: center;
+
+  button.modernize{
+    background: transparent;
+    border: 1px solid rgba(0,0,0,.14);
+    margin: 0 10px;
+    border-radius: 3px;
+    cursor: pointer;
+
+    &:hover{
+      background: rgba(0,0,0,.14);
+    }
+
+    span{
+      padding: 7px 3px;
+      color: #666;
+    }
+  }
+
+  .quantity.count{
+    font-size: 17pt;
+  }
+}

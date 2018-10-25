@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\City;
+use App\Entity\Restaurant;
 use App\Form\HomeSearchType;
 use App\Form\SearchCustomFormType;
 use App\Utils\JSON;
@@ -16,11 +17,11 @@ class RestaurantController extends AbstractController
 {
 
     /**
-     * @Route("/restaurant", name="restaurant_info", methods={"GET"})
+     * @Route("/restaurant/{restaurant}", name="restaurant_info", requirements={"restaurant"="\d+"}, methods={"GET"})
      */
-    public function restaurant()
+    public function restaurant(Restaurant $restaurant)
     {
-
+        return $this->render('restaurant/index.html.twig', ['restaurant' => $restaurant]);
     }
 
 

@@ -134,6 +134,9 @@ header {
   .showcase.bg {
     background: url("../img/bg-delivreo.jpg") center;
     background-size: cover; }
+    .showcase.bg.owner {
+      background: url("https://res.cloudinary.com/dqwg570oo/image/upload/v1540311324/businessman.jpg") no-repeat !important;
+      background-size: cover !important; }
   .showcase .overlay {
     position: absolute;
     width: 100%;
@@ -142,6 +145,8 @@ header {
     top: 0;
     opacity: .87;
     background-image: linear-gradient(to top, #0ee9c3, #00eacb, #00ead3, #01ebdb, #12ebe2); }
+    .showcase .overlay.black {
+      background-image: linear-gradient(to top, #222, #222); }
   .showcase .showcase-heading {
     text-align: center;
     margin: 30px 0 !important; }
@@ -196,6 +201,16 @@ input[type="text"].modernize {
   border: none !important;
   border-radius: 3px 0 0 3px !important; }
   input[type="text"].modernize::placeholder {
+    color: #999999 !important; }
+
+input[type="time"].modernize {
+  height: 40px;
+  font-family: 'Roboto', Helvetica, sans-serif !important;
+  background: #eeeeee !important;
+  padding: 10px !important;
+  border: none !important;
+  border-radius: 3px 0 0 3px !important; }
+  input[type="time"].modernize::placeholder {
     color: #999999 !important; }
 
 input[type="email"].modernize {
@@ -368,7 +383,8 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
   .hr-card .image {
     overflow: hidden;
     width: 100%;
-    height: auto; }
+    height: auto;
+    max-height: 200px; }
     .hr-card .image img {
       width: 100%; }
   .hr-card .card-body .title {
@@ -400,9 +416,10 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
     color: #666; }
   .hr-card .card-body .info {
     margin-top: 5px;
-    color: #666666; }
+    color: #666666;
+    display: block; }
     .hr-card .card-body .info span {
-      display: block; }
+      display: block !important; }
       .hr-card .card-body .info span.status {
         font-weight: bold; }
         .hr-card .card-body .info span.status.danger {
@@ -540,11 +557,29 @@ input[type="submit"].modernize.btn {
 
 a.redirect {
   color: #0ee9c3;
-  padding: 10px 0;  }
+  margin-bottom: 10px; }
   a.redirect.default {
     color: #f9f9f9 !important; }
   a.redirect.danger {
     color: #d9534f !important; }
+
+a.btn-flat.green {
+  color: #fff !important; }
+a.btn-flat.red {
+  color: #fff !important; }
+
+a.add-btn {
+  border: 1px solid rgba(0, 0, 0, 0.14) !important;
+  border-radius: 2px;
+  margin-left: 10px;
+  justify-content: center;
+  transition: ease-in .1s; }
+  a.add-btn:hover {
+    color: #0ee9c3 !important; }
+  a.add-btn span.material-icons {
+    font-size: 18pt !important;
+    margin-right: 0 !important;
+    padding: 0 2px; }
 
 @media (max-width: 601px) {
   a.modernize {
@@ -625,45 +660,40 @@ a.redirect {
   .quantity.input .quantity.count {
     font-size: 17pt; }
 
-a.btn-flat.red, a.btn-flat.green{
-  color: #fff !important;
-}
+.collection.modernize {
+  border: none !important; }
+  .collection.modernize .collection-item.modernize {
+    color: #333333;
+    margin: 5px 0;
+    box-shadow: none !important;
+    border: 1px solid rgba(0, 0, 0, 0.04) !important; }
+    .collection.modernize .collection-item.modernize:hover {
+      color: #0ee9c3 !important;
+      background: rgba(0, 0, 0, 0.04) !important; }
 
-a.add-btn{
-  border: 1px solid rgba(0,0,0,0.14) !important;
-  border-radius: 2px;
-  margin-left: 10px;
-  justify-content: center;
-  transition: ease-in .1s;
-}
-a.add-btn:hover{
-  background: rgba(0,0,0,0.04);
-}
+.timepicker-text-container {
+  top: 10px !important; }
 
-a.add-btn:hover span.material-icons{
-  color: #0ee9c3 !important;
-}
-
-a.add-btn span.material-icons{
-  font-size: 18pt !important;
-  margin-right: 0 !important;
-  padding: 0 2px;
-}
-
-.collection.modernize{
-  border: none !important;
-}
-
-.collection .collection-item.modernize{
-  color: #333333 !important;
-  margin: 5px 0;
-  box-shadow: none !important;
-  border: 1px solid rgba(0,0,0,0.1);
-}
-
-.collection .collection-item.modernize:hover{
-  color: #0ee9c3 !important;
-  background: rgba(0,0,0,0.04) !important;
-}
+@media (max-width: 601px) {
+  .timepicker-text-container {
+    top: 10px !important; }
+    .timepicker-text-container .timepicker-display-column {
+      font-size: 20pt !important;
+      display: flex;
+      justify-content: center;
+      align-items: center; } }
+.page-footer.modernize {
+  background: #f9f9f9 !important;
+  color: #444444 !important;
+  box-shadow: 0 0 39px -8px rgba(0, 0, 0, 0.1); }
+  .page-footer.modernize .footer-title {
+    font-size: 25pt;
+    font-weight: bold; }
+  .page-footer.modernize .col-title {
+    font-size: 13pt !important; }
+  .page-footer.modernize .footer-copyright {
+    color: #444444 !important; }
+  .page-footer.modernize a:hover {
+    color: #0ee9c3 !important; }
 
 /*# sourceMappingURL=main.css.map */

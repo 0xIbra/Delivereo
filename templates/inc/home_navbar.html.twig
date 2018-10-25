@@ -5,7 +5,12 @@
                 <a href="{{ path('homepage') }}" class="brand-logo left bold">Delivereo</a>
                 <a href="#" data-target="sidebar-nav" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="void:javascript;">Ouvrir votre restaurant</a></li>
+                    {% if is_granted('ROLE_CONSUMER') and not is_granted('ROLE_OWNER') %}
+                        <li><a href="{{ path('partner') }}">Devenez partenaire</a></li>
+                    {% endif %}
+                    {% if is_granted('ROLE_OWNER') %}
+                        <li><a href="#">Tableau de bord</a></li>
+                    {% endif %}
                     {% if not is_granted('ROLE_USER') %}
                         <li><a href="{{ path('fos_user_security_login') }}">Se connecter</a></li>
                         <li><a href="{{ path('fos_user_registration_register') }}">S'inscrire</a></li>
@@ -41,12 +46,18 @@
             </div>
         </li>
     {% endif %}
-    <li><a class="subheader">Member</a></li>
+    <li><a class="subheader">Membre</a></li>
+    {% if is_granted('ROLE_CONSUMER') and not is_granted('ROLE_OWNER') %}
+        <li><a href="{{ path('partner') }}" class="waves-effect"><i class="material-icons">restaurant</i>Devenez partenaire</a></li>
+    {% endif %}
+    {% if is_granted('ROLE_OWNER') %}
+        <li><a href="#" class="waves-effect"><i class="material-icons">dashboard</i>Tableau de bord</a></li>
+    {% endif %}
     {% if not is_granted('ROLE_USER') %}
         <li><a class="waves-effect" href="{{ path('fos_user_security_login') }}"><i class="material-icons">account_circle</i>Connexion</a></li>
         <li><a class="waves-effect" href="{{ path('fos_user_registration_register') }}"><i class="material-icons">format_align_left</i>Inscription</a></li>
     {% else %}
-        <li><a href="{{ path('fos_user_profile_show') }}" class="waves-effect">Mon compte</a></li>
-        <li><a href="{{ path('fos_user_security_logout') }}" class="waves-effect">Déconnexion</a></li>
+        <li><a href="{{ path('fos_user_profile_show') }}" class="waves-effect"><i class="material-icons">account_circle</i>Mon compte</a></li>
+        <li><a href="{{ path('fos_user_security_logout') }}" class="waves-effect"><i class="material-icons">power_settings_new</i>Déconnexion</a></li>
     {% endif %}
 </ul>

@@ -1,0 +1,106 @@
+a.modernize{
+  background: $greenLight;
+  padding: 10px 20px;
+  min-height: 20px;
+  margin: 5px 10px;
+  border-radius: 3px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  transition: ease-in .1s;
+  color: #eeeeee;
+
+  &.bold{
+    font-weight: 600;
+    font-size: 12pt;
+  }
+
+  &:hover{
+    background: #0bc9a9;
+  }
+
+  &.danger{
+    background: $danger !important;
+
+    &:hover{
+      background: #B34541 !important;
+    }
+  }
+
+  &.default{
+    background: $default !important;
+    color: $dark;
+    &:hover{
+      background: rgba(0,0,0,0.1) !important;
+    }
+  }
+}
+
+i.material-icons.close{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: rgba(0,0,0,0.55);
+}
+
+input[type="submit"].modernize.btn{
+  background: $greenLight;
+  padding: 0px 20px;
+  border-radius: 3px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  transition: ease-in .1s;
+
+  &.bold{
+    font-weight: 600;
+    font-size: 12pt;
+  }
+
+  &:hover{
+    background: #0bc9a9;
+  }
+}
+
+a.redirect{
+  color: $greenLight;
+  margin-bottom: 10px;
+
+  &.default{
+    color: $default !important;
+  }
+
+  &.danger{
+    color: $danger !important;
+  }
+
+}
+
+a.btn-flat{
+  &.green{
+    color: #fff !important;
+  }
+  &.red{
+    color: #fff !important;
+  }
+}
+
+a.add-btn{
+  border: 1px solid rgba(0,0,0,0.14) !important;
+  border-radius: 2px;
+  margin-left: 10px;
+  justify-content: center;
+  transition: ease-in .1s;
+
+  &:hover{
+    color: $greenLight !important;
+  }
+
+  span.material-icons{
+    font-size: 18pt !important;
+    margin-right: 0 !important;
+    padding: 0 2px;
+  }
+}
+
+@media (max-width: $small) {
+  a.modernize{
+    padding: 10px !important;
+  }
+}

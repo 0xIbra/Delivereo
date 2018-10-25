@@ -31,6 +31,10 @@ class Category
      */
     private $image;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Restaurant", mappedBy="categories")
+     */
+    private $restaurants;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="category", cascade={"persist"})
@@ -40,6 +44,7 @@ class Category
     public function __construct()
     {
         $this->menus = new ArrayCollection();
+        $this->restaurants = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -100,5 +105,39 @@ class Category
         $this->image = $image;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Restaurant[]
+     */
+    public function getRestaurants(): Collection
+    {
+        return $this->restaurants;
+    }
+
+    public function addRestaurant(Restaurant $restaurant): self
+    {
+        if (!$this->restaurants->contains($restaurant)) {
+            $this->restaurants[] = $restaurant;
+            $restaurant->addCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRestaurant(Restaurant $restaurant): self
+    {
+        if ($this->restaurants->contains($restaurant)) {
+            $this->restaurants->removeElement($restaurant);
+            $restaurant->removeCategory($this);
+        }
+
+        return $this;
+    }
+
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

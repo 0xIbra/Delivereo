@@ -1,0 +1,36 @@
+.tabs{
+  color: $dark;
+  background-color: #eeeeee;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+
+  li.tab{
+    color: inherit;
+
+    a{
+      color: inherit !important;
+
+      &:focus, &.active{
+        background-color: transparent !important;
+        color: #eeeeee !important;
+      }
+
+      &.active{
+        color: #0ee9c3 !important;
+      }
+    }
+  }
+
+  .indicator{
+    background-color: #0ee9c3 !important;
+  }
+}
+
+.tab-window{
+  color: $dark !important;
+  margin-top: 20px;
+
+  .heading{
+    font-size: 20pt;
+    margin: 15px 0;
+  }
+}

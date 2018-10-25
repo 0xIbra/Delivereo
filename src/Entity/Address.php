@@ -41,13 +41,6 @@ class Address
      */
     private $city;
 
-    /**
-     * @var User
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="addresses")
-     * @Assert\NotNull()
-     */
-    private $user;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -85,18 +78,6 @@ class Address
     public function setLine2(?string $line2): self
     {
         $this->line2 = $line2;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
 
         return $this;
     }

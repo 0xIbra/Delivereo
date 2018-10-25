@@ -1,0 +1,21 @@
+.timepicker-text-container{
+  top: 10px !important;
+
+  .timepicker-display-column{
+
+  }
+}
+
+
+@media (max-width: $small) {
+  .timepicker-text-container{
+    top: 10px !important;
+
+    .timepicker-display-column{
+      font-size: 20pt !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

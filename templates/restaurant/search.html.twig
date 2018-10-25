@@ -5,7 +5,6 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/restaurant.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -68,7 +67,11 @@
                                                 <div class="col s12 m6 l4">
                                                     <div class="image">
                                                         <a href="void:javascript;">
-                                                            <img src="{{ restaurant.image.url }}" alt="Photo de {{ restaurant.name }}">
+                                                            {% if restaurant.image is not null %}
+                                                                <img src="{{ restaurant.image.url }}" alt="Photo de {{ restaurant.name }}">
+                                                            {% else %}
+                                                                <img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1537554633/Delivereo/Assets/sideimage.jpg" alt="Photo de {{ restaurant.name }}">
+                                                            {% endif %}
                                                         </a>
                                                     </div>
                                                 </div>

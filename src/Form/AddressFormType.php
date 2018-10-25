@@ -13,9 +13,9 @@ class AddressFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('line1')
-            ->add('line2')
+            ->add('name', TextType::class, ['attr' => ['class' => 'modernize', 'placeholder' => 'Libellé']])
+            ->add('line1', TextType::class, ['attr' => ['class' => 'modernize', 'placeholder' => 'Adresse']])
+            ->add('line2', TextType::class, ['attr' => ['class' => 'modernize', 'placeholder' => 'Complément, Bâtiment, Appartement...']])
 //            ->add('city', TextType::class)
 //            ->add('zipCode', TextType::class)
         ;
