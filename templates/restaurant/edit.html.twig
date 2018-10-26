@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification {{ restaurant.name }} | Delivereo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/restaurant.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col s12 m5 l4">
+                    <div class="card" id="profileimage">
+                        <div class="card-content">
+                            <div class="image-wrapper">
+                                <form method="post" action="{{ path('add_restaurant_image', { 'restaurant': restaurant.id }) }}" enctype="multipart/form-data">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('intention') }}">
+                                    {% if restaurant.image is null %}
+                                        <span class="material-icons">camera_alt</span>
+                                        <input type="file" accept="image/*" name="image" class="image-uploader" title="Ajouter votre image">
+                                    {% else %}
+                                        <img src="{{ restaurant.image.url }}" alt="Photo de {{ restaurant.name }}">
+                                        <input type="file" accept="image/*" name="image" class="image-uploader" title="Changer votre image">
+                                    {% endif %}
+                                </form>
+                            </div>
+                            <div class="row">
+                                <div class="col s12 m8 offset-m2">
+                                    <div style="padding-top: 10px;">
+                                        {% if restaurant.image is not null %}
+                                            <div class="flex justify-center">
+                                                <a href="{{ path('delete_restaurant_image', {'restaurant': restaurant.id}) }}" class="modernize danger center-align">Supprimer image</a>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="profile-cred">
+                                <span class="profile-title">{{ restaurant.name }}</span>
+                                <div class="location flex align-center justify-center">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m7 l8">
+                    <div class="card">
+                        <div class="card-content">
+                            {% include 'inc/errors.html.twig' %}
+                            {{ form_start(form) }}
+                            <div class="input-field ">
+                                {{ form_widget(form.name) }}
+                            </div>
+                            <div class="input-field ">
+                                {{ form_widget(form.number) }}
+                            </div>
+                            <div class="input-field ">
+                                {{ form_widget(form.opensAt) }}
+                            </div>
+                            <div class="input-field modernize">
+                                {{ form_widget(form.closesAt) }}
+                            </div>
+                            <div class="input-field modernize">
+                                {{ form_widget(form.categories) }}
+                            </div>
+                            <div class="input-field flex justify-center">
+                                <input type="submit" class="modernize btn" value="Modifier" />
+                            </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('input[type=file].image-uploader').on('change', function(){
+            $('.image-wrapper form').submit();
+            $(this).val('');
+        });
+    </script>
+{% endblock %}

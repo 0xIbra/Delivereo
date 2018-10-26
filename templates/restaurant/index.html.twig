@@ -83,28 +83,28 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col s12">
-                                    <span class="subheader">Reseaux sociaux</span>
-                                    <div class="social-icons flex align-center">
-                                        <a href="https://www.instagram.com/ibrahim_tchee" target="_blank" class="icon-wrapper">
-                                            <span class="icon fa fa-instagram"></span>
-                                        </a>
-                                        <a href="https://www.linkedin.com/in/ibragim64000" target="_blank" class="icon-wrapper">
-                                            <span class="icon fa fa-linkedin"></span>
-                                        </a>
-                                        <a href="void:javascript;" class="icon-wrapper">
-                                            <span class="icon fa fa-facebook"></span>
-                                        </a>
-                                        <a href="void:javascript;" class="icon-wrapper">
-                                            <span class="icon fa fa-twitter"></span>
-                                        </a>
+                                {#<div class="col s12">#}
+                                    {#<span class="subheader">Reseaux sociaux</span>#}
+                                    {#<div class="social-icons flex align-center">#}
+                                        {#<a href="https://www.instagram.com/ibrahim_tchee" target="_blank" class="icon-wrapper">#}
+                                            {#<span class="icon fa fa-instagram"></span>#}
+                                        {#</a>#}
+                                        {#<a href="https://www.linkedin.com/in/ibragim64000" target="_blank" class="icon-wrapper">#}
+                                            {#<span class="icon fa fa-linkedin"></span>#}
+                                        {#</a>#}
+                                        {#<a href="void:javascript;" class="icon-wrapper">#}
+                                            {#<span class="icon fa fa-facebook"></span>#}
+                                        {#</a>#}
+                                        {#<a href="void:javascript;" class="icon-wrapper">#}
+                                            {#<span class="icon fa fa-twitter"></span>#}
+                                        {#</a>#}
 
-                                    </div>
-                                </div>
+                                    {#</div>#}
+                                {#</div>#}
                                 {% if is_granted('edit', restaurant) %}
                                     <div class="row">
                                         <div class="col s12 ">
-                                            <a href="{{ path('edit_restaurant', { 'id': restaurant.id }) }}" class="modernize flex justify-center">
+                                            <a href="{{ path('edit_restaurant', { 'restaurant': restaurant.id }) }}" class="modernize flex justify-center">
                                                 <span class="material-icons">account_circle</span>
                                                 <span>Modifier</span>
                                             </a>
@@ -120,7 +120,12 @@
                         <div class="card-content">
                             <div class="row">
                                 <div class="col s12">
-                                    <span class="row-header">Menus</span>
+                                    <div class="flex align-center">
+                                        <span class="row-header">Menus</span>
+                                        <a href="void:javascript;" class="flex align-center add-btn">
+                                            <span class="material-icons">add</span>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="col s12">
                                     {% include 'inc/errors.html.twig' %}

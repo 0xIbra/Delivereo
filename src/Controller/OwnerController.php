@@ -7,6 +7,7 @@ use App\Entity\City;
 use App\Entity\Restaurant;
 use App\Entity\User;
 use App\Form\RestaurantFormType;
+use App\Form\RestaurantModifyFormType;
 use App\Utils\Validation;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -85,14 +86,6 @@ class OwnerController extends AbstractController
         return $this->render('owner/application.html.twig', [
             'form' => $form->createView()
         ]);
-    }
-
-    /**
-     * @Route("/owner/restaurant/edit/{id}", name="edit_restaurant", requirements={"id"="\d+"})
-     */
-    public function editRestaurant(Restaurant $id)
-    {
-        return $this->render('dump.html.twig', ['dump' => $id]);
     }
 
 }

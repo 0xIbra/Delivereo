@@ -28,6 +28,7 @@ class Restaurant
 
     /**
      * @ORM\Column(name="number", type="string", length=20, nullable=true)
+     *
      */
     private $number;
 

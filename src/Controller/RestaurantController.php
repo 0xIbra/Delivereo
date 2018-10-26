@@ -4,15 +4,20 @@ namespace App\Controller;
 
 use App\Entity\City;
 use App\Entity\DisLike;
+use App\Entity\Image;
 use App\Entity\Like;
 use App\Entity\Restaurant;
 use App\Form\HomeSearchType;
+use App\Form\RestaurantModifyFormType;
 use App\Form\SearchCustomFormType;
+use App\Uploader\Uploader;
+use App\Utils\FlashMessage;
 use App\Utils\JSON;
 use App\Utils\Validation;
 use Doctrine\Common\Persistence\ObjectManager;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -126,6 +131,106 @@ class RestaurantController extends AbstractController
             return $this->redirectToRoute('restaurant_info', ['restaurant' => $res->getId()]);
         }
 //        return $this->render('dump.html.twig', ['dump' => $like]);
+    }
+
+
+    /**
+     * @Route("/owner/restaurant/edit/{restaurant}", name="edit_restaurant", requirements={"restaurant"="\d+"})
+     * @param Restaurant $restaurant
+     * @param ValidatorInterface $validator
+     * @param ObjectManager $om
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function editRestaurant(Restaurant $restaurant, Request $request, ValidatorInterface $validator, ObjectManager $om)
+    {
+        if (!$this->isGranted('edit', $restaurant))
+        {
+            return $this->redirectToRoute('fos_user_profile_show');
+        }
+        $form = $this->createForm(RestaurantModifyFormType::class, $restaurant);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $validation = Validation::validate($validator, $restaurant, $this->get('session')->getFlashBag());
+            if (!$validation)
+            {
+                return $this->redirectToRoute('edit_restaurant', ['restaurant' => $restaurant->getId()]);
+            }
+            $om->persist($restaurant);
+            $om->flush();
+            return $this->redirectToRoute('restaurant_info', ['restaurant' => $restaurant->getId()]);
+        }
+
+        return $this->render('restaurant/edit.html.twig', [
+            'form' => $form->createView(),
+            'restaurant' => $restaurant
+        ]);
+    }
+
+
+    /**
+     * @Route("/owner/restaurant/{restaurant}/image/add", name="add_restaurant_image", requirements={"restaurant"="\d+"})
+     * @param Restaurant $restaurant
+     * @param Request $request
+     * @param ValidatorInterface $validator
+     * @param ObjectManager $om
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function addRestaurantImage(Restaurant $restaurant, Request $request, ValidatorInterface $validator, ObjectManager $om)
+    {
+        $token = $request->request->get('_token');
+        if (!$this->isCsrfTokenValid('intention', $token))
+        {
+            $this->get('session')->getFlashBag()->add('danger', 'le CSRF token n\'est pas valide.');
+            return $this->redirectToRoute('edit_restaurant', ['restaurant' => $restaurant->getId()]);
+        }
+
+        if (!$this->isGranted('edit', $restaurant))
+        {
+            return $this->redirectToRoute('restaurant_info', ['restaurant' => $restaurant->getId()]);
+        }
+
+        $file = $request->files->get('image');
+        $image = new Image();
+        $image->setImage($file);
+        $image->setTitle($restaurant->getId() . '_' . md5(uniqid()));
+
+        $validation = Validation::validate($validator, $image, $this->get('session')->getFlashBag());
+        if (!$validation)
+        {
+            return $this->redirectToRoute('edit_restaurant', ['restaurant' => $restaurant->getId()]);
+        }else
+        {
+            $upload = Uploader::upload($file, ['public_id' => $image->getTitle(), 'angle' => 0, 'width' => 512]);
+            $image->setUrl($upload['secure_url']);
+            $restaurant->setImage($image);
+            $om->persist($restaurant);
+            $om->flush();
+            FlashMessage::message($this->get('session')->getFlashBag(), 'success', 'Image ajoutée.');
+            return $this->redirectToRoute('restaurant_info', ['restaurant' => $restaurant->getId()]);
+        }
+    }
+
+
+    /**
+     * @Route("/owner/restaurant/{restaurant}/image/delete", name="delete_restaurant_image", requirements={"restaurant"="\d+"})
+     * @param Restaurant $restaurant
+     * @param ObjectManager $om
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function deleteRestaurantImage(Restaurant $restaurant, ObjectManager $om)
+    {
+        if (!$this->isGranted('edit', $restaurant))
+        {
+            return $this->redirectToRoute('restaurant_info', ['restaurant' => $restaurant->getId()]);
+        }
+
+        $om->remove($restaurant->getImage());
+        $restaurant->setImage(null);
+        $om->persist($restaurant);
+        $om->flush();
+        FlashMessage::message($this->get('session')->getFlashBag(), 'danger', 'Image supprimée.');
+        return $this->redirectToRoute('restaurant_info', ['restaurant' => $restaurant->getId()]);
     }
 
 }

@@ -5,7 +5,9 @@
                 <a href="{{ path('homepage') }}" class="brand-logo left bold">Delivereo</a>
                 <a href="#" data-target="sidebar-nav" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
-                    {% if is_granted('ROLE_CONSUMER') and not is_granted('ROLE_OWNER') %}
+                    {% if not is_granted('ROLE_USER') %}
+                        <li><a href="{{ path('partner') }}">Devenez partenaire</a></li>
+                    {% elseif is_granted('ROLE_CONSUMER') and not is_granted('ROLE_OWNER') %}
                         <li><a href="{{ path('partner') }}">Devenez partenaire</a></li>
                     {% endif %}
                     {% if is_granted('ROLE_OWNER') %}
@@ -47,7 +49,9 @@
         </li>
     {% endif %}
     <li><a class="subheader">Membre</a></li>
-    {% if is_granted('ROLE_CONSUMER') and not is_granted('ROLE_OWNER') %}
+    {% if not is_granted('ROLE_USER') %}
+        <li><a href="{{ path('partner') }}" class="waves-effect"><i class="material-icons">restaurant</i>Devenez partenaire</a></li>
+    {% elseif is_granted('ROLE_CONSUMER') and not is_granted('ROLE_OWNER') %}
         <li><a href="{{ path('partner') }}" class="waves-effect"><i class="material-icons">restaurant</i>Devenez partenaire</a></li>
     {% endif %}
     {% if is_granted('ROLE_OWNER') %}

@@ -203,6 +203,16 @@ input[type="text"].modernize {
   input[type="text"].modernize::placeholder {
     color: #999999 !important; }
 
+input[type="tel"].modernize {
+  height: 40px;
+  font-family: 'Roboto', Helvetica, sans-serif !important;
+  background: #eeeeee !important;
+  padding: 10px !important;
+  border: none !important;
+  border-radius: 3px 0 0 3px !important; }
+  input[type="tel"].modernize::placeholder {
+    color: #999999 !important; }
+
 input[type="time"].modernize {
   height: 40px;
   font-family: 'Roboto', Helvetica, sans-serif !important;
