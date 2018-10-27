@@ -282,6 +282,16 @@ input[type="submit"].modernize, button[type="submit"].modernize {
     -webkit-box-shadow: none !important;
     box-shadow: none !important; }
 
+textarea.modernize {
+  height: 40px;
+  font-family: 'Roboto', Helvetica, sans-serif !important;
+  background: #eeeeee !important;
+  padding: 10px !important;
+  border: none !important;
+  border-radius: 3px 0 0 3px !important; }
+  textarea.modernize::placeholder {
+    color: #999999 !important; }
+
 input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
   border: 1px solid #0ee9c3 !important;
   -webkit-box-shadow: none !important;
@@ -465,6 +475,24 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 .card.basic.modernize {
   box-shadow: none !important;
   border: 1.3px solid rgba(0, 0, 0, 0.1); }
+  .card.basic.modernize a.edit-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #444444;
+    border-left: 1px solid rgba(0, 0, 0, 0.14);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+    padding: 2px 5px;
+    display: flex;
+    align-items: center;
+    border-radius: 0px 0 0 2px;
+    transition: ease-in .1s; }
+    .card.basic.modernize a.edit-btn .material-icons {
+      font-size: 16pt; }
+    .card.basic.modernize a.edit-btn:hover {
+      background: rgba(0, 0, 0, 0.05); }
+      .card.basic.modernize a.edit-btn:hover .material-icons {
+        color: #0ee9c3; }
   .card.basic.modernize .card-content {
     padding: 5px 10px !important; }
     .card.basic.modernize .card-content .card-title {

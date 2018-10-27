@@ -96,7 +96,7 @@ class Restaurant
 
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="restaurant")
+     * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="restaurant", cascade={"persist", "remove"})
      */
     private $menus;
 

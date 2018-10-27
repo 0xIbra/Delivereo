@@ -273,6 +273,32 @@
   box-shadow: none !important;
   border: 1.3px solid rgba(0,0,0,0.1);
 
+  a.edit-btn{
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: $dark;
+    border-left: 1px solid rgba(0,0,0,0.14);
+    border-bottom: 1px solid rgba(0,0,0,0.14);
+    padding: 2px 5px;
+    display: flex;
+    align-items: center;
+    border-radius: 0px 0 0 2px;
+    transition: ease-in .1s;
+
+    .material-icons{
+      font-size: 16pt;
+    }
+
+    &:hover{
+      background: rgba(0,0,0,0.05);
+
+      .material-icons{
+        color: $greenLight;
+      }
+    }
+  }
+
   .card-content{
     padding: 5px 10px !important;
     .card-title{

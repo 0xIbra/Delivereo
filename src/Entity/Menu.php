@@ -21,7 +21,7 @@ class Menu
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Le nom du menu est obligatoire.")
      */
     private $name;
 
@@ -33,7 +33,7 @@ class Menu
 
     /**
      * @ORM\Column(name="price", type="float")
-     * @Assert\Currency()
+     * @Assert\NotNull(message="Le prix du menu est obligatoire.")
      */
     private $price;
 

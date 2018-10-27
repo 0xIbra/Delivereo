@@ -122,7 +122,7 @@
                                 <div class="col s12">
                                     <div class="flex align-center">
                                         <span class="row-header">Menus</span>
-                                        <a href="void:javascript;" class="flex align-center add-btn">
+                                        <a href="{{ path('add_menu', {'restaurant': restaurant.id}) }}" class="flex align-center add-btn">
                                             <span class="material-icons">add</span>
                                         </a>
                                     </div>
@@ -134,11 +134,16 @@
                                     {% for menu in restaurant.menus %}
                                         <div class="col s12 m6">
                                             <div class="card basic modernize">
+                                                {% if is_granted('edit', restaurant) %}
+                                                    <a href="#" class="edit-btn">
+                                                        <i class="material-icons">edit</i>
+                                                    </a>
+                                                {% endif %}
                                                 <a href="#item-modal" class="modal-trigger">
                                                     <div class="card-content">
                                                         <span class="card-title">{{ menu.name }}</span>
                                                         <p>{{ menu.description }}</p>
-                                                        <div class="price">EUR {{ menu.price }}</div>
+                                                        <div class="price">EUR {{ menu.price|number_format(2, '.') }}</div>
                                                     </div>
                                                 </a>
                                             </div>
