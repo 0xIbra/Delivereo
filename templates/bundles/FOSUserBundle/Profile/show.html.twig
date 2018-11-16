@@ -98,7 +98,9 @@
                         <div class="card-content">
                             <div class="row">
                                 <div class="col s12">
-                                    {% include 'inc/errors.html.twig' %}
+                                    {% block alerts %}
+                                        {% include 'inc/errors.html.twig' %}
+                                    {% endblock %}
                                     <div class="flex align-center">
                                         <div class="row-header">Commandes</div>
                                     </div>

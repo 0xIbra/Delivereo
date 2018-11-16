@@ -20,7 +20,7 @@ class SocialLink
     /**
      * @var Social
      * @ORM\ManyToOne(targetEntity="App\Entity\Social")
-     * @Assert\NotNull()
+     * @Assert\NotNull(message="Merci de bien selectionner un reseau social valide.")
      */
     private $type;
 

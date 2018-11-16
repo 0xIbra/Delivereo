@@ -360,9 +360,8 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
       background: rgba(0, 0, 0, 0.6);
       z-index: 90;
       transition: ease-in .1s; }
-    .modern-card .modern-card-image img.modern-image {
-      width: 100%;
-      height: 100%; }
+    .modern-card .modern-card-image img {
+      width: 100%; }
   .modern-card .modern-card-body {
     position: absolute;
     width: 100%;
@@ -648,6 +647,30 @@ a.add-btn {
   .alert.default {
     background: #f9f9f9;
     color: #444444; }
+
+/*
+========================================
+=========== FLOATING ALERTS ============
+========================================
+ */
+.floating-alerts {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 700;
+  opacity: 0;
+  transform: translateX(150%);
+  transition: ease-in .6s; }
+  .floating-alerts .floating-alert {
+    border-radius: 3px; }
+    .floating-alerts .floating-alert.danger {
+      background: rgba(217, 83, 79, 0.8);
+      color: #fff;
+      padding: 5px 15px; }
+    .floating-alerts .floating-alert.success {
+      background: rgba(92, 184, 92, 0.8);
+      color: #fff;
+      padding: 5px 15px; }
 
 .pagination li.active {
   background: #0ee9c3 !important; }

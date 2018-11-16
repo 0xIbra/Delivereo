@@ -2,222 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5534b25-7ea8-43bb-84d2-c52e8c41a58a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.env.dist" beforeDir="false" afterPath="$PROJECT_DIR$/.env.dist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/FoodHub.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FoodHub.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/86856b1b-91ca-4968-b5a2-95e24b8e7fbe.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/86856b1b-91ca-4968-b5a2-95e24b8e7fbe.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e8ed507d-9756-4354-85f0-ce985f5ef1ad.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e8ed507d-9756-4354-85f0-ce985f5ef1ad.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/symfony2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/alerts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/console" beforeDir="false" afterPath="$PROJECT_DIR$/bin/console" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/phpunit" beforeDir="false" afterPath="$PROJECT_DIR$/bin/phpunit" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/gesdinet_jwt_refresh_token.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/gesdinet_jwt_refresh_token.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/dev/debug.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/dev/debug.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/dev/easy_log_handler.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/dev/easy_log_handler.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/dev/jms_serializer.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/dev/jms_serializer.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/dev/monolog.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/dev/monolog.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/dev/routing.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/dev/routing.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/dev/swiftmailer.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/dev/swiftmailer.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/dev/web_profiler.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/dev/web_profiler.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/doctrine.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/doctrine_migrations.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/doctrine_migrations.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/fos_user.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/fos_user.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/framework.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/framework.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/jms_serializer.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/jms_serializer.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/lexik_jwt_authentication.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/lexik_jwt_authentication.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/prod/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/prod/doctrine.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/prod/jms_serializer.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/prod/jms_serializer.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/prod/monolog.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/prod/monolog.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/routing.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/routing.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/sensio_framework_extra.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/sensio_framework_extra.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/swiftmailer.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/swiftmailer.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/test/framework.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/test/framework.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/test/monolog.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/test/monolog.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/test/swiftmailer.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/test/swiftmailer.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/test/web_profiler.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/test/web_profiler.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/translation.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/translation.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/twig.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/validator.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/validator.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes/annotations.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes/annotations.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes/dev/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes/dev/twig.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes/dev/web_profiler.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes/dev/web_profiler.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes/fos_user.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes/fos_user.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phpunit.xml.dist" beforeDir="false" afterPath="$PROJECT_DIR$/phpunit.xml.dist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/public/.htaccess" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_alerts.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_alerts.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_breakpoints.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_breakpoints.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_buttons.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_buttons.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_cards.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_cards.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_collections.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_collections.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_customwidgets.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_customwidgets.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_footers.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_footers.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_globals.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_globals.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_hero.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_hero.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_inputs.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_inputs.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_modals.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_modals.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_navbar.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_navbar.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_pagination.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_pagination.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_pickers.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_pickers.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_selects.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_selects.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_showcase.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_showcase.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_sidenav.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_sidenav.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_tabs.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/_tabs.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/main.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/public/.sass-cache/f082f148f606e83a308b7041a1623183d2228d45/main.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/login.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/main.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/materialize.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/materialize.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/panier.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/panier.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/profile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/register.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/register.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/restaurant.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/restaurant.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/search.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/search.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/Android.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/Android.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/bg-delivreo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/bg-delivreo.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/burger.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/burger.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/desserts.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/desserts.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/eat.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/eat.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/fastfood.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/fastfood.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/google-play-badge.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/google-play-badge.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/kfc.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/kfc.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/mcdo.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/mcdo.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/pizza.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/pizza.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/pizza.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/pizza.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/showcase.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/showcase.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/sideimage.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/sideimage.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/symfony.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/symfony.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/materialize.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/materialize.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/_alerts.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_alerts.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_breakpoints.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_breakpoints.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_buttons.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_buttons.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/_cards.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_cards.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_collections.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_collections.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_customwidgets.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_customwidgets.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_footers.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_footers.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_globals.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_globals.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_hero.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_hero.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_inputs.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_inputs.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_modals.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_modals.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_navbar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_navbar.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_pagination.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_pagination.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_pickers.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_pickers.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_selects.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_selects.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_showcase.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_showcase.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_sidenav.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_sidenav.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_tabs.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_tabs.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CityController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/OwnerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/OwnerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/RestaurantController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RestaurantController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Address.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Address.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/City.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/City.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Comment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/DisLike.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/DisLike.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Gender.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Gender.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Image.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Image.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Like.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Like.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Menu.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Order.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Restaurant.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Restaurant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Social.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Social.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/SocialLink.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/SocialLink.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/AddressCustomFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/AddressCustomFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/AddressFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/AddressFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/AddressIncludeFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/AddressIncludeFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/HomeSearchType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/HomeSearchType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ProfileFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ProfileFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/RestaurantFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RestaurantFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/RestaurantModifyFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RestaurantModifyFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/SearchCustomFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/SearchCustomFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/src/Migrations/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20180827051940.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Migrations/Version20180827051940.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20180827054326.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Migrations/Version20180827054326.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20180827073024.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Migrations/Version20180827073024.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20180827073755.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Migrations/Version20180827073755.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20180827092023.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Migrations/Version20180827092023.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20180906130500.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Migrations/Version20180906130500.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/AddressRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/AddressRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/CategoryRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CategoryRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/CityRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CityRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/CommentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CommentRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/DisLikeRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/DisLikeRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/GenderRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/GenderRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ImageRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ImageRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/LikeRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/LikeRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/MenuRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/MenuRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/OrderRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/OrderRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/RestaurantRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/RestaurantRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/SocialLinkRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/SocialLinkRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/SocialRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/SocialRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Security/Voter/RestaurantVoter.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/Voter/RestaurantVoter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Uploader/Uploader.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Uploader/Uploader.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/FlashMessage.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/FlashMessage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/JSON.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/JSON.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/Validation.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Validation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/auth/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/ChangePassword/change_password.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/ChangePassword/change_password.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Profile/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Profile/edit.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Profile/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Profile/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Registration/check_email.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Registration/check_email.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Registration/confirmed.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Registration/confirmed.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Registration/register.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Resetting/check_email.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Resetting/check_email.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Resetting/request.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Resetting/request.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Resetting/reset.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Resetting/reset.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Security/login.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/layout.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/city/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/city/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/city/search.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/city/search.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/default/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/default/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dump.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dump.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/inc/errors.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/errors.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inc/footer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/footer.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inc/form_errors.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/form_errors.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inc/home_navbar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/home_navbar.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inc/navbar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/navbar.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inc/single_error.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/single_error.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inc/user_type.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/user_type.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/menu/add_menu.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/menu/add_menu.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/owner/application.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/owner/application.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/owner/check_email.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/owner/check_email.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/owner/email/confirmed.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/owner/email/confirmed.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/owner/email/pending.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/owner/email/pending.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/owner/email/refused.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/owner/email/refused.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/owner/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/owner/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/restaurant/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/restaurant/edit.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/restaurant/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/restaurant/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/restaurant/search.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/restaurant/search.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/add_address.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/add_address.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/edit_address.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/edit_address.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/tests/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/translations/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/translations/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/translations/bundles/FOSUserBundle/FOSUserBundle.fr.yml" beforeDir="false" afterPath="$PROJECT_DIR$/translations/bundles/FOSUserBundle/FOSUserBundle.fr.yml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -321,12 +121,13 @@
     <session id="-266999818">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="9" />
           <entry key="project.open.time.1" value="2" />
+          <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.40" value="1" />
-          <entry key="project.open.time.8" value="2" />
-          <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.open.time.8" value="3" />
+          <entry key="project.open.time.9" value="3" />
+          <entry key="project.opened" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -334,10 +135,11 @@
           <entry key="DATABASE/86856b1b-91ca-4968-b5a2-95e24b8e7fbe" value="1" />
           <entry key="DATABASE/e8ed507d-9756-4354-85f0-ce985f5ef1ad" value="2" />
           <entry key="css" value="11" />
+          <entry key="env" value="1" />
           <entry key="gitignore" value="1" />
           <entry key="js" value="2" />
           <entry key="menu" value="1" />
-          <entry key="php" value="110" />
+          <entry key="php" value="111" />
           <entry key="scss" value="10" />
           <entry key="sql" value="2" />
           <entry key="twig" value="86" />
@@ -348,10 +150,11 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key=".env file" value="1" />
           <entry key="CSS" value="11" />
           <entry key="Database Element" value="1" />
           <entry key="JavaScript" value="2" />
-          <entry key="PHP" value="110" />
+          <entry key="PHP" value="111" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SCSS" value="10" />
           <entry key="Scratch" value="2" />
@@ -365,6 +168,7 @@
         <counts>
           <entry key="css" value="797" />
           <entry key="dummy" value="6" />
+          <entry key="env" value="29" />
           <entry key="js" value="69" />
           <entry key="php" value="19526" />
           <entry key="scss" value="428" />
@@ -375,6 +179,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
+          <entry key=".env file" value="29" />
           <entry key="CSS" value="798" />
           <entry key="JavaScript" value="69" />
           <entry key="PHP" value="19526" />
@@ -390,96 +195,118 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-1253704192">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.opened" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="js" value="1" />
+          <entry key="php" value="2" />
+          <entry key="scss" value="3" />
+          <entry key="twig" value="9" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JavaScript" value="1" />
+          <entry key="PHP" value="2" />
+          <entry key="SCSS" value="3" />
+          <entry key="Twig" value="9" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="js" value="240" />
+          <entry key="php" value="82" />
+          <entry key="scss" value="396" />
+          <entry key="twig" value="337" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JavaScript" value="240" />
+          <entry key="PHP" value="82" />
+          <entry key="SCSS" value="396" />
+          <entry key="Twig" value="337" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FavoritesManager">
     <favorites_list name="FoodHub" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/RestaurantController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="644">
-              <caret line="46" column="90" selection-start-line="46" selection-start-column="90" selection-end-line="46" selection-end-column="90" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/MenuController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="713">
-              <caret line="41" column="72" selection-start-line="41" selection-start-column="72" selection-end-line="41" selection-end-column="72" />
-              <folding>
-                <element signature="e#34#54#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/menu/add_menu.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Form/MenuFormType.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="21" column="76" selection-start-line="21" selection-start-column="76" selection-end-line="21" selection-end-column="76" />
-              <folding>
-                <element signature="e#28#52#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Form/CustomImageFormType.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="14" column="82" selection-start-line="14" selection-start-column="82" selection-end-line="14" selection-end-column="82" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Entity/Menu.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="736">
-              <caret line="35" column="64" selection-start-line="35" selection-start-column="64" selection-end-line="35" selection-end-column="64" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Entity/SocialLink.php">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/restaurant/index.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2806">
-              <caret line="122" column="67" selection-start-line="122" selection-start-column="67" selection-end-line="122" selection-end-column="67" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/scss/_cards.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="289" column="19" selection-start-line="289" selection-start-column="18" selection-end-line="289" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.6809689">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="506">
+                  <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Controller/UserController.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="404">
+                  <caret line="39" column="31" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Entity/SocialLink.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="299">
+                  <caret line="22" column="85" selection-start-line="22" selection-start-column="85" selection-end-line="22" selection-end-column="85" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/templates/bundles/FOSUserBundle/Profile/show.html.twig">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="252">
+                  <caret line="200" column="50" selection-start-line="200" selection-start-column="50" selection-end-line="200" selection-end-column="50" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/scss/_alerts.scss">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1035">
+                  <caret line="45" column="14" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="14" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/public/scss/_cards.scss">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="526">
+                  <caret line="95" column="18" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -498,6 +325,7 @@
       <find>edit_res</find>
       <find>add</find>
       <find>basic</find>
+      <find>include</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -506,19 +334,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Form/AddressFormType.php" />
-        <option value="$PROJECT_DIR$/src/Entity/User.php" />
-        <option value="$PROJECT_DIR$/src/Form/AddressIncludeFormType.php" />
-        <option value="$PROJECT_DIR$/templates/owner/request.html.twig" />
-        <option value="$PROJECT_DIR$/templates/bundles/FOSUserBundle/ChangePassword/change_password.html.twig" />
-        <option value="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Resetting/request.html.twig" />
         <option value="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Resetting/reset.html.twig" />
         <option value="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Resetting/check_email.html.twig" />
         <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/views/Registration/email.txt.twig" />
         <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/views/Resetting/email.txt.twig" />
         <option value="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Registration/check_email.html.twig" />
         <option value="$PROJECT_DIR$/templates/owner/check_email.html.twig" />
-        <option value="$PROJECT_DIR$/templates/owner/application.html.twig" />
         <option value="$PROJECT_DIR$/templates/owner/email/pending.html.twig" />
         <option value="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Registration/confirmed.html.twig" />
         <option value="$PROJECT_DIR$/templates/inc/user_type.html.twig" />
@@ -526,11 +347,8 @@
         <option value="$PROJECT_DIR$/templates/owner/email/refused.html.twig" />
         <option value="$PROJECT_DIR$/src/Utils/Validation.php" />
         <option value="$PROJECT_DIR$/src/Controller/UserController.php" />
-        <option value="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Profile/show.html.twig" />
         <option value="$PROJECT_DIR$/public/css/profile.css" />
         <option value="$PROJECT_DIR$/src/Repository/LikeRepository.php" />
-        <option value="$PROJECT_DIR$/src/Controller/DefaultController.php" />
-        <option value="$PROJECT_DIR$/templates/inc/errors.html.twig" />
         <option value="$PROJECT_DIR$/src/Entity/DisLike.php" />
         <option value="$PROJECT_DIR$/src/Entity/Like.php" />
         <option value="$PROJECT_DIR$/templates/inc/footer.html.twig" />
@@ -550,13 +368,23 @@
         <option value="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Profile/edit.html.twig" />
         <option value="$PROJECT_DIR$/public/scss/_inputs.scss" />
         <option value="$PROJECT_DIR$/src/Form/CustomImageFormType.php" />
-        <option value="$PROJECT_DIR$/templates/menu/add_menu.html.twig" />
         <option value="$PROJECT_DIR$/src/Entity/Menu.php" />
         <option value="$PROJECT_DIR$/src/Form/MenuFormType.php" />
         <option value="$PROJECT_DIR$/src/Entity/Restaurant.php" />
         <option value="$PROJECT_DIR$/src/Controller/MenuController.php" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="&lt;571874f3-891b-4660-9b45-c4fb9d175403&gt;/.env" />
+        <option value="$PROJECT_DIR$/src/Controller/DefaultController.php" />
+        <option value="$PROJECT_DIR$/public/scss/_alerts.scss" />
+        <option value="$PROJECT_DIR$/public/js/alerts.js" />
+        <option value="$PROJECT_DIR$/templates/base.html.twig" />
+        <option value="$PROJECT_DIR$/templates/inc/errors.html.twig" />
+        <option value="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Profile/show.html.twig" />
         <option value="$PROJECT_DIR$/templates/restaurant/index.html.twig" />
+        <option value="$PROJECT_DIR$/templates/owner/application.html.twig" />
+        <option value="$PROJECT_DIR$/templates/menu/add_menu.html.twig" />
         <option value="$PROJECT_DIR$/public/scss/_cards.scss" />
+        <option value="$PROJECT_DIR$/src/Entity/SocialLink.php" />
       </list>
     </option>
   </component>
@@ -713,31 +541,6 @@
             <path>
               <item name="foodhub" type="b2602c69:ProjectViewProjectNode" />
               <item name="foodhub" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Entity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="foodhub" type="b2602c69:ProjectViewProjectNode" />
-              <item name="foodhub" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Form" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="foodhub" type="b2602c69:ProjectViewProjectNode" />
-              <item name="foodhub" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Security" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="foodhub" type="b2602c69:ProjectViewProjectNode" />
-              <item name="foodhub" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Security" type="462c0819:PsiDirectoryNode" />
-              <item name="Voter" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="foodhub" type="b2602c69:ProjectViewProjectNode" />
-              <item name="foodhub" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -765,7 +568,7 @@
               <item name="foodhub" type="b2602c69:ProjectViewProjectNode" />
               <item name="foodhub" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="menu" type="462c0819:PsiDirectoryNode" />
+              <item name="restaurant" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -775,15 +578,15 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
-    <property name="SearchEverywhereHistoryKey" value="_card&#9;FILE&#9;file:///var/www/html/foodhub/public/scss/_cards.scss&#10;profile&#9;FILE&#9;file:///var/www/html/foodhub/public/css/profile.css&#10;_inp&#9;FILE&#9;file:///var/www/html/foodhub/public/scss/_inputs.scss&#10;addImage&#9;null&#9;null&#10;addIm&#9;null&#9;null&#10;Resta&#9;FILE&#9;file:///var/www/html/foodhub/src/Entity/Restaurant.php&#10;_input&#9;FILE&#9;file:///var/www/html/foodhub/public/scss/_inputs.scss&#10;main.scss&#9;FILE&#9;file:///var/www/html/foodhub/public/scss/main.scss&#10;ser&#9;FILE&#9;file:///var/www/html/foodhub/config/services.yaml&#10;err&#9;FILE&#9;file:///var/www/html/foodhub/templates/inc/errors.html.twig&#10;sec&#9;FILE&#9;file:///var/www/html/foodhub/config/packages/security.yaml&#10;profile.css&#9;FILE&#9;file:///var/www/html/foodhub/public/css/profile.css&#10;RoleVoter&#9;null&#9;null&#10;hasRole&#9;null&#9;null&#10;onRegistration&#9;null&#9;null&#10;email.txt.&#9;FILE&#9;file:///var/www/html/foodhub/vendor/friendsofsymfony/user-bundle/Resources/views/Registration/email.txt.twig&#10;Category&#9;FILE&#9;file:///var/www/html/foodhub/src/Entity/Category.php&#10;main.css&#9;FILE&#9;file:///var/www/html/foodhub/public/css/main.css&#10;base.html.tw&#9;FILE&#9;file:///home/ibrahim/projects/php/FoodHub/templates/base.html.twig&#10;home.&#9;FILE&#9;file:///home/ibrahim/projects/php/FoodHub/templates/home.html.twig&#10;main.&#9;FILE&#9;file:///home/ibrahim/projects/php/FoodHub/public/css/main.css&#10;security&#9;FILE&#9;file:///home/ibrahim/projects/php/FoodHub/config/packages/security.yaml&#10;App\Entity\User&#9;null&#9;null&#10;FOS\UserBundle\Model\User&#9;null&#9;null&#10;remote host&#9;ACTION&#9;WebDeployment.BrowseServers" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="SearchEverywhereHistoryKey" value="base&#9;FILE&#9;file:///home/ibrahim/Projects/php/foodhub/templates/base.html.twig&#10;remote host&#9;ACTION&#9;WebDeployment.BrowseServers&#10;_card&#9;FILE&#9;file:///var/www/html/foodhub/public/scss/_cards.scss&#10;profile&#9;FILE&#9;file:///var/www/html/foodhub/public/css/profile.css&#10;_inp&#9;FILE&#9;file:///var/www/html/foodhub/public/scss/_inputs.scss&#10;addImage&#9;null&#9;null&#10;addIm&#9;null&#9;null&#10;Resta&#9;FILE&#9;file:///var/www/html/foodhub/src/Entity/Restaurant.php&#10;_input&#9;FILE&#9;file:///var/www/html/foodhub/public/scss/_inputs.scss&#10;main.scss&#9;FILE&#9;file:///var/www/html/foodhub/public/scss/main.scss&#10;ser&#9;FILE&#9;file:///var/www/html/foodhub/config/services.yaml&#10;err&#9;FILE&#9;file:///var/www/html/foodhub/templates/inc/errors.html.twig&#10;sec&#9;FILE&#9;file:///var/www/html/foodhub/config/packages/security.yaml&#10;profile.css&#9;FILE&#9;file:///var/www/html/foodhub/public/css/profile.css&#10;RoleVoter&#9;null&#9;null&#10;hasRole&#9;null&#9;null&#10;onRegistration&#9;null&#9;null&#10;email.txt.&#9;FILE&#9;file:///var/www/html/foodhub/vendor/friendsofsymfony/user-bundle/Resources/views/Registration/email.txt.twig&#10;Category&#9;FILE&#9;file:///var/www/html/foodhub/src/Entity/Category.php&#10;main.css&#9;FILE&#9;file:///var/www/html/foodhub/public/css/main.css&#10;base.html.tw&#9;FILE&#9;file:///home/ibrahim/projects/php/FoodHub/templates/base.html.twig&#10;home.&#9;FILE&#9;file:///home/ibrahim/projects/php/FoodHub/templates/home.html.twig&#10;main.&#9;FILE&#9;file:///home/ibrahim/projects/php/FoodHub/public/css/main.css&#10;security&#9;FILE&#9;file:///home/ibrahim/projects/php/FoodHub/config/packages/security.yaml&#10;App\Entity\User&#9;null&#9;null&#10;FOS\UserBundle\Model\User&#9;null&#9;null" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../brandhub" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
@@ -846,17 +649,23 @@
       <workItem from="1540451751058" duration="35579000" />
       <workItem from="1540548442635" duration="14508000" />
       <workItem from="1540590491466" duration="599000" />
+      <workItem from="1540639918212" duration="1414000" />
+      <workItem from="1541071850958" duration="2477000" />
+      <workItem from="1541089298696" duration="9000" />
+      <workItem from="1541101643936" duration="201000" />
+      <workItem from="1541744643375" duration="4045000" />
+      <workItem from="1541760275755" duration="21000" />
+      <workItem from="1542369794153" duration="839000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="197189000" />
+    <option name="totallyTimeSpent" value="206195000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1427" y="25" width="1861" height="1055" extended-state="6" />
-    <editor active="true" />
+    <frame x="1435" y="25" width="1853" height="1055" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1891892" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20475927" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" weight="0.3294766" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -868,16 +677,16 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3286334" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32827735" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.3286334" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32936078" />
       <window_info anchor="bottom" id="File Transfer" order="12" weight="0.32936078" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.329718" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Database" order="3" weight="0.32984003" />
-      <window_info anchor="right" id="Remote Host" order="4" weight="0.14720531" />
+      <window_info anchor="right" id="Remote Host" order="4" weight="0.2241284" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -887,59 +696,10 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/inc/user_type.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/owner/check_email.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="63" lean-forward="true" selection-start-line="6" selection-start-column="63" selection-end-line="6" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/owner/email/pending.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="165" column="50" selection-end-line="185" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/owner/email/refused.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="153" column="71" selection-start-line="153" selection-start-column="71" selection-end-line="153" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/owner/email/confirmed.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-287">
-          <caret line="130" column="28" selection-start-line="130" selection-start-column="28" selection-end-line="130" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/security/Core/Authorization/Voter/RoleVoter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="47" column="29" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/symfony/framework-bundle/Controller/ControllerTrait.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="362">
           <caret line="376" column="23" selection-start-line="376" selection-start-column="23" selection-end-line="376" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/bundles/FOSUserBundle/Profile/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="75" column="54" selection-start-line="75" selection-start-column="54" selection-end-line="75" selection-end-column="54" />
         </state>
       </provider>
     </entry>
@@ -952,20 +712,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
           <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="43" column="52" selection-start-line="43" selection-start-column="52" selection-end-line="43" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/inc/errors.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" column="40" selection-start-line="1" selection-start-column="40" selection-end-line="1" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -1023,13 +769,6 @@
         <state relative-caret-position="-20" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/restaurant/search.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2369">
-          <caret line="103" selection-start-line="103" selection-end-line="103" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/inc/footer.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
@@ -1072,13 +811,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="89" column="80" selection-start-line="89" selection-start-column="66" selection-end-line="89" selection-end-column="80" />
         </state>
       </provider>
     </entry>
@@ -1164,25 +896,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="15" column="60" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/MenuController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="713">
           <caret line="41" column="72" selection-start-line="41" selection-start-column="72" selection-end-line="41" selection-end-column="72" />
-          <folding>
-            <element signature="e#34#54#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/menu/add_menu.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-            <element signature="e#737#757#0#Twig" expanded="true" />
-            <element signature="e#802#827#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1190,9 +914,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
           <caret line="21" column="76" selection-start-line="21" selection-start-column="76" selection-end-line="21" selection-end-column="76" />
-          <folding>
-            <element signature="e#28#52#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1210,20 +931,100 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/SocialLink.php">
+    <entry file="file://$PROJECT_DIR$/src/Controller/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/inc/form_errors.html.twig">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/restaurant/search.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="804">
+          <caret line="103" selection-start-line="103" selection-end-line="103" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/inc/errors.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/alerts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/restaurant/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2806">
-          <caret line="122" column="67" selection-start-line="122" selection-start-column="67" selection-end-line="122" selection-end-column="67" />
+        <state relative-caret-position="2990">
+          <caret line="130" column="46" selection-start-line="130" selection-start-column="39" selection-end-line="130" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/owner/application.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="17" column="64" selection-start-line="17" selection-start-column="64" selection-end-line="17" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/menu/add_menu.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="12" column="40" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+          <folding>
+            <element signature="e#408#428#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scss/_alerts.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1035">
+          <caret line="45" column="14" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/scss/_cards.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="289" column="19" selection-start-line="289" selection-start-column="18" selection-end-line="289" selection-end-column="19" />
+        <state relative-caret-position="526">
+          <caret line="95" column="18" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="39" column="31" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/SocialLink.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="22" column="85" selection-start-line="22" selection-start-column="85" selection-end-line="22" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/bundles/FOSUserBundle/Profile/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="200" column="50" selection-start-line="200" selection-start-column="50" selection-end-line="200" selection-end-column="50" />
         </state>
       </provider>
     </entry>

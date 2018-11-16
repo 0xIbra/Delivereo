@@ -19,6 +19,10 @@
             {% include 'inc/navbar.html.twig' %}
         {% endblock %}
 
+        <div class="floating-alerts">
+            {% block alerts %}{% endblock %}
+        </div>
+
         {% block body %}{% endblock %}
 
         {% block footer %}
@@ -33,6 +37,7 @@
             <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
             <script src="{{ asset('js/materialize.min.js') }}"></script>
             <script src="{{ asset('js/main.js') }}"></script>
+            <script src="{{ asset('js/alerts.js') }}"></script>
         {% endblock %}
     </body>
 </html>

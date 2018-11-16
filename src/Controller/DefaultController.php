@@ -22,7 +22,7 @@ class DefaultController extends AbstractController
      */
     public function index(Request $request, ObjectManager $manager)
     {
-        $categories = $manager->getRepository(Category::class)->findBy(['name' => ['Burger', 'Pizza', 'Fast food', 'Desserts']]);
+        $categories = $manager->getRepository(Category::class)->findBy(['name' => ['Burger', 'Pizza', 'Fastfood', 'Dessert']]);
         $searchform = $this->createForm(HomeSearchType::class);
         $searchform->handleRequest($request);
         if ($searchform->isSubmitted() && $searchform->isValid())

@@ -127,9 +127,9 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col s12">
+                                {% block alerts %}
                                     {% include 'inc/errors.html.twig' %}
-                                </div>
+                                {% endblock %}
                                 {% if restaurant.menus|length > 0 %}
                                     {% for menu in restaurant.menus %}
                                         <div class="col s12 m6">
