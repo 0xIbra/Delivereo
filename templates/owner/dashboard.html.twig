@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord | Delivereo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('restaurant.css') }}">
+    <link rel="stylesheet" href="{{ asset('profile.css') }}">
+{% endblock %}
+
+{% block alerts %}
+    {% include 'inc/errors/errors.html.twig' %}
+{% endblock %}
+
+{% block body %}
+
+{% endblock %}

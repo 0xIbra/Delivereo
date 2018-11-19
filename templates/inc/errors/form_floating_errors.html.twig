@@ -1,0 +1,3 @@
+{% for error in form.vars.errors.form.getErrors(true)  %}
+    <div class="floating-alert danger">{{ error.message }}</div>
+{% endfor %}

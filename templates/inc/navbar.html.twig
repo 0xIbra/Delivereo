@@ -11,7 +11,7 @@
                         <li><a href="{{ path('partner') }}">Devenez partenaire</a></li>
                     {% endif %}
                     {% if is_granted('ROLE_OWNER') %}
-                        <li><a href="#">Tableau de bord</a></li>
+                        <li><a href="{{ path('owner_dashboard') }}">Tableau de bord</a></li>
                     {% endif %}
                     {% if not is_granted('ROLE_USER') %}
                         <li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
@@ -55,7 +55,7 @@
         <li><a href="{{ path('partner') }}" class="waves-effect"><i class="material-icons">restaurant</i>Devenez partenaire</a></li>
     {% endif %}
     {% if is_granted('ROLE_OWNER') %}
-        <li><a href="#" class="waves-effect"><i class="material-icons">dashboard</i>Tableau de bord</a></li>
+        <li><a href="{{ path('owner_dashboard') }}" class="waves-effect"><i class="material-icons">dashboard</i>Tableau de bord</a></li>
     {% endif %}
     {% if not is_granted('ROLE_USER') %}
         <li><a class="waves-effect" href="{{ path('fos_user_security_login') }}"><i class="material-icons">account_circle</i>Connexion</a></li>

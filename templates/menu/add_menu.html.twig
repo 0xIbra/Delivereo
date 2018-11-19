@@ -5,12 +5,12 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/register.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
     <link rel="stylesheet" href="{{ asset('css/restaurant.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 {% endblock %}
 
 {% block alerts %}
-    {% include 'inc/errors.html.twig' %}
+    {% include 'inc/errors/form_floating_errors.html.twig' %}
 {% endblock %}
 
 {% block body %}
@@ -21,7 +21,7 @@
                     <div class="card">
                         <div class="card-content">
                             <h4 class="heading">Création menu</h4>
-                            {% include 'inc/form_errors.html.twig' %}
+                            {#{% include 'inc/form_errors.html.twig' %}#}
                             {{ form_start(form) }}
                             <div class="input-field">
                                 {{ form_widget(form.name) }}

@@ -33,6 +33,7 @@ class MenuController extends AbstractController
         if ($form->isSubmitted() && $form->isValid())
         {
             $validation = Validation::validate($validator, $menu, $flashBag);
+
             if (!$validation)
             {
                 return $this->redirectToRoute('add_menu', ['restaurant' => $restaurant->getId()]);

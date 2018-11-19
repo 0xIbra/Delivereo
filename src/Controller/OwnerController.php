@@ -88,4 +88,13 @@ class OwnerController extends AbstractController
         ]);
     }
 
+
+    /**
+     * @Route("/owner/dashboard", name="owner_dashboard")
+     */
+    public function dashboard()
+    {
+        return $this->render('owner/dashboard.html.twig');
+    }
+
 }

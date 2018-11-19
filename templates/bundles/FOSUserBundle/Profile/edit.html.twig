@@ -44,7 +44,7 @@
                                 <div class="location flex align-center justify-center">
                                     {% include 'inc/user_type.html.twig' %}
                                 </div>
-                                {% include 'inc/single_error.html.twig' %}
+                                {% include 'inc/errors/single_error.html.twig' %}
                             </div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                 <div class="col s12 l8">
                     <div class="card">
                         <div class="card-content">
-                            {% include 'inc/form_errors.html.twig' %}
+                            {% include 'inc/errors/form_errors.html.twig' %}
                             {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
                             {{ form_widget(form._token) }}
                             <div class="input-field ">

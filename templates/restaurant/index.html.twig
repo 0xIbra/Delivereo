@@ -128,7 +128,7 @@
                                     </div>
                                 </div>
                                 {% block alerts %}
-                                    {% include 'inc/errors.html.twig' %}
+                                    {% include 'inc/errors/errors.html.twig' %}
                                 {% endblock %}
                                 {% if restaurant.menus|length > 0 %}
                                     {% for menu in restaurant.menus %}

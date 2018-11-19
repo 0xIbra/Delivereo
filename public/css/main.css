@@ -662,7 +662,8 @@ a.add-btn {
   transform: translateX(150%);
   transition: ease-in .6s; }
   .floating-alerts .floating-alert {
-    border-radius: 3px; }
+    border-radius: 3px;
+    margin-bottom: 5px !important; }
     .floating-alerts .floating-alert.danger {
       background: rgba(217, 83, 79, 0.8);
       color: #fff;
