@@ -4,6 +4,7 @@ $(document).ready(function(){
     $('.modal').modal();
     $('select').formSelect();
     $('.timepicker').timepicker({twelveHour: false});
+    $('.dropdown-trigger').dropdown();
 
     $(window).scroll(function(){
         if ($(window).scrollTop() < 2)

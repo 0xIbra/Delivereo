@@ -17,6 +17,11 @@
 
   .card-content{
 
+    .heading{
+      text-align: center;
+      font-size: 18pt;
+    }
+
     .small-header{
       color: $dark;
       font-size: 14pt;
@@ -315,6 +320,54 @@
 ============== BASIC MODERN CARD ===============
 ================================================
  */
+
+
+
+/**
+================================================
+=============== STATS MINI CARD ================
+================================================
+ */
+
+.card.stats-mini-card{
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  box-shadow: 0 0 10px -4px rgba(0, 0, 0, 0.3);
+  display: flex;
+  padding: 20px;
+  align-items: center;
+
+  .card-logo{
+    margin-right: 10px;
+
+    i.material-icons{
+      font-size: 35pt;
+    }
+  }
+
+  .stats-card-content{
+
+    .value{
+      font-size: 16pt;
+    }
+
+    .type{
+      font-size: 12pt;
+      color: $grey;
+    }
+  }
+
+}
+
+/**
+================================================
+=============== STATS MINI CARD ================
+================================================
+ */
+
+
+
 
 
 

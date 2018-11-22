@@ -8,6 +8,7 @@ use App\Entity\Restaurant;
 use App\Entity\User;
 use App\Form\RestaurantFormType;
 use App\Form\RestaurantModifyFormType;
+use App\Utils\FlashMessage;
 use App\Utils\Validation;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -94,6 +95,11 @@ class OwnerController extends AbstractController
      */
     public function dashboard()
     {
+        if (!$this->isGranted('edit', $this->getUser()->getRestaurants()[0]))
+        {
+            FlashMessage::message($this->get('session')->getFlashBag(), 'danger', 'Vous n\'avez pas les droits pour accéder à cette page.');
+            return $this->redirectToRoute('homepage');
+        }
         return $this->render('owner/dashboard.html.twig');
     }
 

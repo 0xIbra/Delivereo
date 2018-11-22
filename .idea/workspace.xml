@@ -2,24 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5534b25-7ea8-43bb-84d2-c52e8c41a58a" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/inc/errors/form_floating_errors.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/owner/dashboard.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/owner/inc/sidebar.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_alerts.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_alerts.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/MenuController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MenuController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/.sass-cache/710054075337a3f0371a810398e4ee5c53860d82/_sidenav.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/public/.sass-cache/710054075337a3f0371a810398e4ee5c53860d82/_sidenav.scssc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/main.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/_cards.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_cards.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/_globals.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_globals.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/_sidenav.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_sidenav.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/OwnerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/OwnerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/ChangePassword/change_password.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/ChangePassword/change_password.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Profile/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Profile/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Profile/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Profile/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Registration/register.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inc/errors.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/errors/errors.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inc/form_errors.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/errors/form_errors.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inc/home_navbar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/home_navbar.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inc/navbar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/navbar.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inc/single_error.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/errors/single_error.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/menu/add_menu.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/menu/add_menu.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/owner/application.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/owner/application.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/restaurant/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/restaurant/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/owner/dashboard.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/owner/dashboard.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,204 +37,6 @@
     <expand />
     <select />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="494104993">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="12" />
-          <entry key="project.open.time.1" value="2" />
-          <entry key="project.open.time.10" value="1" />
-          <entry key="project.open.time.11" value="2" />
-          <entry key="project.open.time.13" value="1" />
-          <entry key="project.open.time.15" value="2" />
-          <entry key="project.open.time.2" value="1" />
-          <entry key="project.open.time.22" value="1" />
-          <entry key="project.open.time.4" value="1" />
-          <entry key="project.open.time.6" value="2" />
-          <entry key="project.open.time.7" value="1" />
-          <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="16" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="css" value="20" />
-          <entry key="env" value="403" />
-          <entry key="php" value="4082" />
-          <entry key="twig" value="6203" />
-          <entry key="yaml" value="1836" />
-          <entry key="yml" value="389" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key=".env file" value="63" />
-          <entry key="CSS" value="20" />
-          <entry key="PHP" value="4082" />
-          <entry key="PLAIN_TEXT" value="340" />
-          <entry key="Twig" value="6203" />
-          <entry key="YAML" value="2225" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="css" value="7" />
-          <entry key="dist" value="1" />
-          <entry key="env" value="11" />
-          <entry key="gitignore" value="1" />
-          <entry key="html" value="1" />
-          <entry key="js" value="1" />
-          <entry key="json" value="1" />
-          <entry key="pem" value="1" />
-          <entry key="php" value="43" />
-          <entry key="twig" value="72" />
-          <entry key="xml" value="2" />
-          <entry key="yaml" value="40" />
-          <entry key="yml" value="10" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key=".env file" value="2" />
-          <entry key="CSS" value="7" />
-          <entry key="HTML" value="1" />
-          <entry key="JSON" value="1" />
-          <entry key="JavaScript" value="1" />
-          <entry key="PHP" value="43" />
-          <entry key="PLAIN_TEXT" value="11" />
-          <entry key="Twig" value="72" />
-          <entry key="XML" value="3" />
-          <entry key="YAML" value="50" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.php.new.class">
-        <counts>
-          <entry key="PHP Class.type" value="1" />
-        </counts>
-      </usages-collector>
-    </session>
-    <session id="-266999818">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="9" />
-          <entry key="project.open.time.1" value="2" />
-          <entry key="project.open.time.3" value="1" />
-          <entry key="project.open.time.40" value="1" />
-          <entry key="project.open.time.8" value="3" />
-          <entry key="project.open.time.9" value="3" />
-          <entry key="project.opened" value="10" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="DATABASE/86856b1b-91ca-4968-b5a2-95e24b8e7fbe" value="1" />
-          <entry key="DATABASE/e8ed507d-9756-4354-85f0-ce985f5ef1ad" value="2" />
-          <entry key="css" value="11" />
-          <entry key="env" value="1" />
-          <entry key="gitignore" value="1" />
-          <entry key="js" value="2" />
-          <entry key="menu" value="1" />
-          <entry key="php" value="111" />
-          <entry key="scss" value="10" />
-          <entry key="sql" value="2" />
-          <entry key="twig" value="86" />
-          <entry key="xml" value="1" />
-          <entry key="yaml" value="15" />
-          <entry key="yml" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key=".env file" value="1" />
-          <entry key="CSS" value="11" />
-          <entry key="Database Element" value="1" />
-          <entry key="JavaScript" value="2" />
-          <entry key="PHP" value="111" />
-          <entry key="PLAIN_TEXT" value="1" />
-          <entry key="SCSS" value="10" />
-          <entry key="Scratch" value="2" />
-          <entry key="Twig" value="86" />
-          <entry key="UML" value="3" />
-          <entry key="XML" value="1" />
-          <entry key="YAML" value="16" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="css" value="797" />
-          <entry key="dummy" value="6" />
-          <entry key="env" value="29" />
-          <entry key="js" value="69" />
-          <entry key="php" value="19526" />
-          <entry key="scss" value="428" />
-          <entry key="twig" value="15420" />
-          <entry key="txt" value="14" />
-          <entry key="yaml" value="255" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key=".env file" value="29" />
-          <entry key="CSS" value="798" />
-          <entry key="JavaScript" value="69" />
-          <entry key="PHP" value="19526" />
-          <entry key="PLAIN_TEXT" value="20" />
-          <entry key="SCSS" value="428" />
-          <entry key="Twig" value="15419" />
-          <entry key="YAML" value="255" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.php.new.class">
-        <counts>
-          <entry key="PHP Class.type" value="2" />
-        </counts>
-      </usages-collector>
-    </session>
-    <session id="-1253704192">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="4" />
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.10" value="2" />
-          <entry key="project.open.time.13" value="1" />
-          <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="5" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="js" value="1" />
-          <entry key="php" value="6" />
-          <entry key="scss" value="3" />
-          <entry key="twig" value="25" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="JavaScript" value="1" />
-          <entry key="PHP" value="6" />
-          <entry key="SCSS" value="3" />
-          <entry key="Twig" value="25" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="js" value="240" />
-          <entry key="php" value="309" />
-          <entry key="scss" value="421" />
-          <entry key="twig" value="755" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="JavaScript" value="240" />
-          <entry key="PHP" value="309" />
-          <entry key="SCSS" value="421" />
-          <entry key="Twig" value="755" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FavoritesManager">
     <favorites_list name="FoodHub" />
   </component>
@@ -249,24 +44,20 @@
     <splitter split-orientation="horizontal" split-proportion="0.6809689">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/templates/owner/dashboard.html.twig">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="506">
-                  <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
+                <state relative-caret-position="575">
+                  <caret line="73" column="69" lean-forward="true" selection-start-line="73" selection-start-column="69" selection-end-line="73" selection-end-column="69" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/templates/owner/dashboard.html.twig">
+            <entry file="file://$PROJECT_DIR$/templates/owner/inc/sidebar.html.twig">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="161">
-                  <caret line="7" column="61" lean-forward="true" selection-start-line="7" selection-start-column="61" selection-end-line="7" selection-end-column="61" />
-                  <folding>
-                    <element signature="e#12#26#0#Twig" expanded="true" />
-                    <element signature="e#127#154#0#Twig" expanded="true" />
-                  </folding>
+                <state relative-caret-position="115">
+                  <caret line="5" column="116" selection-start-line="5" selection-start-column="116" selection-end-line="5" selection-end-column="116" />
                 </state>
               </provider>
             </entry>
@@ -274,25 +65,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Controller/OwnerController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="690">
-                  <caret line="96" column="56" selection-start-line="96" selection-start-column="56" selection-end-line="96" selection-end-column="56" />
-                  <folding>
-                    <element signature="e#928#3363#0#PHP" />
-                    <element signature="e#3507#3534#1#PHP" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/templates/inc/navbar.html.twig">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="299">
-                  <caret line="13" column="66" selection-start-line="13" selection-start-column="66" selection-end-line="13" selection-end-column="66" />
-                  <folding>
-                    <element signature="e#825#840#0#Twig" expanded="true" />
-                    <element signature="e#3306#3321#0#Twig" expanded="true" />
-                  </folding>
+                <state relative-caret-position="2024">
+                  <caret line="100" column="54" selection-start-line="100" selection-start-column="54" selection-end-line="100" selection-end-column="54" />
                 </state>
               </provider>
             </entry>
@@ -302,9 +76,6 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="276">
                   <caret line="12" column="57" selection-start-line="12" selection-start-column="57" selection-end-line="12" selection-end-column="57" />
-                  <folding>
-                    <element signature="e#408#449#0#Twig" expanded="true" />
-                  </folding>
                 </state>
               </provider>
             </entry>
@@ -313,7 +84,7 @@
             <entry file="file://$PROJECT_DIR$/templates/inc/errors/form_errors.html.twig">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="92">
-                  <caret line="4" column="12" lean-forward="true" selection-end-line="4" selection-end-column="12" />
+                  <caret line="4" column="12" selection-end-line="4" selection-end-column="12" />
                 </state>
               </provider>
             </entry>
@@ -330,8 +101,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Controller/MenuController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="533">
-                  <caret line="44" column="9" lean-forward="true" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
+                <state relative-caret-position="782">
+                  <caret line="44" column="9" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
                 </state>
               </provider>
             </entry>
@@ -349,20 +120,38 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/scss/_alerts.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="510">
+                <state relative-caret-position="874">
                   <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/scss/_sidenav.scss">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="703">
+                  <caret line="95" column="25" selection-start-line="95" selection-start-column="25" selection-end-line="95" selection-end-column="25" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/public/scss/_cards.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="526">
-                  <caret line="95" column="18" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
+                <state relative-caret-position="483">
+                  <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/scss/_globals.scss">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="253">
+                  <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
                 </state>
               </provider>
             </entry>
@@ -400,10 +189,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/owner/check_email.html.twig" />
-        <option value="$PROJECT_DIR$/templates/owner/email/pending.html.twig" />
-        <option value="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Registration/confirmed.html.twig" />
-        <option value="$PROJECT_DIR$/templates/inc/user_type.html.twig" />
         <option value="$PROJECT_DIR$/templates/owner/email/confirmed.html.twig" />
         <option value="$PROJECT_DIR$/templates/owner/email/refused.html.twig" />
         <option value="$PROJECT_DIR$/src/Utils/Validation.php" />
@@ -434,7 +219,6 @@
         <option value="$PROJECT_DIR$/public/js/alerts.js" />
         <option value="$PROJECT_DIR$/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/templates/inc/errors.html.twig" />
-        <option value="$PROJECT_DIR$/public/scss/_cards.scss" />
         <option value="$PROJECT_DIR$/src/Entity/SocialLink.php" />
         <option value="$PROJECT_DIR$/src/Controller/MenuController.php" />
         <option value="$PROJECT_DIR$/templates/inc/form_errors.html.twig" />
@@ -447,18 +231,17 @@
         <option value="$PROJECT_DIR$/templates/restaurant/index.html.twig" />
         <option value="$PROJECT_DIR$/public/scss/_alerts.scss" />
         <option value="$PROJECT_DIR$/templates/owner/application.html.twig" />
-        <option value="$PROJECT_DIR$/templates/owner/dashboard.html.twig" />
-        <option value="$PROJECT_DIR$/src/Controller/OwnerController.php" />
         <option value="$PROJECT_DIR$/templates/inc/home_navbar.html.twig" />
         <option value="$PROJECT_DIR$/templates/inc/navbar.html.twig" />
+        <option value="$PROJECT_DIR$/public/js/main.js" />
+        <option value="$PROJECT_DIR$/src/Controller/OwnerController.php" />
+        <option value="$PROJECT_DIR$/templates/owner/inc/sidebar.html.twig" />
+        <option value="$PROJECT_DIR$/public/scss/_sidenav.scss" />
+        <option value="$PROJECT_DIR$/public/scss/_globals.scss" />
+        <option value="$PROJECT_DIR$/templates/owner/dashboard.html.twig" />
+        <option value="$PROJECT_DIR$/public/scss/_cards.scss" />
       </list>
     </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -584,65 +367,11 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="foodhub" type="b2602c69:ProjectViewProjectNode" />
-              <item name="foodhub" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="foodhub" type="b2602c69:ProjectViewProjectNode" />
-              <item name="foodhub" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="foodhub" type="b2602c69:ProjectViewProjectNode" />
-              <item name="foodhub" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="foodhub" type="b2602c69:ProjectViewProjectNode" />
-              <item name="foodhub" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Security" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="foodhub" type="b2602c69:ProjectViewProjectNode" />
-              <item name="foodhub" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Security" type="462c0819:PsiDirectoryNode" />
-              <item name="Voter" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="foodhub" type="b2602c69:ProjectViewProjectNode" />
-              <item name="foodhub" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="foodhub" type="b2602c69:ProjectViewProjectNode" />
-              <item name="foodhub" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="inc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="foodhub" type="b2602c69:ProjectViewProjectNode" />
-              <item name="foodhub" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="owner" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
-    <property name="SearchEverywhereHistoryKey" value="base&#9;FILE&#9;file:///home/ibrahim/Projects/php/foodhub/templates/base.html.twig&#10;remote host&#9;ACTION&#9;WebDeployment.BrowseServers&#10;_card&#9;FILE&#9;file:///var/www/html/foodhub/public/scss/_cards.scss&#10;profile&#9;FILE&#9;file:///var/www/html/foodhub/public/css/profile.css&#10;_inp&#9;FILE&#9;file:///var/www/html/foodhub/public/scss/_inputs.scss&#10;addImage&#9;null&#9;null&#10;addIm&#9;null&#9;null&#10;Resta&#9;FILE&#9;file:///var/www/html/foodhub/src/Entity/Restaurant.php&#10;_input&#9;FILE&#9;file:///var/www/html/foodhub/public/scss/_inputs.scss&#10;main.scss&#9;FILE&#9;file:///var/www/html/foodhub/public/scss/main.scss&#10;ser&#9;FILE&#9;file:///var/www/html/foodhub/config/services.yaml&#10;err&#9;FILE&#9;file:///var/www/html/foodhub/templates/inc/errors.html.twig&#10;sec&#9;FILE&#9;file:///var/www/html/foodhub/config/packages/security.yaml&#10;profile.css&#9;FILE&#9;file:///var/www/html/foodhub/public/css/profile.css&#10;RoleVoter&#9;null&#9;null&#10;hasRole&#9;null&#9;null&#10;onRegistration&#9;null&#9;null&#10;email.txt.&#9;FILE&#9;file:///var/www/html/foodhub/vendor/friendsofsymfony/user-bundle/Resources/views/Registration/email.txt.twig&#10;Category&#9;FILE&#9;file:///var/www/html/foodhub/src/Entity/Category.php&#10;main.css&#9;FILE&#9;file:///var/www/html/foodhub/public/css/main.css&#10;base.html.tw&#9;FILE&#9;file:///home/ibrahim/projects/php/FoodHub/templates/base.html.twig&#10;home.&#9;FILE&#9;file:///home/ibrahim/projects/php/FoodHub/templates/home.html.twig&#10;main.&#9;FILE&#9;file:///home/ibrahim/projects/php/FoodHub/public/css/main.css&#10;security&#9;FILE&#9;file:///home/ibrahim/projects/php/FoodHub/config/packages/security.yaml&#10;App\Entity\User&#9;null&#9;null&#10;FOS\UserBundle\Model\User&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="main.js&#9;FILE&#9;file:///home/ibrahim/Projects/php/foodhub/public/js/main.js&#10;base&#9;FILE&#9;file:///home/ibrahim/Projects/php/foodhub/templates/base.html.twig&#10;remote host&#9;ACTION&#9;WebDeployment.BrowseServers&#10;_card&#9;FILE&#9;file:///var/www/html/foodhub/public/scss/_cards.scss&#10;profile&#9;FILE&#9;file:///var/www/html/foodhub/public/css/profile.css&#10;_inp&#9;FILE&#9;file:///var/www/html/foodhub/public/scss/_inputs.scss&#10;addImage&#9;null&#9;null&#10;addIm&#9;null&#9;null&#10;Resta&#9;FILE&#9;file:///var/www/html/foodhub/src/Entity/Restaurant.php&#10;_input&#9;FILE&#9;file:///var/www/html/foodhub/public/scss/_inputs.scss&#10;main.scss&#9;FILE&#9;file:///var/www/html/foodhub/public/scss/main.scss&#10;ser&#9;FILE&#9;file:///var/www/html/foodhub/config/services.yaml&#10;err&#9;FILE&#9;file:///var/www/html/foodhub/templates/inc/errors.html.twig&#10;sec&#9;FILE&#9;file:///var/www/html/foodhub/config/packages/security.yaml&#10;profile.css&#9;FILE&#9;file:///var/www/html/foodhub/public/css/profile.css&#10;RoleVoter&#9;null&#9;null&#10;hasRole&#9;null&#9;null&#10;onRegistration&#9;null&#9;null&#10;email.txt.&#9;FILE&#9;file:///var/www/html/foodhub/vendor/friendsofsymfony/user-bundle/Resources/views/Registration/email.txt.twig&#10;Category&#9;FILE&#9;file:///var/www/html/foodhub/src/Entity/Category.php&#10;main.css&#9;FILE&#9;file:///var/www/html/foodhub/public/css/main.css&#10;base.html.tw&#9;FILE&#9;file:///home/ibrahim/projects/php/FoodHub/templates/base.html.twig&#10;home.&#9;FILE&#9;file:///home/ibrahim/projects/php/FoodHub/templates/home.html.twig&#10;main.&#9;FILE&#9;file:///home/ibrahim/projects/php/FoodHub/public/css/main.css&#10;security&#9;FILE&#9;file:///home/ibrahim/projects/php/FoodHub/config/packages/security.yaml&#10;App\Entity\User&#9;null&#9;null&#10;FOS\UserBundle\Model\User&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
@@ -653,7 +382,8 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -722,18 +452,24 @@
       <workItem from="1541760275755" duration="21000" />
       <workItem from="1542369794153" duration="1389000" />
       <workItem from="1542653244808" duration="28000" />
-      <workItem from="1542653295089" duration="3336000" />
+      <workItem from="1542653295089" duration="3630000" />
+      <workItem from="1542715536753" duration="6192000" />
+      <workItem from="1542896611112" duration="5000" />
+      <workItem from="1542909276125" duration="89000" />
+      <workItem from="1542909390425" duration="25000" />
+      <workItem from="1542909486765" duration="828000" />
+      <workItem from="1542910337016" duration="4368000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="210109000" />
+    <option name="totallyTimeSpent" value="221910000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1435" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2091865" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.2114001" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" weight="0.3294766" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -745,9 +481,9 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4997233" weight="0.32827735" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4991699" weight="0.32785088" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.3286334" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5002767" side_tool="true" weight="0.32827735" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5008301" side_tool="true" weight="0.32785088" />
       <window_info anchor="bottom" id="File Transfer" order="12" weight="0.32936078" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.329718" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -760,35 +496,7 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/security/Core/Authorization/Voter/VoterInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/security/Core/Authorization/Voter/Voter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="21" column="39" lean-forward="true" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Security/Voter/RestaurantViewVoter.php" />
-    <entry file="file://$PROJECT_DIR$/config/packages/sensio_framework_extra.yaml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/services.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="647">
-          <caret line="43" column="44" selection-start-line="43" selection-start-column="44" selection-end-line="43" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/packages/dev/web_profiler.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
@@ -854,11 +562,6 @@
         <state relative-caret-position="253">
           <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1104" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/scss/_inputs.scss">
@@ -959,52 +662,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/MenuController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="533">
-          <caret line="44" column="9" lean-forward="true" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/inc/errors/errors.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/inc/errors/form_errors.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="12" lean-forward="true" selection-end-line="4" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/inc/errors/form_floating_errors.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" column="64" selection-start-line="1" selection-start-column="64" selection-end-line="1" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/bundles/FOSUserBundle/Registration/register.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
           <caret line="19" column="57" lean-forward="true" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
-          <folding>
-            <element signature="e#12#50#0#Twig" expanded="true" />
-            <element signature="e#710#742#0#Twig" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/menu/add_menu.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="12" column="57" selection-start-line="12" selection-start-column="57" selection-end-line="12" selection-end-column="57" />
-          <folding>
-            <element signature="e#408#449#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1012,9 +673,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
           <caret line="38" column="47" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="47" />
-          <folding>
-            <element signature="e#12#50#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1022,10 +680,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="413">
           <caret line="52" column="38" lean-forward="true" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
-          <folding>
-            <element signature="e#2775#2808#0#Twig" expanded="true" />
-            <element signature="e#3100#3132#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1033,20 +687,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
           <caret line="101" column="68" lean-forward="true" selection-start-line="101" selection-start-column="68" selection-end-line="101" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/scss/_cards.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
-          <caret line="95" column="18" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/scss/_alerts.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -1061,9 +701,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="759">
           <caret line="36" column="41" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
-          <folding>
-            <element signature="e#592#619#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1071,18 +708,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1">
           <caret line="118" column="58" lean-forward="true" selection-start-line="118" selection-start-column="58" selection-end-line="118" selection-end-column="58" />
-          <folding>
-            <element signature="e#8294#8321#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/owner/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102">
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-          </folding>
+        <state relative-caret-position="-102" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/inc/home_navbar.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="57" column="50" selection-start-line="57" selection-start-column="50" selection-end-line="57" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -1093,47 +730,115 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/owner/dashboard.html.twig">
+    <entry file="file://$PROJECT_DIR$/templates/inc/navbar.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="61" lean-forward="true" selection-start-line="7" selection-start-column="61" selection-end-line="7" selection-end-column="61" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-            <element signature="e#127#154#0#Twig" expanded="true" />
-          </folding>
+        <state relative-caret-position="1311">
+          <caret line="57" selection-start-line="57" selection-end-line="58" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/inc/home_navbar.html.twig">
+    <entry file="file://$PROJECT_DIR$/public/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="57" column="50" selection-start-line="57" selection-start-column="50" selection-end-line="57" selection-end-column="50" />
-          <folding>
-            <element signature="e#850#865#0#Twig" expanded="true" />
-            <element signature="e#3361#3376#0#Twig" expanded="true" />
-          </folding>
+        <state relative-caret-position="46">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Image.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="63" column="49" lean-forward="true" selection-start-line="63" selection-start-column="49" selection-end-line="63" selection-end-column="49" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/OwnerController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="96" column="56" selection-start-line="96" selection-start-column="56" selection-end-line="96" selection-end-column="56" />
-          <folding>
-            <element signature="e#928#3363#0#PHP" />
-            <element signature="e#3507#3534#1#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="2024">
+          <caret line="100" column="54" selection-start-line="100" selection-start-column="54" selection-end-line="100" selection-end-column="54" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/inc/navbar.html.twig">
+    <entry file="file://$PROJECT_DIR$/templates/menu/add_menu.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="13" column="66" selection-start-line="13" selection-start-column="66" selection-end-line="13" selection-end-column="66" />
-          <folding>
-            <element signature="e#825#840#0#Twig" expanded="true" />
-            <element signature="e#3306#3321#0#Twig" expanded="true" />
-          </folding>
+        <state relative-caret-position="276">
+          <caret line="12" column="57" selection-start-line="12" selection-start-column="57" selection-end-line="12" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/inc/errors/form_errors.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="12" selection-end-line="4" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/inc/errors/form_floating_errors.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="1" column="64" selection-start-line="1" selection-start-column="64" selection-end-line="1" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/MenuController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="44" column="9" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/inc/errors/errors.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scss/_alerts.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="874">
+          <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scss/_sidenav.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="703">
+          <caret line="95" column="25" selection-start-line="95" selection-start-column="25" selection-end-line="95" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/owner/inc/sidebar.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="116" selection-start-line="5" selection-start-column="116" selection-end-line="5" selection-end-column="116" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scss/_globals.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/owner/dashboard.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="73" column="69" lean-forward="true" selection-start-line="73" selection-start-column="69" selection-end-line="73" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scss/_cards.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
         </state>
       </provider>
     </entry>

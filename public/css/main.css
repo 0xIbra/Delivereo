@@ -309,6 +309,9 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
     border: 1.3px solid rgba(0, 0, 0, 0.1); }
     .card.no-shadow:hover {
       box-shadow: none !important; }
+  .card .card-content .heading {
+    text-align: center;
+    font-size: 18pt; }
   .card .card-content .small-header {
     color: #444444;
     font-size: 14pt; }
@@ -506,6 +509,34 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
  */
 /**
 ================================================
+=============== STATS MINI CARD ================
+================================================
+ */
+.card.stats-mini-card {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  box-shadow: 0 0 10px -4px rgba(0, 0, 0, 0.3);
+  display: flex;
+  padding: 20px;
+  align-items: center; }
+  .card.stats-mini-card .card-logo {
+    margin-right: 10px; }
+    .card.stats-mini-card .card-logo i.material-icons {
+      font-size: 35pt; }
+  .card.stats-mini-card .stats-card-content .value {
+    font-size: 16pt; }
+  .card.stats-mini-card .stats-card-content .type {
+    font-size: 12pt;
+    color: #888; }
+
+/**
+================================================
+=============== STATS MINI CARD ================
+================================================
+ */
+/**
+================================================
 ================= MEDIA QUERIES ===================
 ================================================
  */
@@ -635,6 +666,37 @@ a.add-btn {
   .sidenav li a:hover i.material-icons {
     color: inherit !important; }
 
+.sidebar {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  background: #fff !important;
+  padding-top: 20px; }
+  .sidebar.fixed {
+    position: fixed;
+    width: 25%;
+    height: 100%; }
+  .sidebar li.sidebar-profile-link a div.image-container {
+    margin-right: 15px !important; }
+  .sidebar li.sidebar-profile-link a div.user-info {
+    font-size: 13pt !important; }
+  .sidebar li a {
+    display: flex;
+    align-items: center !important;
+    padding: 10px 20px;
+    font-size: 14pt;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1); }
+    .sidebar li a i.material-icons {
+      margin-right: 10px; }
+    .sidebar li a:hover {
+      color: #0ee9c3 !important; }
+
+@media (max-width: 992px) {
+  .sidebar.fixed {
+    width: 34% !important; }
+  .sidebar li.sidebar-profile-link a div.user-info {
+    font-size: 11pt !important; }
+  .sidebar li a {
+    font-size: 12pt !important; } }
 .alert {
   border-radius: 2px;
   padding: 8px 10px;
