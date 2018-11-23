@@ -341,6 +341,30 @@
   .card-logo{
     margin-right: 10px;
 
+    &.green-color{
+      i.material-icons{
+        color: $moneyGreen !important;
+      }
+    }
+
+    &.purple-color{
+      i.material-icons{
+        color: $purple !important;
+      }
+    }
+
+    &.blue-color{
+      i.material-icons{
+        color: $blue !important;
+      }
+    }
+
+    &.orange-color{
+      i.material-icons{
+        color: $orangeModern !important;
+      }
+    }
+
     i.material-icons{
       font-size: 35pt;
     }

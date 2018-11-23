@@ -2,17 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5534b25-7ea8-43bb-84d2-c52e8c41a58a" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/owner/inc/sidebar.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/.sass-cache/710054075337a3f0371a810398e4ee5c53860d82/_buttons.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/public/.sass-cache/710054075337a3f0371a810398e4ee5c53860d82/_buttons.scssc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/.sass-cache/710054075337a3f0371a810398e4ee5c53860d82/_cards.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/public/.sass-cache/710054075337a3f0371a810398e4ee5c53860d82/_cards.scssc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/.sass-cache/710054075337a3f0371a810398e4ee5c53860d82/_globals.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/public/.sass-cache/710054075337a3f0371a810398e4ee5c53860d82/_globals.scssc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/.sass-cache/710054075337a3f0371a810398e4ee5c53860d82/_sidenav.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/public/.sass-cache/710054075337a3f0371a810398e4ee5c53860d82/_sidenav.scssc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/main.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/_buttons.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_buttons.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/_cards.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_cards.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/_globals.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_globals.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/_sidenav.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_sidenav.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/OwnerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/OwnerController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/owner/dashboard.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/owner/dashboard.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/owner/inc/sidebar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/owner/inc/sidebar.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,20 +47,36 @@
     <splitter split-orientation="horizontal" split-proportion="0.6809689">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/templates/owner/dashboard.html.twig">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="575">
-                  <caret line="73" column="69" lean-forward="true" selection-start-line="73" selection-start-column="69" selection-end-line="73" selection-end-column="69" />
+                <state relative-caret-position="795">
+                  <caret line="160" column="22" selection-start-line="160" selection-start-column="22" selection-end-line="160" selection-end-column="22" />
                 </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/Entity/Order.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-483" />
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/templates/owner/inc/sidebar.html.twig">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="115">
-                  <caret line="5" column="116" selection-start-line="5" selection-start-column="116" selection-end-line="5" selection-end-column="116" />
+                <state>
+                  <caret selection-end-line="12" selection-end-column="6" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/js/main.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="23">
+                  <caret line="1" column="52" selection-start-line="1" selection-start-column="52" selection-end-line="1" selection-end-column="52" />
                 </state>
               </provider>
             </entry>
@@ -132,26 +151,35 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/scss/_sidenav.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="703">
-                  <caret line="95" column="25" selection-start-line="95" selection-start-column="25" selection-end-line="95" selection-end-column="25" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/public/scss/_cards.scss">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="483">
-                  <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+                <state relative-caret-position="82">
+                  <caret line="78" column="3" selection-start-line="78" selection-start-column="3" selection-end-line="78" selection-end-column="3" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/scss/_buttons.scss">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="726">
+                  <caret line="133" column="28" selection-start-line="133" selection-start-column="28" selection-end-line="133" selection-end-column="28" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/scss/_cards.scss">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="749">
+                  <caret line="363" column="35" selection-start-line="363" selection-start-column="35" selection-end-line="363" selection-end-column="35" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/public/scss/_globals.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="253">
-                  <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+                <state relative-caret-position="345">
+                  <caret line="15" column="22" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="22" />
                 </state>
               </provider>
             </entry>
@@ -189,7 +217,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/owner/email/confirmed.html.twig" />
         <option value="$PROJECT_DIR$/templates/owner/email/refused.html.twig" />
         <option value="$PROJECT_DIR$/src/Utils/Validation.php" />
         <option value="$PROJECT_DIR$/src/Controller/UserController.php" />
@@ -233,13 +260,14 @@
         <option value="$PROJECT_DIR$/templates/owner/application.html.twig" />
         <option value="$PROJECT_DIR$/templates/inc/home_navbar.html.twig" />
         <option value="$PROJECT_DIR$/templates/inc/navbar.html.twig" />
-        <option value="$PROJECT_DIR$/public/js/main.js" />
         <option value="$PROJECT_DIR$/src/Controller/OwnerController.php" />
-        <option value="$PROJECT_DIR$/templates/owner/inc/sidebar.html.twig" />
         <option value="$PROJECT_DIR$/public/scss/_sidenav.scss" />
+        <option value="$PROJECT_DIR$/public/scss/_buttons.scss" />
+        <option value="$PROJECT_DIR$/public/js/main.js" />
         <option value="$PROJECT_DIR$/public/scss/_globals.scss" />
-        <option value="$PROJECT_DIR$/templates/owner/dashboard.html.twig" />
         <option value="$PROJECT_DIR$/public/scss/_cards.scss" />
+        <option value="$PROJECT_DIR$/templates/owner/inc/sidebar.html.twig" />
+        <option value="$PROJECT_DIR$/templates/owner/dashboard.html.twig" />
       </list>
     </option>
   </component>
@@ -458,18 +486,19 @@
       <workItem from="1542909276125" duration="89000" />
       <workItem from="1542909390425" duration="25000" />
       <workItem from="1542909486765" duration="828000" />
-      <workItem from="1542910337016" duration="4368000" />
+      <workItem from="1542910337016" duration="6131000" />
+      <workItem from="1542970372674" duration="5757000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="221910000" />
+    <option name="totallyTimeSpent" value="229430000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1435" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.2114001" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2114001" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" weight="0.3294766" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -497,16 +526,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/packages/dev/web_profiler.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/packages/dev/debug.yaml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/packages/framework.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-20" />
@@ -730,20 +749,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/inc/navbar.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1311">
-          <caret line="57" selection-start-line="57" selection-end-line="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/Image.php">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -809,37 +814,63 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/scss/_sidenav.scss">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="78" column="3" selection-start-line="78" selection-start-column="3" selection-end-line="78" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scss/_buttons.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="726">
+          <caret line="133" column="28" selection-start-line="133" selection-start-column="28" selection-end-line="133" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/inc/navbar.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="703">
-          <caret line="95" column="25" selection-start-line="95" selection-start-column="25" selection-end-line="95" selection-end-column="25" />
+          <caret line="66" column="5" lean-forward="true" selection-start-line="28" selection-end-line="66" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/owner/inc/sidebar.html.twig">
+    <entry file="file://$PROJECT_DIR$/public/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="116" selection-start-line="5" selection-start-column="116" selection-end-line="5" selection-end-column="116" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/scss/_globals.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/owner/dashboard.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="73" column="69" lean-forward="true" selection-start-line="73" selection-start-column="69" selection-end-line="73" selection-end-column="69" />
+        <state relative-caret-position="23">
+          <caret line="1" column="52" selection-start-line="1" selection-start-column="52" selection-end-line="1" selection-end-column="52" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/scss/_cards.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+        <state relative-caret-position="749">
+          <caret line="363" column="35" selection-start-line="363" selection-start-column="35" selection-end-line="363" selection-end-column="35" />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/owner/inc/sidebar.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="12" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scss/_globals.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="15" column="22" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/owner/dashboard.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="795">
+          <caret line="160" column="22" selection-start-line="160" selection-start-column="22" selection-end-line="160" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Order.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-483" />
       </provider>
     </entry>
   </component>

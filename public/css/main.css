@@ -522,6 +522,14 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
   align-items: center; }
   .card.stats-mini-card .card-logo {
     margin-right: 10px; }
+    .card.stats-mini-card .card-logo.green-color i.material-icons {
+      color: #00c292 !important; }
+    .card.stats-mini-card .card-logo.purple-color i.material-icons {
+      color: #ab8ce4 !important; }
+    .card.stats-mini-card .card-logo.blue-color i.material-icons {
+      color: #03a9f3 !important; }
+    .card.stats-mini-card .card-logo.orange-color i.material-icons {
+      color: #fb9678 !important; }
     .card.stats-mini-card .card-logo i.material-icons {
       font-size: 35pt; }
   .card.stats-mini-card .stats-card-content .value {
@@ -649,9 +657,30 @@ a.add-btn {
     margin-right: 0 !important;
     padding: 0 2px; }
 
+.sidebar-btn-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 600;
+  display: none;
+  align-items: center; }
+  .sidebar-btn-container a.sidebar-btn {
+    background: #333333;
+    padding: 10px 5px;
+    display: flex;
+    align-items: center;
+    border-radius: 0 5px 5px 0;
+    color: #FFFFFF; }
+    .sidebar-btn-container a.sidebar-btn i.material-icons {
+      font-size: 18pt; }
+
 @media (max-width: 601px) {
   a.modernize {
-    padding: 10px !important; } }
+    padding: 10px !important; }
+
+  .sidebar-btn-container {
+    display: flex !important; } }
 .sidenav li .user-view .background img {
   max-width: 100% !important; }
 .sidenav li .user-view .background .background-overlay {
@@ -672,17 +701,17 @@ a.add-btn {
   padding-top: 20px; }
   .sidebar.fixed {
     position: fixed;
-    width: 25%;
+    width: 17%;
     height: 100%; }
   .sidebar li.sidebar-profile-link a div.image-container {
     margin-right: 15px !important; }
   .sidebar li.sidebar-profile-link a div.user-info {
-    font-size: 13pt !important; }
+    font-size: 11pt !important; }
   .sidebar li a {
     display: flex;
     align-items: center !important;
     padding: 10px 20px;
-    font-size: 14pt;
+    font-size: 11pt;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     border-top: 1px solid rgba(0, 0, 0, 0.1); }
     .sidebar li a i.material-icons {
