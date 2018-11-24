@@ -19,7 +19,7 @@ class Cart
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="cart")
+     * @ORM\OneToOne(targetEntity="App\Entity\User", mappedBy="cart")
      */
     private $consumer;
 
@@ -32,6 +32,7 @@ class Cart
     public function __construct()
     {
         $this->menus = new ArrayCollection();
+        $this->consumer = new ArrayCollection();
     }
 
 
@@ -48,6 +49,12 @@ class Cart
     public function setConsumer(?User $consumer): self
     {
         $this->consumer = $consumer;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newCart = $consumer === null ? null : $this;
+        if ($newCart !== $consumer->getCart()) {
+            $consumer->setCart($newCart);
+        }
 
         return $this;
     }
@@ -77,4 +84,8 @@ class Cart
 
         return $this;
     }
+
+
+
+
 }

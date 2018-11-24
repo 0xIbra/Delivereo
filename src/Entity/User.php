@@ -106,7 +106,7 @@ class User extends BaseUser
 
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Cart", mappedBy="consumer", cascade={"remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Cart", inversedBy="consumer", cascade={"remove"})
      */
     private $cart;
 
@@ -135,7 +135,6 @@ class User extends BaseUser
         $this->socialLinks = new ArrayCollection();
         $this->likes = new ArrayCollection();
         $this->dislikes = new ArrayCollection();
-        $this->cart = new ArrayCollection();
     }
 
     /**
@@ -339,6 +338,32 @@ class User extends BaseUser
         return $this;
     }
 
+    /**
+     * @return Collection|Address[]
+     */
+    public function getAddresses(): Collection
+    {
+        return $this->addresses;
+    }
+
+    public function addAddress(Address $address): self
+    {
+        if (!$this->addresses->contains($address)) {
+            $this->addresses[] = $address;
+        }
+
+        return $this;
+    }
+
+    public function removeAddress(Address $address): self
+    {
+        if ($this->addresses->contains($address)) {
+            $this->addresses->removeElement($address);
+        }
+
+        return $this;
+    }
+
     public function removeLike(Like $like): self
     {
         if ($this->likes->contains($like)) {
@@ -383,61 +408,19 @@ class User extends BaseUser
         return $this;
     }
 
-    /**
-     * @return Collection|Address[]
-     */
-    public function getAddresses(): Collection
-    {
-        return $this->addresses;
-    }
-
-    public function addAddress(Address $address): self
-    {
-        if (!$this->addresses->contains($address)) {
-            $this->addresses[] = $address;
-        }
-
-        return $this;
-    }
-
-    public function removeAddress(Address $address): self
-    {
-        if ($this->addresses->contains($address)) {
-            $this->addresses->removeElement($address);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Cart[]
-     */
-    public function getCart(): Collection
+    public function getCart(): ?Cart
     {
         return $this->cart;
     }
 
-    public function addCart(Cart $cart): self
+    public function setCart(?Cart $cart): self
     {
-        if (!$this->cart->contains($cart)) {
-            $this->cart[] = $cart;
-            $cart->setConsumer($this);
-        }
+        $this->cart = $cart;
 
         return $this;
     }
 
-    public function removeCart(Cart $cart): self
-    {
-        if ($this->cart->contains($cart)) {
-            $this->cart->removeElement($cart);
-            // set the owning side to null (unless already changed)
-            if ($cart->getConsumer() === $this) {
-                $cart->setConsumer(null);
-            }
-        }
 
-        return $this;
-    }
+
 
 }
