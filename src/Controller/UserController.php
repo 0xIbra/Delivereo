@@ -21,6 +21,25 @@ class UserController extends AbstractController
 {
 
     /**
+     * @Route("/user/cart", name="cart_page")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function cart()
+    {
+        return $this->render('order/cart.html.twig');
+    }
+
+
+    /**
+     * @Route("/user/checkout", name="checkout_page")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function checkout()
+    {
+        return $this->render('order/checkout.html.twig');
+    }
+
+    /**
      * @Route("/user/sociallink/add", name="add_social_link", methods={"POST"})
      * @param Request $request
      * @param ValidatorInterface $validator

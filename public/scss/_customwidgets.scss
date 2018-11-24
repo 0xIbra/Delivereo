@@ -23,3 +23,24 @@
     font-size: 17pt;
   }
 }
+
+
+.heading-breadcrumbs{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+
+  i.material-icons{
+    color: rgba(0,0,0,0.6);
+  }
+
+  span.step{
+    font-size: 19pt;
+    color: rgba(0,0,0,0.2);
+
+    &.active{
+      color: rgba(0,0,0,0.8) !important;
+    }
+  }
+}

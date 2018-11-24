@@ -813,6 +813,19 @@ a.add-btn {
   .quantity.input .quantity.count {
     font-size: 17pt; }
 
+.heading-breadcrumbs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0; }
+  .heading-breadcrumbs i.material-icons {
+    color: rgba(0, 0, 0, 0.6); }
+  .heading-breadcrumbs span.step {
+    font-size: 19pt;
+    color: rgba(0, 0, 0, 0.2); }
+    .heading-breadcrumbs span.step.active {
+      color: rgba(0, 0, 0, 0.8) !important; }
+
 .collection.modernize {
   border: none !important; }
   .collection.modernize .collection-item.modernize {

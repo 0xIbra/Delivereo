@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier | Delivereo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/panier.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            {% include 'order/order_breadcrumbs.html.twig' %}
+            <div class="row">
+
+                {% if app.user.cart is empty %}
+                    <div class="col s12">
+                        <br>
+                        <h4 class="center">Votre panier est vide</h4>
+                        <br>
+                        <div class="flex justify-center">
+                            <a href="{{ path('homepage') }}" class="modernize">Retour</a>
+                        </div>
+                    </div>
+                    {% block footer %}{% endblock %}
+                {% else %}
+                    <div class="col s12 m7 l8">
+                        <div class="card">
+                            <div class="card-content">
+                                {#<h4 class="heading">Votre panier</h4>#}
+                                <div class="row">
+                                    {% if not app.user.cart is empty %}
+                                        {% for menu in app.user.cart %}
+                                            <div class="col s12 l6">
+                                                <div class="card basic modernize">
+                                                    <a href="void:javascript;">
+                                                        <div class="card-content">
+                                                            <span class="card-title">{{ menu.name }}</span>
+                                                            <a href="void:javascript">
+                                                                <i class="material-icons close">close</i>
+                                                            </a>
+                                                            <p>{{ menu.description }}</p>
+                                                            <div class="price">EUR {{ menu.price }}</div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m5 l4">
+                        <div class="card" id="checkout">
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="col s12">
+                                        {% if not app.user.cart is empty %}
+                                            <div class="flex align-center justify-space-between line">
+                                                <span>Menu x2</span>
+                                                <span>13.00 EUR</span>
+                                            </div>
+                                            <div class="flex align-center justify-space-between line">
+                                                <span>Total</span>
+                                                <span>13.00 EUR</span>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col s12">
+                                        <div class="flex justify-center">
+                                            <a style="margin-top: 15px;" href="{{ path('checkout_page') }}" class="modernize success waves-effect waves-light">Poursuivre votre commande</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function (){
+            $('span.step.cart').addClass('active');
+        });
+    </script>
+{% endblock %}

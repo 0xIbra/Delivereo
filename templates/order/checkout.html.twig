@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Validation de la commande | Delivereo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/panier.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            {% include 'order/order_breadcrumbs.html.twig' %}
+            <div class="row">
+                <div class="col s12 m8 l8">
+                    <div class="card">
+                        <div class="card-content">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4 l4">
+                    <div class="card">
+                        <div class="card-content">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function (){
+            $('span.step.checkout').addClass('active');
+        });
+    </script>
+{% endblock %}

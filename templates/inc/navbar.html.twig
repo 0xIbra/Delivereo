@@ -5,9 +5,7 @@
                 <a href="{{ path('homepage') }}" class="brand-logo left bold">Delivereo</a>
                 <a href="#" data-target="sidebar-nav" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
-                    {% if not is_granted('ROLE_USER') %}
-                        <li><a href="{{ path('partner') }}">Devenez partenaire</a></li>
-                    {% elseif is_granted('ROLE_CONSUMER') and not is_granted('ROLE_OWNER') %}
+                    {% if not is_granted('ROLE_USER') and not is_granted('ROLE_OWNER') %}
                         <li><a href="{{ path('partner') }}">Devenez partenaire</a></li>
                     {% endif %}
                     {% if is_granted('ROLE_OWNER') %}
@@ -17,6 +15,7 @@
                         <li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
                         <li><a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
                     {% elseif is_granted('ROLE_USER') %}
+                        <li><a href="{{ path('cart_page') }}"><i class="material-icons">shopping_cart</i></a></li>
                         <li><a href="{{ path('fos_user_profile_show') }}">Mon compte</a></li>
                         <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
                     {% endif %}
@@ -61,6 +60,7 @@
         <li><a class="waves-effect" href="{{ path('fos_user_security_login') }}"><i class="material-icons">account_circle</i>Connexion</a></li>
         <li><a class="waves-effect" href="{{ path('fos_user_registration_register') }}"><i class="material-icons">format_align_left</i>Inscription</a></li>
     {% else %}
+        <li><a href="{{ path('cart_page') }}" class="waves-effect"><i class="material-icons">shopping_cart</i>Panier</a></li>
         <li><a href="{{ path('fos_user_profile_show') }}" class="waves-effect"><i class="material-icons">account_circle</i>Mon compte</a></li>
         <li><a href="{{ path('fos_user_security_logout') }}" class="waves-effect"><i class="material-icons">power_settings_new</i>Déconnexion</a></li>
     {% endif %}

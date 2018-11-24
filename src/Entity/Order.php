@@ -18,6 +18,12 @@ class Order
     private $id;
 
     /**
+     * @ORM\Column(name="order_number", type="string")
+     * @ORM\GeneratedValue(strategy="UUID")
+     */
+    private $orderNumber;
+
+    /**
      * @ORM\Column(name="ordered_at", type="datetime")
      */
     private $orderedAt;
@@ -37,7 +43,6 @@ class Order
      * @ORM\JoinColumn(nullable=true)
      */
     private $consumer;
-
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Menu")
@@ -105,6 +110,18 @@ class Order
     public function setTotalPrice(float $totalPrice): self
     {
         $this->totalPrice = $totalPrice;
+
+        return $this;
+    }
+
+    public function getOrderNumber(): ?string
+    {
+        return $this->orderNumber;
+    }
+
+    public function setOrderNumber(string $orderNumber): self
+    {
+        $this->orderNumber = $orderNumber;
 
         return $this;
     }

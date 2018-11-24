@@ -106,6 +106,12 @@ class User extends BaseUser
 
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Cart", mappedBy="consumer", cascade={"remove"})
+     */
+    private $cart;
+
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Order", mappedBy="consumer")
      * @ORM\JoinColumn(nullable=true)
      */
@@ -129,6 +135,7 @@ class User extends BaseUser
         $this->socialLinks = new ArrayCollection();
         $this->likes = new ArrayCollection();
         $this->dislikes = new ArrayCollection();
+        $this->cart = new ArrayCollection();
     }
 
     /**
@@ -397,6 +404,37 @@ class User extends BaseUser
     {
         if ($this->addresses->contains($address)) {
             $this->addresses->removeElement($address);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Cart[]
+     */
+    public function getCart(): Collection
+    {
+        return $this->cart;
+    }
+
+    public function addCart(Cart $cart): self
+    {
+        if (!$this->cart->contains($cart)) {
+            $this->cart[] = $cart;
+            $cart->setConsumer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCart(Cart $cart): self
+    {
+        if ($this->cart->contains($cart)) {
+            $this->cart->removeElement($cart);
+            // set the owning side to null (unless already changed)
+            if ($cart->getConsumer() === $this) {
+                $cart->setConsumer(null);
+            }
         }
 
         return $this;
