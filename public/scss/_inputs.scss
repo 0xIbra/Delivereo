@@ -114,6 +114,33 @@ input[type="submit"].modernize, button[type="submit"].modernize{
   }
 }
 
+
+// RADIO BUTTONS
+p.radio.modernize{
+
+  label{
+
+    input[type="radio"]{
+
+    }
+
+    span{
+      label{
+        font-size: 11pt;
+      }
+    }
+
+    span:after, [type="radio"].with-gap:checked+span:before, [type="radio"].with-gap:checked+span:after{
+      border: 2px solid $greenLight !important;
+    }
+
+    span:after, [type="radio"].with-gap:checked+span:after{
+      background-color: $greenLight !important;
+      border: 2px solid $greenLight !important;
+    }
+  }
+}
+
 textarea.modernize{
   height: $default-height;
   font-family: 'Roboto', Helvetica, sans-serif !important;

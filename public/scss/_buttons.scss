@@ -124,6 +124,19 @@ a.add-btn{
 }
 
 
+.submit-wrapper{
+  display: flex;
+  justify-content: center;
+
+  button[type="submit"].modernize.btn{
+    background: $greenLight !important;
+    padding: 0px 20px;
+    border-radius: 3px;
+    margin: auto;
+  }
+}
+
+
 @media (max-width: $small) {
   a.modernize{
     padding: 10px !important;

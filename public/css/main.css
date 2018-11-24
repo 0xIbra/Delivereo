@@ -282,6 +282,14 @@ input[type="submit"].modernize, button[type="submit"].modernize {
     -webkit-box-shadow: none !important;
     box-shadow: none !important; }
 
+p.radio.modernize label span label {
+  font-size: 11pt; }
+p.radio.modernize label span:after, p.radio.modernize label [type="radio"].with-gap:checked + span:before, p.radio.modernize label [type="radio"].with-gap:checked + span:after {
+  border: 2px solid #0ee9c3 !important; }
+p.radio.modernize label span:after, p.radio.modernize label [type="radio"].with-gap:checked + span:after {
+  background-color: #0ee9c3 !important;
+  border: 2px solid #0ee9c3 !important; }
+
 textarea.modernize {
   height: 40px;
   font-family: 'Roboto', Helvetica, sans-serif !important;
@@ -543,6 +551,39 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 =============== STATS MINI CARD ================
 ================================================
  */
+.radio-card {
+  display: flex;
+  align-items: center; }
+  .radio-card .card.radio.modernize {
+    box-shadow: none !important;
+    border: 1.3px solid rgba(0, 0, 0, 0.1); }
+    .radio-card .card.radio.modernize a.edit-btn {
+      position: absolute;
+      right: 0;
+      top: 0;
+      color: #444444;
+      border-left: 1px solid rgba(0, 0, 0, 0.14);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+      padding: 2px 5px;
+      display: flex;
+      align-items: center;
+      border-radius: 0px 0 0 2px;
+      transition: ease-in .1s; }
+      .radio-card .card.radio.modernize a.edit-btn .material-icons {
+        font-size: 16pt; }
+      .radio-card .card.radio.modernize a.edit-btn:hover {
+        background: rgba(0, 0, 0, 0.05); }
+        .radio-card .card.radio.modernize a.edit-btn:hover .material-icons {
+          color: #0ee9c3; }
+    .radio-card .card.radio.modernize .card-content {
+      padding: 5px 10px !important; }
+      .radio-card .card.radio.modernize .card-content .card-title {
+        font-size: 13pt; }
+        .radio-card .card.radio.modernize .card-content .card-title label {
+          font-size: 12pt !important; }
+      .radio-card .card.radio.modernize .card-content p {
+        margin-bottom: 6px; }
+
 /**
 ================================================
 ================= MEDIA QUERIES ===================
@@ -674,6 +715,15 @@ a.add-btn {
     color: #FFFFFF; }
     .sidebar-btn-container a.sidebar-btn i.material-icons {
       font-size: 18pt; }
+
+.submit-wrapper {
+  display: flex;
+  justify-content: center; }
+  .submit-wrapper button[type="submit"].modernize.btn {
+    background: #0ee9c3 !important;
+    padding: 0px 20px;
+    border-radius: 3px;
+    margin: auto; }
 
 @media (max-width: 601px) {
   a.modernize {

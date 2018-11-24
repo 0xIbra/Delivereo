@@ -5,6 +5,7 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/panier.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/restaurant.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -15,14 +16,53 @@
                 <div class="col s12 m8 l8">
                     <div class="card">
                         <div class="card-content">
-
+                            {{ form_start(payment) }}
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="row-header">Adresse de livraison</div>
+                                </div>
+                                <div class="col s12">
+                                    {% for field in payment.address %}
+                                        <div class="radio-card">
+                                            <p class="radio modernize">
+                                                <label>
+                                                    {{ form_widget(field, { 'attr': { 'class': 'address-radio-btn with-gap' } }) }}
+                                                    <span></span>
+                                                </label>
+                                            </p>
+                                            <div class="card radio modernize">
+                                                <div class="card-content">
+                                                    <span class="card-title">{{ form_label(field) }}</span>
+                                                    {#<p class="line1"></p>#}
+                                                    {#<div class="price"></div>#}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col s12 m4 l4">
                     <div class="card">
                         <div class="card-content">
-
+                            <p class="radio modernize">
+                                <label>
+                                    {{ form_widget(payment.paymentMethod.1, { 'attr': { 'class': 'with-gap' } }) }}
+                                    <span>{{ form_label(payment.paymentMethod.1) }}</span>
+                                </label>
+                            </p>
+                            <p class="radio modernize">
+                                <label>
+                                    {{ form_widget(payment.paymentMethod.2, { 'attr': { 'class': 'with-gap' } }) }}
+                                    <span>{{ form_label(payment.paymentMethod.2) }}</span>
+                                </label>
+                            </p>
+                            <div class="input-field submit-wrapper">
+                                {{ form_widget(payment.pay) }}
+                            </div>
+                            {{ form_end(payment) }}
                         </div>
                     </div>
                 </div>

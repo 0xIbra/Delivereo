@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,6 +40,12 @@ class Order
      */
     private $totalPrice;
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\PaymentMethod")
+     */
+    private $paymentMethod;
+
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="orders")
      * @ORM\JoinColumn(nullable=true)
@@ -48,6 +56,11 @@ class Order
      * @ORM\ManyToOne(targetEntity="App\Entity\Menu")
      */
     private $menu;
+
+    public function __construct()
+    {
+        $this->paymentMethod = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -122,6 +135,18 @@ class Order
     public function setOrderNumber(string $orderNumber): self
     {
         $this->orderNumber = $orderNumber;
+
+        return $this;
+    }
+
+    public function getPaymentMethod(): ?PaymentMethod
+    {
+        return $this->paymentMethod;
+    }
+
+    public function setPaymentMethod(?PaymentMethod $paymentMethod): self
+    {
+        $this->paymentMethod = $paymentMethod;
 
         return $this;
     }
