@@ -206,6 +206,17 @@ input[type="text"].modernize {
   input[type="text"].modernize::placeholder {
     color: #999999 !important; }
 
+.input-field.end-icon {
+  margin: 0 !important; }
+  .input-field.end-icon input.modernize {
+    position: relative; }
+  .input-field.end-icon .icon {
+    position: absolute;
+    right: 5px;
+    top: 7px; }
+    .input-field.end-icon .icon i.material-icons {
+      color: #888; }
+
 input[type="tel"].modernize {
   height: 40px;
   font-family: 'Roboto', Helvetica, sans-serif !important;
@@ -589,6 +600,32 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 
 /**
 ================================================
+================ STRIPE CARD ===================
+================================================
+ */
+.card.stripe-card {
+  background: #6772E5 !important;
+  color: #FFFFFF; }
+  .card.stripe-card .card-content {
+    position: relative; }
+    .card.stripe-card .card-content .card-title {
+      font-size: 13pt !important; }
+    .card.stripe-card .card-content p {
+      font-size: 10pt !important; }
+    .card.stripe-card .card-content .logo {
+      position: absolute;
+      right: 5px;
+      bottom: 0px; }
+      .card.stripe-card .card-content .logo img {
+        width: 40px; }
+
+/**
+================================================
+================ STRIPE CARD ===================
+================================================
+ */
+/**
+================================================
 ================= MEDIA QUERIES ===================
 ================================================
  */
@@ -739,6 +776,32 @@ a.img-btn {
     display: block;
     width: 80%;
     margin: auto; }
+
+.stripe-btn {
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  text-decoration: none;
+  color: #fff;
+  background: #32325d;
+  white-space: nowrap;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 14px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  text-decoration: none;
+  -webkit-transition: all 150ms ease;
+  transition: all 150ms ease; }
+  .stripe-btn:hover {
+    cursor: pointer;
+    transform: translateY(-1px);
+    box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+    background-color: #43458b; }
 
 @media (max-width: 601px) {
   a.modernize {

@@ -25,16 +25,15 @@ class Cart
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Menu")
+     * @ORM\OneToMany(targetEntity="App\Entity\CartItem", mappedBy="cart", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $menus;
+    private $items;
 
     public function __construct()
     {
-        $this->menus = new ArrayCollection();
-        $this->consumer = new ArrayCollection();
+        $this->items = new ArrayCollection();
     }
-
 
     public function getId(): ?int
     {
@@ -60,30 +59,39 @@ class Cart
     }
 
     /**
-     * @return Collection|Menu[]
+     * @return Collection|CartItem[]
      */
-    public function getMenus(): Collection
+    public function getItems(): Collection
     {
-        return $this->menus;
+        return $this->items;
     }
 
-    public function addMenu(Menu $menu): self
+    public function addItem(CartItem $item): self
     {
-        if (!$this->menus->contains($menu)) {
-            $this->menus[] = $menu;
+        if (!$this->items->contains($item)) {
+            $this->items[] = $item;
+            $item->setCart($this);
         }
 
         return $this;
     }
 
-    public function removeMenu(Menu $menu): self
+    public function removeItem(CartItem $item): self
     {
-        if ($this->menus->contains($menu)) {
-            $this->menus->removeElement($menu);
+        if ($this->items->contains($item)) {
+            $this->items->removeElement($item);
+            // set the owning side to null (unless already changed)
+            if ($item->getCart() === $this) {
+                $item->setCart(null);
+            }
         }
 
         return $this;
     }
+
+
+
+
 
 
 

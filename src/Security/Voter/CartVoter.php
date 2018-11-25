@@ -11,12 +11,13 @@ class CartVoter extends Voter
 {
     const VIEW = 'view';
     const EDIT = 'edit';
+    const CHECKOUT = 'checkout';
 
     protected function supports($attribute, $subject)
     {
         // replace with your own logic
         // https://symfony.com/doc/current/security/voters.html
-        return in_array($attribute, [self::EDIT, self::VIEW])
+        return in_array($attribute, [self::EDIT, self::VIEW, self::CHECKOUT])
             && $subject instanceof Cart;
     }
 
@@ -30,15 +31,24 @@ class CartVoter extends Voter
 
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
-            case 'EDIT':
-                $this->canEdit($subject, $user);
+            case self::EDIT:
+                return $this->canEdit($subject, $user);
                 break;
-            case 'VIEW':
-                $this->canView($subject, $user);
+            case self::VIEW:
+                return $this->canView($subject, $user);
+                break;
+            case self::CHECKOUT:
+                return $this->canCheckout($subject, $user);
                 break;
         }
 
         return false;
+    }
+
+
+    public function canCheckout(Cart $cart, $user)
+    {
+        return $cart === $user->getCart() && $cart !== null && !$cart->getItems()->isEmpty();
     }
 
 
@@ -53,7 +63,7 @@ class CartVoter extends Voter
             return false;
         }
 
-        if ($cart->getMenus()->count() <= 0){
+        if ($cart->getItems()->isEmpty()){
             return false;
         }
 

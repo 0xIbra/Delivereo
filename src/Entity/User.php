@@ -112,7 +112,7 @@ class User extends BaseUser
 
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Cart", inversedBy="consumer", cascade={"remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Cart", inversedBy="consumer", cascade={"persist", "remove"})
      */
     private $cart;
 
@@ -140,6 +140,7 @@ class User extends BaseUser
         $this->socialLinks = new ArrayCollection();
         $this->likes = new ArrayCollection();
         $this->dislikes = new ArrayCollection();
+//        $this->cart = new Cart();
     }
 
     /**

@@ -1,0 +1,17 @@
+.credit-card-form {
+  margin-top: 20px;
+  height: 0px;
+  transition: ease-in .3s;
+  opacity: 0; }
+  .credit-card-form.active {
+    height: 150px !important;
+    opacity: 1; }
+
+.input-field.submit-wrapper {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important; }
+
+.credit-card-icons img {
+  margin-left: 3px; }
+
+/*# sourceMappingURL=checkout.css.map */

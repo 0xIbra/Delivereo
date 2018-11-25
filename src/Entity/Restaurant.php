@@ -119,7 +119,6 @@ class Restaurant
         $this->dislikes = new ArrayCollection();
         $this->categories = new ArrayCollection();
         $this->enabled = false;
-        $this->owner = new ArrayCollection();
         $this->managers = new ArrayCollection();
     }
 
@@ -367,35 +366,9 @@ class Restaurant
         return $this;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getOwner(): Collection
+    public function getOwner(): ?User
     {
         return $this->owner;
-    }
-
-    public function addOwner(User $owner): self
-    {
-        if (!$this->owner->contains($owner)) {
-            $this->owner[] = $owner;
-            $owner->setRestaurants($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOwner(User $owner): self
-    {
-        if ($this->owner->contains($owner)) {
-            $this->owner->removeElement($owner);
-            // set the owning side to null (unless already changed)
-            if ($owner->getRestaurants() === $this) {
-                $owner->setRestaurants(null);
-            }
-        }
-
-        return $this;
     }
 
     public function setOwner(?User $owner): self
@@ -441,6 +414,8 @@ class Restaurant
 
         return $this;
     }
+
+
 
 
 }

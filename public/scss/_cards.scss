@@ -444,6 +444,47 @@
 
 
 
+/**
+================================================
+================ STRIPE CARD ===================
+================================================
+ */
+
+.card.stripe-card{
+  background: $stripe !important;
+  color: #FFFFFF;
+  //box-shadow: 1px 1px 15px 1px rgba(0,0,0,0.3);
+
+  .card-content{
+    position: relative;
+    .card-title{
+      font-size: 13pt !important;
+    }
+
+    p{
+      font-size: 10pt !important;
+    }
+
+    .logo{
+      position: absolute;
+      right: 5px;
+      bottom: 0px;
+
+      img{
+        width: 40px;
+      }
+    }
+  }
+}
+
+/**
+================================================
+================ STRIPE CARD ===================
+================================================
+ */
+
+
+
 
 
 

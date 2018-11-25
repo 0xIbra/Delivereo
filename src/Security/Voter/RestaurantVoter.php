@@ -38,7 +38,7 @@ class RestaurantVoter extends Voter
                 return $this->canView($subject, $user);
                 break;
             case self::LIKE:
-
+                return $this->canLike($subject, $user);
                 break;
         }
 
@@ -72,6 +72,7 @@ class RestaurantVoter extends Voter
         {
             return false;
         }
+
         return $user === $restaurant->getOwner();
     }
 

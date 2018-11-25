@@ -13,6 +13,23 @@ input[type="text"].modernize{
   }
 }
 
+.input-field.end-icon{
+  margin: 0 !important;
+  input.modernize{
+    position: relative;
+  }
+
+  .icon{
+    position: absolute;
+    right: 5px;
+    top: 7px;
+
+    i.material-icons{
+      color: $grey;
+    }
+  }
+}
+
 input[type="tel"].modernize{
   height: $default-height;
   font-family: 'Roboto', Helvetica, sans-serif !important;

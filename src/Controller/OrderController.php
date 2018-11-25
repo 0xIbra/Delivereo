@@ -30,9 +30,18 @@ class OrderController extends AbstractController
      */
     public function checkout(Request $request)
     {
+        if (!$this->isGranted('checkout', $this->getUser()->getCart()))
+        {
+            return $this->redirectToRoute('cart_page');
+        }
+
         $form = $this->createForm(CheckoutFormType::class);
         $form->handleRequest($request);
-        
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            return $this->render('dump.html.twig', ['dump' => [$form->getData(), $this->getUser()->getCart()]]);
+        }
+
         return $this->render('order/checkout.html.twig', ['payment' => $form->createView()]);
     }
 }

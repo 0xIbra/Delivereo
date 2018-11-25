@@ -16,6 +16,8 @@ use App\Utils\JSON;
 use App\Utils\Validation;
 use Doctrine\Common\Persistence\ObjectManager;
 use JMS\Serializer\SerializerInterface;
+use Stripe\Account;
+use Stripe\Stripe;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,6 +29,8 @@ class RestaurantController extends AbstractController
 
     /**
      * @Route("/restaurant/{restaurant}", name="restaurant_info", requirements={"restaurant"="\d+"}, methods={"GET"})
+     * @param Restaurant $restaurant
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function restaurant(Restaurant $restaurant)
     {
@@ -34,7 +38,19 @@ class RestaurantController extends AbstractController
         {
             return $this->redirectToRoute('homepage');
         }
-        return $this->render('restaurant/index.html.twig', ['restaurant' => $restaurant]);
+
+        $stripe = null;
+
+        if ($this->isGranted('ROLE_OWNER'))
+        {
+            Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
+            $stripe = Account::retrieve($restaurant->getStripeClient()->getAccountId());
+        }
+
+        return $this->render('restaurant/index.html.twig', [
+            'restaurant' => $restaurant,
+            'stripe' => $stripe
+        ]);
     }
 
 

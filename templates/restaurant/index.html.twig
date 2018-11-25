@@ -99,24 +99,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                {#<div class="col s12">#}
-                                    {#<span class="subheader">Reseaux sociaux</span>#}
-                                    {#<div class="social-icons flex align-center">#}
-                                        {#<a href="https://www.instagram.com/ibrahim_tchee" target="_blank" class="icon-wrapper">#}
-                                            {#<span class="icon fa fa-instagram"></span>#}
-                                        {#</a>#}
-                                        {#<a href="https://www.linkedin.com/in/ibragim64000" target="_blank" class="icon-wrapper">#}
-                                            {#<span class="icon fa fa-linkedin"></span>#}
-                                        {#</a>#}
-                                        {#<a href="void:javascript;" class="icon-wrapper">#}
-                                            {#<span class="icon fa fa-facebook"></span>#}
-                                        {#</a>#}
-                                        {#<a href="void:javascript;" class="icon-wrapper">#}
-                                            {#<span class="icon fa fa-twitter"></span>#}
-                                        {#</a>#}
-
-                                    {#</div>#}
-                                {#</div>#}
                                 {% if is_granted('edit', restaurant) %}
                                     <div class="row">
                                         <div class="col s12 ">
@@ -157,7 +139,8 @@
                                                         <i class="material-icons">edit</i>
                                                     </a>
                                                 {% endif %}
-                                                <a href="#item-modal" class="modal-trigger">
+                                                <a href="#item-modal" class="modal-trigger menu-card" data-title="{{ menu.name }}"
+                                                   data-description="{{ menu.description }}" data-price="{{ menu.price }}" data-id="{{ menu.id }}">
                                                     <div class="card-content">
                                                         <span class="card-title">{{ menu.name }}</span>
                                                         <p>{{ menu.description }}</p>
@@ -181,20 +164,32 @@
                                     <div class="col s12">
                                         <div class="flex align-center">
                                             <span class="row-header">Moyens de paiement</span>
-
                                         </div>
                                     </div>
                                     {% if restaurant.stripeClient is null %}
                                         <div class="col s12">
                                             <div class="flex align-center ">
-                                                <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_E2NBCTLbP2MN2hCR0RBHuZymch6LCH81&scope=read_write&redirect_uri=https://delivereo.tk/stripe/auth/" target="_blank" class="bg-stripe img-btn waves-effect">
+                                                <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_E2NBCTLbP2MN2hCR0RBHuZymch6LCH81&scope=read_write" target="_blank" class="bg-stripe img-btn waves-effect">
                                                     <img src="{{ asset('img/stripe_logo.png') }}" alt="">
                                                 </a>
                                                 <a href="https://stripe.com/fr" target="_blank" class="redirect tooltip" data-position="right" data-tooltip="Stripe est une plateforme en ligne qui facilite les paiement par cartes bancaire." >Qu-est-ce que Stripe ?</a>
                                             </div>
                                         </div>
                                     {% else %}
-                                        STRIPE DONE !
+                                        <div class="col s12 m6 l4">
+                                            <div class="card stripe-card">
+                                                <a>
+                                                    <div class="card-content">
+                                                        <span class="card-title">{{ stripe.statement_descriptor }}</span>
+                                                        <p>ID : {{ stripe.id }}</p>
+
+                                                        <div class="logo">
+                                                            <img src="{{ asset('img/stripe_logo.png') }}" alt="Stripe Logo">
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
                                     {% endif %}
                                 </div>
                             </div>
@@ -204,10 +199,10 @@
                 
             </div>
         </div>
-        <div class="modal modernize" id="item-modal" tabindex="0">
+        <div class="modal modernize" id="item-modal" >
             <div class="modal-content">
                 <h4 class="modal-title">Burger</h4>
-                <p>Burger lorem ipsum dolor sit amet.</p>
+                <p class="description">Burger lorem ipsum dolor sit amet.</p>
                 <span class="price">EUR 6.50</span>
             </div>
             <div class="modal-footer">
@@ -224,7 +219,7 @@
                         </div>
                     </div>
                     <div class="col s6 m8 l9">
-                        <a href="void:javascript;" class="modal-close modal-success waves-effect waves-light btn-flat">Commander</a>
+                        <a id="addtocart" class="modal-close modal-success waves-effect waves-light btn-flat">Ajouter au panier</a>
                     </div>
                 </div>
             </div>
