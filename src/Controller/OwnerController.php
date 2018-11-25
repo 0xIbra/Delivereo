@@ -29,7 +29,9 @@ class OwnerController extends AbstractController
     /**
      * @Route("/owner/application", name="owner_application", methods={"GET", "POST"})
      * @param Request $request
+     * @param ValidatorInterface $validator
      * @param ObjectManager $om
+     * @param \Swift_Mailer $mailer
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function application(Request $request, ValidatorInterface $validator, ObjectManager $om, \Swift_Mailer $mailer)
@@ -95,7 +97,7 @@ class OwnerController extends AbstractController
      */
     public function dashboard()
     {
-        if (!$this->isGranted('edit', $this->getUser()->getRestaurants()[0]))
+        if (!$this->isGranted('edit', $this->getUser()->getRestaurant()))
         {
             FlashMessage::message($this->get('session')->getFlashBag(), 'danger', 'Vous n\'avez pas les droits pour accéder à cette page.');
             return $this->redirectToRoute('homepage');

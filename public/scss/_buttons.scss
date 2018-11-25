@@ -137,6 +137,22 @@ a.add-btn{
 }
 
 
+a.img-btn{
+  position: relative;
+  display: block;
+  width: 100px;
+  border-radius: 4px;
+  box-shadow: 2px 2px 7px 1px rgba(0,0,0,0.2);
+  margin-right: 10px;
+
+  img{
+    display: block;
+    width: 80%;
+    margin: auto;
+  }
+}
+
+
 @media (max-width: $small) {
   a.modernize{
     padding: 10px !important;

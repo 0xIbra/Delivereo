@@ -184,6 +184,18 @@
 
                                         </div>
                                     </div>
+                                    {% if restaurant.stripeClient is null %}
+                                        <div class="col s12">
+                                            <div class="flex align-center ">
+                                                <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_E2NBCTLbP2MN2hCR0RBHuZymch6LCH81&scope=read_write&redirect_uri=https://delivereo.tk/stripe/auth/" target="_blank" class="bg-stripe img-btn waves-effect">
+                                                    <img src="{{ asset('img/stripe_logo.png') }}" alt="">
+                                                </a>
+                                                <a href="https://stripe.com/fr" target="_blank" class="redirect tooltip" data-position="right" data-tooltip="Stripe est une plateforme en ligne qui facilite les paiement par cartes bancaire." >Qu-est-ce que Stripe ?</a>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        STRIPE DONE !
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

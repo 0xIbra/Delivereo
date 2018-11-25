@@ -6,6 +6,7 @@ security:
 
     role_hierarchy:
         ROLE_CONSUMER: ROLE_USER
+        ROLE_MANAGER: ROLE_USER
         ROLE_OWNER: ROLE_USER
         ROLE_ADMIN: [ROLE_USER, ROLE_CONSUMER, ROLE_OWNER, ROLE_ALLOWED_TO_SWITCH]
 
@@ -69,7 +70,8 @@ security:
         - { path: ^/api/auth, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/auth/admin, roles: ROLE_ADMIN }
         - { path:  ^/user, roles: ROLE_USER }
-        - { path:  ^/owner, roles: ROLE_USER }
+        - { path:  ^/owner, roles: ROLE_OWNER }
+        - { path:  ^/stripe, roles: ROLE_OWNER }
 #        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
 #        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
 #        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }

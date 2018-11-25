@@ -6,6 +6,7 @@ $(document).ready(function(){
     $('select').formSelect();
     $('.timepicker').timepicker({twelveHour: false});
     $('.dropdown-trigger').dropdown();
+    $('.tooltip').tooltip();
 
     $(window).scroll(function(){
         if ($(window).scrollTop() < 2)

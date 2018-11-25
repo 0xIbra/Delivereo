@@ -75,10 +75,16 @@ class Restaurant
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="restaurants")
+     * @ORM\OneToOne(targetEntity="App\Entity\User", mappedBy="restaurant")
      * @Assert\NotNull()
      */
     private $owner;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="managedRestaurant")
+     */
+    private $managers;
 
 
     /**
@@ -100,6 +106,12 @@ class Restaurant
      */
     private $menus;
 
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\StripeClient", inversedBy="restaurant", cascade={"persist", "remove"})
+     */
+    private $stripeClient;
+
     public function __construct()
     {
         $this->menus = new ArrayCollection();
@@ -107,6 +119,8 @@ class Restaurant
         $this->dislikes = new ArrayCollection();
         $this->categories = new ArrayCollection();
         $this->enabled = false;
+        $this->owner = new ArrayCollection();
+        $this->managers = new ArrayCollection();
     }
 
 
@@ -178,18 +192,6 @@ class Restaurant
                 $menu->setRestaurant(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getOwner(): ?User
-    {
-        return $this->owner;
-    }
-
-    public function setOwner(?User $owner): self
-    {
-        $this->owner = $owner;
 
         return $this;
     }
@@ -349,6 +351,93 @@ class Restaurant
     public function setNumber(?string $number): self
     {
         $this->number = $number;
+
+        return $this;
+    }
+
+    public function getStripeClient(): ?StripeClient
+    {
+        return $this->stripeClient;
+    }
+
+    public function setStripeClient(?StripeClient $stripeClient): self
+    {
+        $this->stripeClient = $stripeClient;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getOwner(): Collection
+    {
+        return $this->owner;
+    }
+
+    public function addOwner(User $owner): self
+    {
+        if (!$this->owner->contains($owner)) {
+            $this->owner[] = $owner;
+            $owner->setRestaurants($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOwner(User $owner): self
+    {
+        if ($this->owner->contains($owner)) {
+            $this->owner->removeElement($owner);
+            // set the owning side to null (unless already changed)
+            if ($owner->getRestaurants() === $this) {
+                $owner->setRestaurants(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function setOwner(?User $owner): self
+    {
+        $this->owner = $owner;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newRestaurant = $owner === null ? null : $this;
+        if ($newRestaurant !== $owner->getRestaurant()) {
+            $owner->setRestaurant($newRestaurant);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getManagers(): Collection
+    {
+        return $this->managers;
+    }
+
+    public function addManager(User $manager): self
+    {
+        if (!$this->managers->contains($manager)) {
+            $this->managers[] = $manager;
+            $manager->setManagedRestaurant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeManager(User $manager): self
+    {
+        if ($this->managers->contains($manager)) {
+            $this->managers->removeElement($manager);
+            // set the owning side to null (unless already changed)
+            if ($manager->getManagedRestaurant() === $this) {
+                $manager->setManagedRestaurant(null);
+            }
+        }
 
         return $this;
     }

@@ -14,6 +14,7 @@ $moneyGreen: #00c292;
 $purple: #ab8ce4;
 $blue: #03a9f3;
 $orangeModern: #fb9678;
+$stripe: #6772E5;
 
 /* ------ COLORS ------ */
 
@@ -153,6 +154,11 @@ span{
 
 .line{
   border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+
+.bg-stripe{
+  background: $stripe !important;
 }
 
 

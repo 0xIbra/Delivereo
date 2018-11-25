@@ -99,10 +99,16 @@ class User extends BaseUser
 
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Restaurant", mappedBy="owner", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Restaurant", inversedBy="owner", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */
-    private $restaurants;
+    private $restaurant;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Restaurant", inversedBy="managers")
+     */
+    private $managedRestaurant;
 
 
     /**
@@ -127,7 +133,6 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->restaurants = new ArrayCollection();
         $this->orders = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->addRole('ROLE_CONSUMER');
@@ -168,37 +173,6 @@ class User extends BaseUser
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    /**
-     * @return Collection|Restaurant[]
-     */
-    public function getRestaurants(): Collection
-    {
-        return $this->restaurants;
-    }
-
-    public function addRestaurant(Restaurant $restaurant): self
-    {
-        if (!$this->restaurants->contains($restaurant)) {
-            $this->restaurants[] = $restaurant;
-            $restaurant->setOwner($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRestaurant(Restaurant $restaurant): self
-    {
-        if ($this->restaurants->contains($restaurant)) {
-            $this->restaurants->removeElement($restaurant);
-            // set the owning side to null (unless already changed)
-            if ($restaurant->getOwner() === $this) {
-                $restaurant->setOwner(null);
-            }
-        }
-
-        return $this;
     }
 
     /**
@@ -416,6 +390,30 @@ class User extends BaseUser
     public function setCart(?Cart $cart): self
     {
         $this->cart = $cart;
+
+        return $this;
+    }
+
+    public function getRestaurant(): ?Restaurant
+    {
+        return $this->restaurant;
+    }
+
+    public function setRestaurant(?Restaurant $restaurant): self
+    {
+        $this->restaurant = $restaurant;
+
+        return $this;
+    }
+
+    public function getManagedRestaurant(): ?Restaurant
+    {
+        return $this->managedRestaurant;
+    }
+
+    public function setManagedRestaurant(?Restaurant $managedRestaurant): self
+    {
+        $this->managedRestaurant = $managedRestaurant;
 
         return $this;
     }
