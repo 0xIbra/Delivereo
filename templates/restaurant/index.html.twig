@@ -30,18 +30,34 @@
                                 </div>
                                 <div class="rating flex justify-center">
                                     {% if is_granted('ROLE_USER') %}
-                                        <a href="{{ path('add_like_restaurant', { 'restaurant': restaurant.id }) }}">
-                                            <div class="icon success">
-                                                <i class="material-icons">thumb_up</i>
-                                                <span>{{ restaurant.likes.count }}</span>
-                                            </div>
-                                        </a>
-                                        <a href="{{ path('add_dislike_restaurant', { 'restaurant': restaurant.id }) }}">
-                                            <div class="icon danger">
-                                                <i class="material-icons">thumb_down</i>
-                                                <span>{{ restaurant.dislikes.count }}</span>
-                                            </div>
-                                        </a>
+                                        {% if is_granted('like', restaurant) %}
+                                            <a href="{{ path('add_like_restaurant', { 'restaurant': restaurant.id }) }}">
+                                                <div class="icon success">
+                                                    <i class="material-icons">thumb_up</i>
+                                                    <span>{{ restaurant.likes.count }}</span>
+                                                </div>
+                                            </a>
+                                            <a href="{{ path('add_dislike_restaurant', { 'restaurant': restaurant.id }) }}">
+                                                <div class="icon danger">
+                                                    <i class="material-icons">thumb_down</i>
+                                                    <span>{{ restaurant.dislikes.count }}</span>
+                                                </div>
+                                            </a>
+
+                                        {% else %}
+                                            <a>
+                                                <div class="icon success">
+                                                    <i class="material-icons">thumb_up</i>
+                                                    <span>{{ restaurant.likes.count }}</span>
+                                                </div>
+                                            </a>
+                                            <a>
+                                                <div class="icon danger">
+                                                    <i class="material-icons">thumb_down</i>
+                                                    <span>{{ restaurant.dislikes.count }}</span>
+                                                </div>
+                                            </a>
+                                        {% endif %}
                                     {% else %}
                                         <div class="icon success">
                                             <i class="material-icons">thumb_up</i>
@@ -122,9 +138,11 @@
                                 <div class="col s12">
                                     <div class="flex align-center">
                                         <span class="row-header">Menus</span>
-                                        <a href="{{ path('add_menu', {'restaurant': restaurant.id}) }}" class="flex align-center add-btn">
-                                            <span class="material-icons">add</span>
-                                        </a>
+                                        {% if is_granted('edit', restaurant) %}
+                                            <a href="{{ path('add_menu', {'restaurant': restaurant.id}) }}" class="flex align-center add-btn">
+                                                <span class="material-icons">add</span>
+                                            </a>
+                                        {% endif %}
                                     </div>
                                 </div>
                                 {% block alerts %}
@@ -154,6 +172,24 @@
                         </div>
                     </div>
                 </div>
+
+                {% if is_granted('edit', restaurant) %}
+                    <div class="col s12 m7 l8">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="col s12">
+                                        <div class="flex align-center">
+                                            <span class="row-header">Moyens de paiement</span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                
             </div>
         </div>
         <div class="modal modernize" id="item-modal" tabindex="0">

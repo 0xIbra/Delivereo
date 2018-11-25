@@ -173,6 +173,9 @@
             "ref": "fb7e19da7f013d0d422fa9bce16f5c510e27609b"
         }
     },
+    "stripe/stripe-php": {
+        "version": "v6.22.1"
+    },
     "swiftmailer/swiftmailer": {
         "version": "v6.1.2"
     },

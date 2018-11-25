@@ -12,10 +12,11 @@ class RestaurantVoter extends Voter
 {
     const VIEW = 'view';
     const EDIT = 'edit';
+    const LIKE = 'like';
 
     protected function supports($attribute, $subject)
     {
-        return in_array($attribute, [self::VIEW, self::EDIT])
+        return in_array($attribute, [self::VIEW, self::EDIT, self::LIKE])
             && $subject instanceof Restaurant;
     }
 
@@ -36,9 +37,28 @@ class RestaurantVoter extends Voter
             case self::VIEW:
                 return $this->canView($subject, $user);
                 break;
+            case self::LIKE:
+
+                break;
         }
 
         return false;
+    }
+
+
+    public function canLike(Restaurant $restaurant, $user)
+    {
+        if (!$restaurant->isEnabled())
+        {
+            return false;
+        }
+
+        if ($user === $restaurant->getOwner())
+        {
+            return false;
+        }
+
+        return true;
     }
 
     public function canView(Restaurant $restaurant, $user)
