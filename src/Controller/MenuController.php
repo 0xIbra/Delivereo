@@ -46,6 +46,7 @@ class MenuController extends AbstractController
             $om->persist($menu);
             $om->flush();
             FlashMessage::message($flashBag, 'success', 'Menu ajouté.');
+
             return $this->redirectToRoute('restaurant_info', ['restaurant' => $restaurant->getId()]);
         }
 
@@ -87,6 +88,27 @@ class MenuController extends AbstractController
                 'status' => false,
                 'message' => 'Menu indiqué n\'existe pas'
             ], 404, $serializer);
+        }
+
+        if (!$cart->getItems()->isEmpty())
+        {
+            foreach ($cart->getItems() as $item)
+            {
+                if ($menu === $item->getMenu())
+                {
+                    $quantity = $item->getQuantity() + intval($request->request->get('quantity'));
+                    $item->setQuantity($quantity);
+                    $cart->addItem($item);
+                    $user->setCart($cart);
+                    $om->persist($user);
+                    $om->flush();
+
+                    return JSON::JSONResponse([
+                        'status' => true,
+                        'message' => 'La quantité du Menu "'. $menu->getName() . '" a été augmenté.',
+                    ], 200, $serializer);
+                }
+            }
         }
 
 
@@ -132,14 +154,145 @@ class MenuController extends AbstractController
             ], 404, $serializer);
         }
 
-        $user = $this->getUser();
-        $user->getCart()->removeItem($cartItem);
-        $om->persist($user);
+        $om->remove($cartItem);
         $om->flush();
+
+        $user = $this->getUser();
+        $cart = $user->getCart();
+
+        $total = 0;
+        foreach ($cart->getItems() as $item)
+        {
+            $total += ($item->getMenu()->getPrice() * $item->getQuantity());
+        }
 
         return JSON::JSONResponse([
             'status' => true,
+            'totalPrice' => $total,
             'message' => 'L\'element a été supprimé'
+        ], 200, $serializer);
+    }
+
+
+    /**
+     * @Route("/user/cart/increase", name="increase_cart_item", methods={"PUT"})
+     *
+     * @param Request $request
+     * @param ObjectManager $om
+     * @param SerializerInterface $serializer
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function increaseCartItem(Request $request, ObjectManager $om, SerializerInterface $serializer)
+    {
+        $cartItem = $om->getRepository(CartItem::class)->find(intval($request->request->get('itemId')));
+        if ($cartItem === null)
+        {
+            return JSON::JSONResponse([
+                'status' => false,
+                'message' => 'L\'element n\'a pas été trouvé'
+            ], 400, $serializer);
+        }
+
+        $user = $this->getUser();
+        $cart = $user->getCart();
+        if ($cart === null)
+        {
+            return JSON::JSONResponse([
+                'status' => false,
+                'message' => 'Votre panier est vide'
+            ], 400, $serializer);
+        }
+
+        if ($cartItem->getQuantity() === 20)
+        {
+            return JSON::JSONResponse([
+                'status' => false,
+                'message' => 'Quantité maximale atteinte'
+            ], 200, $serializer);
+        }
+
+        $quantity = $cartItem->getQuantity() + 1;
+        $cartItem->setQuantity($quantity);
+        $cart->addItem($cartItem);
+        $om->persist($cart);
+        $om->flush();
+
+        $newPrice = $cartItem->getMenu()->getPrice() * $cartItem->getQuantity();
+        $total = 0;
+
+        foreach ($cart->getItems() as $item)
+        {
+            $total += ($item->getMenu()->getPrice() * $item->getQuantity());
+        }
+
+        return JSON::JSONResponse([
+            'status' => true,
+            'quantity' => $cartItem->getQuantity(),
+            'newPrice' =>  $newPrice,
+            'totalPrice' => $total,
+            'message' => 'La quantité de l\'element a été incrementé'
+        ], 200, $serializer);
+    }
+
+
+
+    /**
+     * @Route("/user/cart/decrease", name="decrease_cart_item", methods={"PUT"})
+     *
+     * @param Request $request
+     * @param ObjectManager $om
+     * @param SerializerInterface $serializer
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function decreaseCartItem(Request $request, ObjectManager $om, SerializerInterface $serializer)
+    {
+        $cartItem = $om->getRepository(CartItem::class)->find(intval($request->request->get('itemId')));
+        if ($cartItem === null)
+        {
+            return JSON::JSONResponse([
+                'status' => false,
+                'message' => 'L\'element n\'a pas été trouvé'
+            ], 400, $serializer);
+        }
+
+        $user = $this->getUser();
+        $cart = $user->getCart();
+        if ($cart === null)
+        {
+            return JSON::JSONResponse([
+                'status' => false,
+                'message' => 'Votre panier est vide'
+            ], 400, $serializer);
+        }
+
+        if ($cartItem->getQuantity() === 1)
+        {
+            return JSON::JSONResponse([
+                'status' => false,
+                'message' => 'Quantité minimale atteinte'
+            ], 200, $serializer);
+        }
+
+        $quantity = $cartItem->getQuantity() - 1;
+        $cartItem->setQuantity($quantity);
+        $cart->addItem($cartItem);
+        $om->persist($cart);
+        $om->flush();
+
+        $newPrice = $cartItem->getMenu()->getPrice() * $cartItem->getQuantity();
+        $total = 0;
+
+        foreach ($cart->getItems() as $item)
+        {
+            $total += ($item->getMenu()->getPrice() * $item->getQuantity());
+        }
+
+        return JSON::JSONResponse([
+            'status' => true,
+            'quantity' => $cartItem->getQuantity(),
+            'newPrice' =>  $newPrice,
+            'totalPrice' => $total,
+            'message' => 'La quantité de l\'element a été diminué'
         ], 200, $serializer);
     }
 

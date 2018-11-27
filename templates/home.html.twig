@@ -82,6 +82,13 @@
                             </div>
 
                         </div>
+                        {% if not is_granted('ROLE_CONSUMER') %}
+                            <div class="row">
+                                <div class="col s12">
+                                    <a href="{{ path('partner') }}" class="modernize bold waves-effect">Procédez à l'ouverture</a>
+                                </div>
+                            </div>
+                        {% endif %}
                     </div>
 
                     <div class="col s12 tab-window" id="restaurants">
@@ -132,11 +139,11 @@
                             </div>
 
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s12">
-                        <a href="void:javascript;" class="modernize bold waves-effect">Procédez à la connexion</a>
+                        <div class="row">
+                            <div class="col s12">
+                                <a href="{{ path('partner') }}" class="modernize bold waves-effect">Procédez à l'ouverture</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

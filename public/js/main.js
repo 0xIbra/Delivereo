@@ -38,6 +38,8 @@ $(document).ready(function(){
         $('#item-modal p.description').html($(this).data('description'));
         $('#item-modal .price').html('EUR ' + Number($(this).data('price')).toFixed(2));
         $('#item-modal').attr('data-item-id', $(this).data('id'));
+        $('.menu-display .quantity.count').html(1);
+        $('.menu-display .quantity.count').attr('data-quantity',1);
     });
 
     if (Number($('#item-modal').attr('data-item-id')) !== 0)

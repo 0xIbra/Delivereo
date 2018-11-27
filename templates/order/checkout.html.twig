@@ -5,8 +5,12 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/restaurant.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/panier.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
     <link rel="stylesheet" href="{{ asset('css/checkout.css') }}">
+{% endblock %}
+
+{% block apiKeys %}
+    <meta id="stripe-key" content="{{ function_name('STRIPE_PUBLISHABLE_KEY') }}">
 {% endblock %}
 
 {% block alerts %}
@@ -21,7 +25,7 @@
                 <div class="col s12 m12 l7">
                     <div class="card">
                         <div class="card-content">
-                            {{ form_start(payment) }}
+                            {{ form_start(payment, { 'attr': { 'id': 'payment-form' } }) }}
                             <div class="row">
                                 <div class="col s12">
                                     <div class="row-header">Panier</div>
@@ -42,7 +46,12 @@
                                 {% endfor %}
 
                                 <div class="col s12">
-                                    <div class="row-header">Adresse de livraison</div>
+                                    <div class="flex align-center">
+                                        <div class="row-header">Adresse de livraison</div>
+                                        <a href="{{ path('add_address') }}?redirect_uri={{ path('checkout_page') }}" class="modal-trigger flex align-center add-btn">
+                                            <span class="material-icons">add</span>
+                                        </a>
+                                    </div>
                                 </div>
                                 {% for field in payment.address %}
                                     <div class="col s12 m6 l4">
@@ -63,6 +72,7 @@
                                         </div>
                                     </div>
                                 {% endfor %}
+                                {#<form>LALALALALA#}
                             </div>
                         </div>
                     </div>
@@ -110,31 +120,19 @@
                             </div>
 
                             <div class="credit-card-form">
-                                <div class="input-field end-icon">
-                                    {{ form_widget(payment.creditcard.number) }}
-                                    <div class="icon">
-                                        <i class="material-icons">credit_card</i>
+                                <span style="font-size: 11pt;color: #888888;font-weight: 500">Utilisez <b>4000 0000 0000 0077</b> si vous voulez commander</span>
+                                <div class="pad-10">
+                                    <div id="card-element">
                                     </div>
                                 </div>
 
-                                <div class="input-field end-icon">
-                                    {{ form_widget(payment.creditcard.expiration) }}
-                                    <div class="icon">
-                                        <i class="material-icons">credit_card</i>
-                                    </div>
-                                </div>
-
-                                <div class="input-field end-icon">
-                                    {{ form_widget(payment.creditcard.cvc) }}
-                                    <div class="icon">
-                                        <i class="material-icons">credit_card</i>
-                                    </div>
-                                </div>
+                                <div id="card-errors" role="alert"></div>
                             </div>
 
                             <div class="input-field submit-wrapper">
                                 {{ form_widget(payment.pay) }}
                             </div>
+
                             {{ form_end(payment) }}
                         </div>
                     </div>
@@ -146,7 +144,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('js/checkout.js') }}"></script>
+    <script src="https://js.stripe.com/v3/"></script>
     <script>
         $(document).ready(function (){
             $('span.step.checkout').addClass('active');
@@ -161,4 +159,5 @@
         });
 
     </script>
+    <script src="{{ asset('js/stripe-checkout.js') }}"></script>
 {% endblock %}

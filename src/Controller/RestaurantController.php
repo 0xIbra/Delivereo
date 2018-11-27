@@ -41,7 +41,7 @@ class RestaurantController extends AbstractController
 
         $stripe = null;
 
-        if ($this->isGranted('ROLE_OWNER'))
+        if ($this->isGranted('ROLE_OWNER') && $restaurant->getStripeClient() !== null)
         {
             Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
             $stripe = Account::retrieve($restaurant->getStripeClient()->getAccountId());

@@ -310,7 +310,22 @@
     }
 
     p{
+      font-size: 10pt;
       margin-bottom: 6px;
+    }
+
+    .on-card{
+
+      span.quantity.count{
+        font-size: 14pt;
+      }
+
+      button.modernize{
+
+        .material-icons{
+          font-size: 14pt;
+        }
+      }
     }
   }
 }
@@ -513,6 +528,43 @@
 
 
 @media (max-width: $small) {
+
+  .card.basic.modernize{
+
+    .card-content{
+
+      .card-title{
+        font-size: 11pt !important;
+        margin-bottom: 0 !important;
+      }
+
+      p{
+        font-size: 9pt !important;
+      }
+
+      .item-remove{
+
+        i.material-icons{
+          font-size: 16pt;
+        }
+      }
+
+      .on-card{
+
+        span.quantity.count{
+          font-size: 11pt !important;
+        }
+
+        button.modernize{
+
+          span.material-icons{
+            font-size: 14pt !important;
+          }
+        }
+      }
+    }
+  }
+
   .hr-card{
     //box-shadow: 0 0 20px rgba(0,0,0,0.2);
     .card-body{

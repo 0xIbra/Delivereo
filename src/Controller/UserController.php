@@ -144,6 +144,12 @@ class UserController extends AbstractController
                 $om->persist($user);
                 $om->flush();
                 $this->get('session')->getFlashBag()->add('success', 'Adresse ajouté.');
+
+                if ($request->query->has('redirect_uri'))
+                {
+                    return $this->redirect($request->query->get('redirect_uri'));
+                }
+
                 return $this->redirectToRoute('fos_user_profile_show');
             }
         }

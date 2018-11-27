@@ -108,6 +108,12 @@ class Restaurant
 
 
     /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Order", inversedBy="restaurants")
+     */
+    private $orders;
+
+
+    /**
      * @ORM\OneToOne(targetEntity="App\Entity\StripeClient", inversedBy="restaurant", cascade={"persist", "remove"})
      */
     private $stripeClient;
@@ -120,6 +126,7 @@ class Restaurant
         $this->categories = new ArrayCollection();
         $this->enabled = false;
         $this->managers = new ArrayCollection();
+        $this->orders = new ArrayCollection();
     }
 
 
@@ -410,6 +417,32 @@ class Restaurant
             if ($manager->getManagedRestaurant() === $this) {
                 $manager->setManagedRestaurant(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Order[]
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): self
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders[] = $order;
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): self
+    {
+        if ($this->orders->contains($order)) {
+            $this->orders->removeElement($order);
         }
 
         return $this;

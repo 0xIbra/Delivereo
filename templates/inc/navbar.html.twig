@@ -2,7 +2,7 @@
     <nav>
         <div class="container-fluid">
             <div class="nav-wrapper">
-                <a href="{{ path('homepage') }}" class="brand-logo left bold">Delivereo</a>
+                <a href="{{ path('homepage') }}" class="brand-logo left bold">Delivereo {% block subtitle %}{% endblock %}</a>
                 <a href="#" data-target="sidebar-nav" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     {% if not is_granted('ROLE_USER') and not is_granted('ROLE_OWNER') %}

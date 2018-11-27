@@ -37,7 +37,6 @@ class CheckoutFormType extends AbstractType
                 'expanded' => true,
                 'label' => false
             ])
-            ->add('creditcard', PaymentFormType::class, ['label' => false])
             ->add('pay', SubmitType::class, [
                 'attr' => [
                     'class' => 'stripe-btn'

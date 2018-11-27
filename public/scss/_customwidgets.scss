@@ -2,6 +2,21 @@
   display: flex;
   align-items: center;
 
+  &.on-card{
+    margin-top: 10px;
+    button.modernize{
+      margin: 0 !important;
+
+      span{
+        padding: 4px 1px;
+      }
+    }
+
+    span.quantity.count{
+      margin:  5px 10px;
+    }
+  }
+
   button.modernize{
     background: transparent;
     border: 1px solid rgba(0,0,0,.14);
@@ -20,7 +35,7 @@
   }
 
   .quantity.count{
-    font-size: 17pt;
+    font-size: 16pt;
   }
 }
 
@@ -41,6 +56,15 @@
 
     &.active{
       color: rgba(0,0,0,0.8) !important;
+    }
+  }
+}
+
+@media (max-width: $small) {
+  .heading-breadcrumbs{
+
+    span.step{
+      font-size: 12pt;
     }
   }
 }

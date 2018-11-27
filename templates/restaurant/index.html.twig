@@ -172,7 +172,7 @@
                                                 <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_E2NBCTLbP2MN2hCR0RBHuZymch6LCH81&scope=read_write" target="_blank" class="bg-stripe img-btn waves-effect">
                                                     <img src="{{ asset('img/stripe_logo.png') }}" alt="">
                                                 </a>
-                                                <a href="https://stripe.com/fr" target="_blank" class="redirect tooltip" data-position="right" data-tooltip="Stripe est une plateforme en ligne qui facilite les paiement par cartes bancaire." >Qu-est-ce que Stripe ?</a>
+                                                <a href="{{ path('docs_stripe') }}" target="_blank" class="redirect" >Comment utiliser Stripe ?</a>
                                             </div>
                                         </div>
                                     {% else %}
@@ -199,30 +199,32 @@
                 
             </div>
         </div>
-        <div class="modal modernize" id="item-modal" >
-            <div class="modal-content">
-                <h4 class="modal-title">Burger</h4>
-                <p class="description">Burger lorem ipsum dolor sit amet.</p>
-                <span class="price">EUR 6.50</span>
-            </div>
-            <div class="modal-footer">
-                <div class="row">
-                    <div class="col s6 m4 l3">
-                        <div class="quantity input">
-                            <button class="dec modernize">
-                                <span class="material-icons">remove</span>
-                            </button>
-                            <span class="quantity count" data-quantity="1">1</span>
-                            <button class="inc modernize">
-                                <span class="material-icons">add</span>
-                            </button>
+        {% if is_granted('ROLE_CONSUMER') and not is_granted('ROLE_OWNER') and not is_granted('ROLE_ADMIN') %}
+            <div class="modal modernize menu-display" id="item-modal" >
+                <div class="modal-content">
+                    <h4 class="modal-title">Burger</h4>
+                    <p class="description">Burger lorem ipsum dolor sit amet.</p>
+                    <span class="price">EUR 6.50</span>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col s6 m4 l3">
+                            <div class="quantity input">
+                                <button class="dec modernize">
+                                    <span class="material-icons">remove</span>
+                                </button>
+                                <span class="quantity count" data-quantity="1">1</span>
+                                <button class="inc modernize">
+                                    <span class="material-icons">add</span>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col s6 m8 l9">
-                        <a id="addtocart" class="modal-close modal-success waves-effect waves-light btn-flat">Ajouter au panier</a>
+                        <div class="col s6 m8 l9">
+                            <a id="addtocart" class="modal-close modal-success waves-effect waves-light btn-flat">Ajouter au panier</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        {% endif %}
     </div>
 {% endblock %}

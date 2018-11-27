@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OrderRepository")
  * @ORM\Table(name="orders")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Order
 {
@@ -19,9 +20,9 @@ class Order
      */
     private $id;
 
+
     /**
-     * @ORM\Column(name="order_number", type="string")
-     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\Column(name="order_number", type="string", length=255, nullable=true, unique=true)
      */
     private $orderNumber;
 
@@ -29,11 +30,6 @@ class Order
      * @ORM\Column(name="ordered_at", type="datetime")
      */
     private $orderedAt;
-
-    /**
-     * @ORM\Column(name="quantity", type="integer")
-     */
-    private $quantity;
 
     /**
      * @ORM\Column(name="total_price", type="float")
@@ -46,26 +42,44 @@ class Order
      */
     private $paymentMethod;
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Address")
+     */
+    private $deliveryAddress;
+
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="orders")
      * @ORM\JoinColumn(nullable=true)
      */
     private $consumer;
 
+
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Menu")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Restaurant", mappedBy="orders")
      */
-    private $menu;
+    private $restaurants;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\OrderMenu", mappedBy="order", cascade={"persist", "remove"})
+     */
+    private $items;
 
     public function __construct()
     {
-        $this->paymentMethod = new ArrayCollection();
+        $this->restaurants = new ArrayCollection();
+        $this->items = new ArrayCollection();
+        $this->orderedAt = new \DateTime();
     }
 
-    public function getId(): ?int
+    /**
+     * @ORM\PostPersist()
+     */
+    public function initOrderNumber()
     {
-        return $this->id;
+        $this->orderNumber = md5($this->id);
     }
+
 
     public function getOrderedAt(): ?\DateTimeInterface
     {
@@ -75,42 +89,6 @@ class Order
     public function setOrderedAt(\DateTimeInterface $orderedAt): self
     {
         $this->orderedAt = $orderedAt;
-
-        return $this;
-    }
-
-    public function getConsumer(): ?User
-    {
-        return $this->consumer;
-    }
-
-    public function setConsumer(?User $consumer): self
-    {
-        $this->consumer = $consumer;
-
-        return $this;
-    }
-
-    public function getMenu(): ?Menu
-    {
-        return $this->menu;
-    }
-
-    public function setMenu(?Menu $menu): self
-    {
-        $this->menu = $menu;
-
-        return $this;
-    }
-
-    public function getQuantity(): ?int
-    {
-        return $this->quantity;
-    }
-
-    public function setQuantity(int $quantity): self
-    {
-        $this->quantity = $quantity;
 
         return $this;
     }
@@ -127,6 +105,106 @@ class Order
         return $this;
     }
 
+    public function getPaymentMethod(): ?PaymentMethod
+    {
+        return $this->paymentMethod;
+    }
+
+    public function setPaymentMethod(?PaymentMethod $paymentMethod): self
+    {
+        $this->paymentMethod = $paymentMethod;
+
+        return $this;
+    }
+
+    public function getConsumer(): ?User
+    {
+        return $this->consumer;
+    }
+
+    public function setConsumer(?User $consumer): self
+    {
+        $this->consumer = $consumer;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|OrderMenu[]
+     */
+    public function getItems(): Collection
+    {
+        return $this->items;
+    }
+
+    public function addItem(OrderMenu $item): self
+    {
+        if (!$this->items->contains($item)) {
+            $this->items[] = $item;
+            $item->setOrder($this);
+        }
+
+        return $this;
+    }
+
+    public function removeItem(OrderMenu $item): self
+    {
+        if ($this->items->contains($item)) {
+            $this->items->removeElement($item);
+            // set the owning side to null (unless already changed)
+            if ($item->getOrder() === $this) {
+                $item->setOrder(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getDeliveryAddress(): ?Address
+    {
+        return $this->deliveryAddress;
+    }
+
+    public function setDeliveryAddress(?Address $deliveryAddress): self
+    {
+        $this->deliveryAddress = $deliveryAddress;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Restaurant[]
+     */
+    public function getRestaurants(): Collection
+    {
+        return $this->restaurants;
+    }
+
+    public function addRestaurant(Restaurant $restaurant): self
+    {
+        if (!$this->restaurants->contains($restaurant)) {
+            $this->restaurants[] = $restaurant;
+            $restaurant->addOrder($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRestaurant(Restaurant $restaurant): self
+    {
+        if ($this->restaurants->contains($restaurant)) {
+            $this->restaurants->removeElement($restaurant);
+            $restaurant->removeOrder($this);
+        }
+
+        return $this;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
     public function getOrderNumber(): ?string
     {
         return $this->orderNumber;
@@ -139,15 +217,7 @@ class Order
         return $this;
     }
 
-    public function getPaymentMethod(): ?PaymentMethod
-    {
-        return $this->paymentMethod;
-    }
 
-    public function setPaymentMethod(?PaymentMethod $paymentMethod): self
-    {
-        $this->paymentMethod = $paymentMethod;
 
-        return $this;
-    }
+
 }

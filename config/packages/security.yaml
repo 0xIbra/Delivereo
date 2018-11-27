@@ -75,6 +75,7 @@ security:
         - { path: ^/api/auth/admin, roles: ROLE_ADMIN }
         - { path:  ^/user, roles: ROLE_USER }
         - { path:  ^/owner, roles: ROLE_OWNER }
+        - { path: ^/partner/application, roles: ROLE_USER }
         - { path:  ^/stripe, roles: ROLE_OWNER }
 #        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
 #        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }

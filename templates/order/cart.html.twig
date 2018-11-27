@@ -4,7 +4,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/panier.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -13,8 +13,7 @@
         <div class="container-fluid">
             {% include 'order/order_breadcrumbs.html.twig' %}
             <div class="row">
-
-                {% if app.user.cart.items is empty %}
+                {% if app.user.cart is null or app.user.cart.items is empty%}
                     <div class="col s12">
                         <br>
                         <h4 class="center">Votre panier est vide</h4>
@@ -31,16 +30,26 @@
                                 {#<h4 class="heading">Votre panier</h4>#}
                                 <div class="row">
                                     {% for item in app.user.cart.items %}
-                                        <div class="col s12 l6 cart-item-container">
-                                            <div class="card basic modernize">
-                                                <a href="void:javascript;">
+                                        <div class="col s12 l6 cart-item-container-{{ item.id }}">
+                                            <div class="card basic modernize menu-card-{{ item.id }}">
+                                                <a>
                                                     <div class="card-content">
-                                                        <span class="card-title">{{ item.menu.name }} x{{ item.quantity }}</span>
+                                                        <span class="card-title">{{ item.menu.name }} <span style="display: inline;" class="card-title-quantity" data-quantity="{{ item.quantity }}">x{{ item.quantity }}</span></span>
                                                         <a style="cursor: pointer;" class="item-remove" data-item-id="{{ item.id }}">
                                                             <i class="material-icons close">close</i>
                                                         </a>
                                                         <p>{{ item.menu.description }}</p>
                                                         <div class="price">EUR {{ item.menu.price|number_format(2, '.') }}</div>
+
+                                                        <div class="on-card quantity input">
+                                                            <button class="decrease modernize" data-item-id="{{ item.id }}">
+                                                                <span class="material-icons">remove</span>
+                                                            </button>
+                                                            <span class="quantity count" data-quantity="{{ item.quantity }}">{{ item.quantity }}</span>
+                                                            <button class="increase modernize" data-item-id="{{ item.id }}">
+                                                                <span class="material-icons">add</span>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </a>
                                             </div>
@@ -60,21 +69,21 @@
                                             {% set total = 0 %}
                                             {% for item in app.user.cart.items %}
                                                 {% set total = total + (item.menu.price * item.quantity) %}
-                                                <div class="flex align-center justify-space-between line">
-                                                    <span>{{ item.menu.name }} x{{ item.quantity }}</span>
-                                                    <span>{{ (item.menu.price * item.quantity)|number_format(2, '.') }} EUR</span>
+                                                <div class="flex align-center justify-space-between line cost-card-{{ item.id }}">
+                                                    <span class="menu-name">{{ item.menu.name }} <span style="display: inline;" class="quantity">x{{ item.quantity }}</span></span>
+                                                    <span class="menu-price">{{ (item.menu.price * item.quantity)|number_format(2, '.') }} EUR</span>
                                                 </div>
                                             {% endfor %}
                                             <br>
                                             <div class="flex align-center justify-space-between line">
                                                 <span>Total</span>
-                                                <span>{{ total|number_format(2, '.') }} EUR</span>
+                                                <span class="total-price">{{ total|number_format(2, '.') }} EUR</span>
                                             </div>
                                         {% endif %}
                                     </div>
                                     <div class="col s12">
                                         <div class="flex justify-center">
-                                            <a style="margin-top: 15px;" href="{{ path('checkout_page') }}" class="modernize success waves-effect waves-light">Poursuivre votre commande</a>
+                                            <a style="margin-top: 15px;" href="{{ path('checkout_page') }}" class="stripe-btn waves-effect ">Poursuivre</a>
                                         </div>
                                     </div>
                                 </div>

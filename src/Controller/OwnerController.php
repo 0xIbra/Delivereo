@@ -27,7 +27,7 @@ class OwnerController extends AbstractController
     }
 
     /**
-     * @Route("/owner/application", name="owner_application", methods={"GET", "POST"})
+     * @Route("/partner/application", name="owner_application", methods={"GET", "POST"})
      * @param Request $request
      * @param ValidatorInterface $validator
      * @param ObjectManager $om
@@ -82,6 +82,7 @@ class OwnerController extends AbstractController
                         'restaurant' => $restaurant
                     ]), 'text/html');
                 $mailer->send($message);
+                $this->get('session')->invalidate();
                 return $this->render('owner/check_email.html.twig');
             }
 
