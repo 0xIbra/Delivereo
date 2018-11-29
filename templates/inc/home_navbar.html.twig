@@ -11,6 +11,8 @@
 
                     {% if is_granted('ROLE_OWNER') %}
                         <li><a href="{{ path('owner_dashboard') }}">Tableau de bord</a></li>
+                    {% elseif is_granted('ROLE_ADMIN') %}
+                        <li><a href="{{ path('admin_dashboard') }}">Tableau de bord</a></li>
                     {% endif %}
 
                     {% if is_granted('ROLE_CONSUMER') and not is_granted('ROLE_OWNER') and not is_granted('ROLE_ADMIN') %}
@@ -58,7 +60,9 @@
     {% endif %}
 
     {% if is_granted('ROLE_OWNER') %}
-        <li><a href="{{ path('owner_dashboard') }}" class="waves-effect"><i class="material-icons">dashboard</i>Tableau de bord</a></li>
+        <li><a href="{{ path('owner_dashboard') }}" class="waves-effect"><i class="material-icons">show_chart</i>Tableau de bord</a></li>
+    {% elseif is_granted('ROLE_ADMIN') %}
+        <li><a href="{{ path('admin_dashboard') }}" class="waves-effect"><i class="material-icons">show_chart</i>Tableau de bord</a></li>
     {% endif %}
 
     {% if is_granted('ROLE_CONSUMER') and not is_granted('ROLE_OWNER') and not is_granted('ROLE_ADMIN') %}

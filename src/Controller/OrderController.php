@@ -2,21 +2,15 @@
 
 namespace App\Controller;
 
-use App\Entity\Address;
-use App\Entity\Cart;
 use App\Entity\Order;
 use App\Entity\OrderMenu;
-use App\Entity\PaymentMethod;
 use App\Form\CheckoutFormType;
 use App\Utils\FlashMessage;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Persistence\ObjectManager;
 use Stripe\Charge;
 use Stripe\Stripe;
 use Stripe\Transfer;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -91,6 +85,10 @@ class OrderController extends AbstractController
 
             $om->persist($order);
             $om->persist($cart);
+            $om->flush();
+
+            // Need to re persist to save the orderNumber generated from persisted id
+            $om->persist($user);
             $om->flush();
 
 
@@ -172,5 +170,24 @@ class OrderController extends AbstractController
         }
 
         return $this->render('order/checkout.html.twig', ['payment' => $form->createView()]);
+    }
+
+
+    /**
+     * @Route("/owner/orders/{order}", name="owner_visit_order", requirements={"order"="\d+"})
+     * @param Order|null $order
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function visitOrder(Order $order = null)
+    {
+        if (!$this->isGranted('view', $order))
+        {
+            FlashMessage::message($this->get('session')->getFlashBag(), 'danger', 'Commande non trouvée');
+            return $this->redirectToRoute('owner_dashboard');
+        }
+
+        return $this->render('order/visit_order.html.twig', [
+            'order' => $order
+        ]);
     }
 }

@@ -52,6 +52,17 @@ class Restaurant
 
 
     /**
+     * @ORM\Column(name="published", type="boolean")
+     */
+    private $published;
+
+
+    /**
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     */
+    private $createdAt;
+
+    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="restaurants", cascade={"persist"})
      */
     private $categories;
@@ -125,6 +136,8 @@ class Restaurant
         $this->dislikes = new ArrayCollection();
         $this->categories = new ArrayCollection();
         $this->enabled = false;
+        $this->published = false;
+        $this->created_at = new \DateTime();
         $this->managers = new ArrayCollection();
         $this->orders = new ArrayCollection();
     }
@@ -447,6 +460,31 @@ class Restaurant
 
         return $this;
     }
+
+    public function getPublished(): ?bool
+    {
+        return $this->published;
+    }
+
+    public function setPublished(bool $published): self
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
 
 
 

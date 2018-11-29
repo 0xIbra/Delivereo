@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord | Delivereo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('restaurant.css') }}">
+    <link rel="stylesheet" href="{{ asset('profile.css') }}">
+{% endblock %}
+
+{% block alerts %}
+    {% include 'inc/errors/errors.html.twig' %}
+{% endblock %}
+
+{% block body %}
+    <div class="page-wrapper">
+        <div class="container-full">
+            <div class="row">
+                {#{{ dump(data.restaurantApplications) }}#}
+                <div class="col s12 m4 l2 no-padding">
+                    {% include 'admin/inc/sidebar.html.twig' %}
+                </div>
+                <div class="col s12 m8 l10">
+                    <div class="row">
+
+                        <div class="col s12">
+                            <div class="card">
+                                <div style="position: relative;" class="card-content">
+                                    <div class="row">
+                                        <div class="col s12 m6">
+                                            <h4 style="text-align: left" class="heading">Restaurants</h4>
+                                        </div>
+                                        <div class="col s12 m6">
+                                            {#<form>#}
+                                                <div style="position: absolute;top: 5px;right: 20px;" class="input-field">
+                                                    <input type="text" class="modernize" placeholder="Recherche...">
+                                                </div>
+                                            {#</form>#}
+                                        </div>
+                                    </div>
+                                    <table class="responsive-table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Restaurant</th>
+                                                <th>Ville</th>
+                                                <th>Partenaire</th>
+                                                <th>Date</th>
+                                                <th>Accepter</th>
+                                                <th>Refuser</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for restaurant in restaurants %}
+                                                <tr>
+                                                    <td><a href="{{ path('visit_restaurant', { restaurant: restaurant.id }) }}">#{{ restaurant.id }}.</a></td>
+                                                    <td><a href="{{ path('visit_restaurant', { restaurant: restaurant.id }) }}">{{ restaurant.name }}</a></td>
+                                                    <td>
+                                                        <a href="{{ path('visit_restaurant', { restaurant: restaurant.id }) }}">{{ restaurant.city.name }}</a></td>
+                                                    <td><a href="{{ path('visit_user', { user: restaurant.owner.id }) }}">{{ restaurant.owner.firstName }} {{ restaurant.owner.lastName }}</a></td>
+                                                    <td>{{ restaurant.createdAt|date('d/m/Y') }}</td>
+                                                    {% if not restaurant.enabled %}
+                                                        <td><a style="font-weight: bold;color: #00c292;" href="{{ path('accept_restaurant', {restaurant: restaurant.id}) }}"><i style="font-weight: bold" class="material-icons">check</i></a></td>
+                                                        <td><a style="color: #d9534f;" href="{{ path('refuse_restaurant', {restaurant: restaurant.id}) }}"><i style="font-weight: bold;" class="material-icons">close</i></a></td>
+                                                    {% endif %}
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col s8 m5 l2 offset-s2 offset-m4 offset-l5">
+                                            <a href="{{ path('admin_restaurants') }}?restaurants=all" class="modernize flex justify-center "><b>Voir tout</b></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}{% endblock %}

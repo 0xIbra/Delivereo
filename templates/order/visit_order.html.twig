@@ -1,0 +1,128 @@
+{% extends 'bundles/FOSUserBundle/layout.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}Commande N°{{ order.orderNumber }} | Delivereo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/restaurant.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+{% endblock %}
+
+{% block fos_user_content %}
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col s12 m5 l4">
+                    <div class="card" id="profileimage">
+                        <div class="card-content">
+                            <div class="image-wrapper">
+                                {% if order.consumer.image is null %}
+                                    {% if order.consumer.gender.id == 1 %}
+                                        <img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540289616/boss.png" alt="Default photo">
+                                    {% elseif order.consumer.gender.id == 2 %}
+                                        <img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540298272/croupier.png" alt="Default photo">
+                                    {% endif %}
+                                {% else %}
+                                    <img src="{{ order.consumer.image.url }}" alt="Photo de {{ order.consumer.firstname }} {{ order.consumer.lastName }}">
+                                {% endif %}
+                            </div>
+                            <div class="profile-cred">
+                                <span class="profile-title">{{ order.consumer.firstName }} {{ order.consumer.lastName }}</span>
+                                <div class="location flex align-center justify-center">
+                                    {% if order.consumer.hasRole('ROLE_ADMIN') %}
+                                        <span class="ville">Administrateur</span>
+                                    {% elseif order.consumer.hasRole('OWNER') %}
+                                        <span class="ville">Partenaire</span>
+                                    {% elseif order.consumer.hasRole('ROLE_CONSUMER') %}
+                                        <span class="ville">Consommateur</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" id="profileinfo">
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="col s12">
+                                    <span class="subheader">Informations</span>
+                                    <div class="info">
+                                        <span class="material-icons">account_circle</span>
+                                        <span class="value">{{ order.consumer.username }}</span>
+                                    </div>
+                                    <div class="info">
+                                        <span class="material-icons">mail</span>
+                                        <span><a href="mailto:{{ order.consumer.email }}">{{ order.consumer.email }}</a></span>
+                                    </div>
+                                    <div class="info">
+                                        <span class="material-icons">wc</span>
+                                        <span class="value">{{ order.consumer.gender.name }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m7 l8">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="col s12">
+                                    {% block alerts %}
+                                        {% include 'inc/errors/errors.html.twig' %}
+                                    {% endblock %}
+                                    <div class="flex align-center">
+                                        <div class="row-header">Commande N°{{ order.orderNumber }}</div>
+                                    </div>
+                                    <h6 style="text-align: left;color: #999999;">Paiement via {{ order.paymentMethod.name }}  - Prix total: <b>{{ order.totalPrice|number_format(2, '.') }} EUR</b></h6>
+                                </div>
+                                <div class="col s12">
+                                    <div class="flex align-center">
+                                        <div class="row-header">Menus</div>
+                                    </div>
+                                    {% for item in order.items %}
+                                        <div class="col s12 m6 l4 no-padding">
+                                            <div class="card basic modernize">
+                                                <a class="menu-card">
+                                                    <div class="card-content">
+                                                        <span class="card-title">{{ item.menu.name }}</span>
+                                                        <p>{{ item.menu.description }}</p>
+                                                        <div class="price">{{ item.menu.price|number_format(2, '.') }} EUR</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="col s12">
+                                    <div class="flex align-center">
+                                        <div class="row-header">Adresse de livraison</div>
+                                    </div>
+                                    <div class="col s12 m6 l4 no-padding">
+                                        <div class="card basic modernize">
+                                            <a class="menu-card">
+                                                <div class="card-content">
+                                                    <span class="card-title">{{ order.deliveryAddress.name }}</span>
+                                                    <p>{{ order.deliveryAddress.line1 }}</p>
+                                                    {% if order.deliveryAddress.line2 is not null %}
+                                                        <p>{{ order.deliveryAddress.line2 }}</p>
+                                                    {% endif %}
+                                                    <div class="price">{{ order.deliveryAddress.city }}</div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

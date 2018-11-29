@@ -19,6 +19,51 @@ class RestaurantRepository extends ServiceEntityRepository
         parent::__construct($registry, Restaurant::class);
     }
 
+    public function countRestaurants()
+    {
+        $qb = $this->createQueryBuilder('r');
+        $qb->select('COUNT(r)')
+            ->where('r.published = true')
+            ->andWhere('r.enabled = true');
+        return $qb->getQuery()->getSingleResult();
+    }
+
+    public function getApplications($limit = null)
+    {
+        $qb = $this->createQueryBuilder('r');
+        $qb->where('r.enabled = false')
+            ->andWhere('r.published = false')
+            ->orderBy('r.createdAt', 'DESC');
+        if ($limit !== null && is_int(intval($limit)))
+        {
+            $qb->setMaxResults($limit);
+        }
+        return $qb->getQuery()->getResult();
+    }
+
+
+    public function findByDateRange(\DateTime $dateTime)
+    {
+        $now = new \DateTime();
+        $qb = $this->createQueryBuilder('r');
+        $qb->where('r.createdAt BETWEEN :date AND :now')
+            ->setParameter('date', $dateTime)
+            ->setParameter('now', $now)
+            ->orderBy('r.createdAt', 'DESC');
+        return $qb->getQuery()->getResult();
+    }
+
+
+    public function countByDate(\DateTime $dateTime)
+    {
+        $qb = $this->createQueryBuilder('r');
+        $qb->select('COUNT(r)')
+            ->where('r.createdAt LIKE :date')
+            ->setParameter('date', '%'. $dateTime->format('Y-m-d') .'%');
+        return $qb->getQuery()->getOneOrNullResult();
+    }
+
+
 //    /**
 //     * @return Restaurant[] Returns an array of Restaurant objects
 //     */

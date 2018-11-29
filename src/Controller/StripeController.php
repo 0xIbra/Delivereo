@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Restaurant;
 use App\Entity\StripeClient;
 use App\Utils\FlashMessage;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -25,6 +26,15 @@ class StripeController extends AbstractController
     public function stripeAuth(Request $request, ObjectManager $om, FlashBagInterface $flashBag)
     {
         $user = $this->getUser();
+        $restaurant = $user->getRestaurant();
+
+        if (!$request->query->has('code'))
+        {
+            FlashMessage::message($flashBag, 'danger', 'Code stripe non trouvé');
+            return $this->redirectToRoute('restaurant_info', ['restaurant' => $restaurant->getId()]);
+        }
+
+
         $authorizationCode = $request->query->get('code');
 
         $ch = curl_init();
@@ -36,7 +46,6 @@ class StripeController extends AbstractController
         $response = curl_exec($ch);
         $response = json_decode($response, JSON_UNESCAPED_UNICODE);
 
-        $restaurant = $user->getRestaurant();
 
         if (isset($response['error'])){
             FlashMessage::message($flashBag, 'danger', 'Erreur est survenue lors de la configuration de Stripe, veuillez réessayer plus tard');
@@ -49,6 +58,8 @@ class StripeController extends AbstractController
         $stripeClient->setStripePublishableKey($response['stripe_publishable_key']);
 
         $restaurant->setStripeClient($stripeClient);
+
+        $restaurant->setPublished(true);
 
         $om->persist($restaurant);
         $om->flush();

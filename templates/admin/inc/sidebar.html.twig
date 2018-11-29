@@ -15,8 +15,10 @@
             <div class="user-info">{{ app.user.firstName }} {{ app.user.lastName }}</div>
         </a>
     </li>
-    <li><a href="{{ path('owner_dashboard') }}" class="waves-effect"><i class="material-icons">show_chart</i>Tableau de bord</a></li>
-    <li><a href="{{ path('owner_dashboard') }}" class="waves-effect"><i class="material-icons">dashboard</i>Commandes</a></li>
+    <li><a href="{{ path('admin_dashboard') }}" class="waves-effect"><i class="material-icons">show_chart</i>Tableau de bord</a></li>
+    <li><a href="{{ path('admin_restaurants') }}" class="waves-effect"><i class="material-icons">business</i>Restaurants</a></li>
+    <li><a href="{{ path('admin_orders') }}" class="waves-effect"><i class="material-icons">dashboard</i>Commandes</a></li>
+    <li><a href="{{ path('admin_users') }}" class="waves-effect"><i class="material-icons">people</i>Utilisateurs</a></li>
 
 </div>
 
@@ -43,8 +45,10 @@
     </li>
 
     <li><a class="subheader">Admin</a></li>
-    <li><a href="{{ path('owner_dashboard') }}" class="waves-effect"><i class="material-icons">show_chart</i>Tableau de bord</a></li>
-    <li><a href="{{ path('owner_dashboard') }}" class="waves-effect"><i class="material-icons">dashboard</i>Commandes</a></li>
+    <li><a href="{{ path('admin_dashboard') }}" class="waves-effect"><i class="material-icons">show_chart</i>Tableau de bord</a></li>
+    <li><a href="{{ path('admin_restaurants') }}" class="waves-effect"><i class="material-icons">business</i>Restaurants</a></li>
+    <li><a href="{{ path('admin_orders') }}" class="waves-effect"><i class="material-icons">dashboard</i>Commandes</a></li>
+    <li><a href="{{ path('admin_users') }}" class="waves-effect"><i class="material-icons">people</i>Utilisateurs</a></li>
 </ul>
 
 <div class="sidebar-btn-container">

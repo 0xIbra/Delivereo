@@ -94,20 +94,39 @@
                     </div>
                 </div>
                 <div class="col s12 m7 l8">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="row">
-                                <div class="col s12">
-                                    {% block alerts %}
-                                        {% include 'inc/errors/errors.html.twig' %}
-                                    {% endblock %}
-                                    <div class="flex align-center">
-                                        <div class="row-header">Commandes</div>
+                    {% if is_granted('ROLE_CONSUMER') %}
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="col s12">
+                                        {% block alerts %}
+                                            {% include 'inc/errors/errors.html.twig' %}
+                                        {% endblock %}
+                                        <div class="flex align-center">
+                                            <div class="row-header">Commandes</div>
+                                        </div>
                                     </div>
+                                    {% if app.user.orders is empty %}
+                                        <h6 style="margin: 0 !important;text-align: center;color: #999999;">Aucune commande</h6>
+                                    {% else %}
+                                        {% for order in app.user.orders %}
+                                            <div class="col s12 m6 l4">
+                                                <div class="card basic modernize">
+                                                    <a class="modal-trigger address" data-id="{{ order.id }}" data-title="">
+                                                        <div class="card-content">
+                                                            <span class="card-title">#{{ order.orderNumber|slice(0, 15) }}...</span>
+                                                            <span class="address">{{ order.orderedAt|date('H\\hi d/m/Y') }}</span>
+                                                            <span class="address">{{ order.totalPrice|number_format(2, '.') }} EUR</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    {% endif %}
 
                     <div class="card">
                         <div class="card-content">
@@ -120,21 +139,25 @@
                                         </a>
                                     </div>
                                 </div>
-                                {% for address in app.user.addresses %}
-                                    <div class="col s12 m6 l4">
-                                        <div class="card basic modernize">
-                                            <a href="#addressmodal" class="modal-trigger address" data-id="{{ address.id }}" data-title="{{ address.name }}"
-                                               data-line1="{{ address.line1 }}" data-city="{{ address.city.name }}, {{ address.city.zipCode }}"
-                                                    {% if address.line2 is not null %}data-line2="{{ address.line2 }}"{% endif %}>
-                                                <div class="card-content">
-                                                    <span class="card-title">{{ address.name }}</span>
-                                                    <span class="address">{{ address.line1 }}</span>
-                                                    <span class="address">{{ address.city.name }}, {{ address.city.zipCode }}</span>
-                                                </div>
-                                            </a>
+                                {% if app.user.addresses is empty %}
+                                    <h6 style="margin: 0 !important;text-align: center;color: #999999;">Aucune adresse</h6>
+                                {% else %}
+                                    {% for address in app.user.addresses %}
+                                        <div class="col s12 m6 l4">
+                                            <div class="card basic modernize">
+                                                <a href="#addressmodal" class="modal-trigger address" data-id="{{ address.id }}" data-title="{{ address.name }}"
+                                                   data-line1="{{ address.line1 }}" data-city="{{ address.city.name }}, {{ address.city.zipCode }}"
+                                                   {% if address.line2 is not null %}data-line2="{{ address.line2 }}"{% endif %}>
+                                                    <div class="card-content">
+                                                        <span class="card-title">{{ address.name }}</span>
+                                                        <span class="address">{{ address.line1 }}</span>
+                                                        <span class="address">{{ address.city.name }}, {{ address.city.zipCode }}</span>
+                                                    </div>
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
-                                {% endfor %}
+                                    {% endfor %}
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -149,17 +172,21 @@
                                                 <div class="row-header">Restaurant</div>
                                             </div>
                                         </div>
-                                        <div class="col s12 m6 l4">
-                                            <div class="card basic modernize">
-                                                <a href="{{ path('restaurant_info', { 'restaurant': app.user.restaurant.id }) }}">
-                                                    <div class="card-content">
-                                                        <span class="card-title">{{ app.user.restaurant.name }}</span>
-                                                        <span class="address">{{ app.user.restaurant.address.line1 }}</span>
-                                                        <span class="address">{{ app.user.restaurant.address.city.name }}, {{ app.user.restaurant.address.city.zipCode }}</span>
-                                                    </div>
-                                                </a>
+                                        {% if app.user.restaurant is null %}
+                                            <h6 style="margin: 0 !important;text-align: center;color: #999999;">Aucune Restaurant</h6>
+                                        {% else %}
+                                            <div class="col s12 m6 l4">
+                                                <div class="card basic modernize">
+                                                    <a href="{{ path('restaurant_info', { 'restaurant': app.user.restaurant.id }) }}">
+                                                        <div class="card-content">
+                                                            <span class="card-title">{{ app.user.restaurant.name }}</span>
+                                                            <span class="address">{{ app.user.restaurant.address.line1 }}</span>
+                                                            <span class="address">{{ app.user.restaurant.address.city.name }}, {{ app.user.restaurant.address.city.zipCode }}</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
                                             </div>
-                                        </div>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -170,6 +197,23 @@
             </div>
         </div>
 
+        {% if app.user.orders is not empty %}
+            <div class="modal" id="orderModal">
+                <div class="modal-content">
+                    <h4 class="modal-title">Titre</h4>
+                    <br>
+                    <div class="divider"></div>
+                    <br>
+                    <span id="address" class="address">Adresse</span>
+                    <span class="address" id="line2">Complementaire</span>
+                    <span class="address" id="city">Ville</span>
+                </div>
+                <div class="modal-footer">
+                    <a href="" class="waves-effect btn-flat red" id="deletebtn">Supprimer</a>
+                    <a href="#" class="waves-effect btn-flat" id="editbtn">Modifier</a>
+                </div>
+            </div>
+        {% endif %}
 
         <div class="modal" id="addressmodal">
             <div class="modal-content">

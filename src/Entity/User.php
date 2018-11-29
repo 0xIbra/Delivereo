@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Class User
  * @package App\Entity
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="user")
  * @Serializer\ExclusionPolicy("all")
  */
@@ -99,7 +99,7 @@ class User extends BaseUser
 
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Restaurant", inversedBy="owner", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Restaurant", inversedBy="owner", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $restaurant;
@@ -130,6 +130,12 @@ class User extends BaseUser
      */
     private $comments;
 
+
+    /**
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     */
+    private $createdAt;
+
     public function __construct()
     {
         parent::__construct();
@@ -140,7 +146,8 @@ class User extends BaseUser
         $this->socialLinks = new ArrayCollection();
         $this->likes = new ArrayCollection();
         $this->dislikes = new ArrayCollection();
-//        $this->cart = new Cart();
+        $this->createdAt = new \DateTime();
+        $this->cart = new Cart();
     }
 
     /**
@@ -415,6 +422,18 @@ class User extends BaseUser
     public function setManagedRestaurant(?Restaurant $managedRestaurant): self
     {
         $this->managedRestaurant = $managedRestaurant;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

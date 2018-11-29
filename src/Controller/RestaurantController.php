@@ -32,7 +32,7 @@ class RestaurantController extends AbstractController
      * @param Restaurant $restaurant
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function restaurant(Restaurant $restaurant)
+    public function restaurant(Restaurant $restaurant, ObjectManager $om)
     {
         if (!$this->isGranted('view', $restaurant))
         {
@@ -73,7 +73,7 @@ class RestaurantController extends AbstractController
      */
     public function findRestaurantsByCity(City $city, ObjectManager $om)
     {
-        $restaurants = $om->getRepository(Restaurant::class)->findBy(['city' => $city, 'enabled' => true]);
+        $restaurants = $om->getRepository(Restaurant::class)->findBy(['city' => $city, 'enabled' => true, 'published' => true]);
         return $this->render('restaurant/search.html.twig', [
             'restaurants' => $restaurants,
             'city' => $city

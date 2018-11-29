@@ -4,7 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: 'en'
+    locale: 'fr'
 
 services:
     # default configuration for services in *this* file
@@ -47,6 +47,16 @@ services:
 
     app.security.voter.view_cart:
         class: App\Security\Voter\CartVoter
+        tags:
+            - { name: security.voter }
+
+    app.security.voter.view_order:
+        class: App\Security\Voter\OrderVoter
+        tags:
+            - { name: security.voter }
+
+    app.security.voter.view_user:
+        class: App\Security\Voter\UserVoter
         tags:
             - { name: security.voter }
 
