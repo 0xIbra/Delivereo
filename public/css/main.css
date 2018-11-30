@@ -631,6 +631,41 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
  */
 /**
 ================================================
+================ WEATHER CARD ==================
+================================================
+ */
+.card.weather-card .card-content {
+  padding: 10px 11px; }
+  .card.weather-card .card-content .card-title {
+    padding-bottom: 10px; }
+  .card.weather-card .card-content .weather-icon-container {
+    background: #eceff1;
+    padding: 20px 5px; }
+    .card.weather-card .card-content .weather-icon-container .icon {
+      font-size: 50pt;
+      color: #444444; }
+  .card.weather-card .card-content .weather-info {
+    position: relative; }
+    .card.weather-card .card-content .weather-info .weather {
+      font-size: 18pt; }
+    .card.weather-card .card-content .weather-info .sub-weather {
+      font-size: 16px;
+      color: #777; }
+  .card.weather-card .card-content .weather-city .city-container .city {
+    font-size: 18pt; }
+  .card.weather-card .card-content .weather-city .city-container .country {
+    font-size: 16px;
+    color: #777777; }
+  .card.weather-card .card-content .weather-city .temperature-container .temp {
+    font-size: 18pt; }
+
+/**
+================================================
+================ WEATHER CARD ==================
+================================================
+ */
+/**
+================================================
 ================= MEDIA QUERIES ===================
 ================================================
  */

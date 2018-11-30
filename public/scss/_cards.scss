@@ -17,6 +17,7 @@
 
   .card-content{
 
+
     .heading{
       text-align: center;
       font-size: 18pt;
@@ -497,6 +498,80 @@
 ================ STRIPE CARD ===================
 ================================================
  */
+
+
+
+/**
+================================================
+================ WEATHER CARD ==================
+================================================
+ */
+
+
+.card.weather-card{
+
+  .card-content{
+    padding: 10px 11px;
+
+    .card-title{
+      padding-bottom: 10px;
+    }
+
+    .weather-icon-container{
+      background: #eceff1;
+      padding: 20px 5px;
+
+      .icon{
+        font-size: 50pt;
+        color: $dark;
+      }
+    }
+
+    .weather-info{
+      position: relative;
+
+      .weather{
+        font-size: 18pt;
+      }
+
+      .sub-weather{
+        font-size: 16px;
+        color: #777;
+      }
+    }
+
+    .weather-city{
+
+      .city-container{
+
+        .city{
+          font-size: 18pt;
+        }
+
+        .country{
+          font-size: 16px;
+          color: #777777;
+        }
+      }
+
+      .temperature-container{
+
+        .temp{
+          font-size: 18pt;
+        }
+      }
+    }
+
+  }
+}
+
+
+/**
+================================================
+================ WEATHER CARD ==================
+================================================
+ */
+
 
 
 

@@ -98,6 +98,9 @@ class OwnerController extends AbstractController
 
     /**
      * @Route("/owner/dashboard", name="owner_dashboard")
+     * @param ObjectManager $om
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
      */
     public function dashboard(ObjectManager $om)
     {
@@ -123,6 +126,63 @@ class OwnerController extends AbstractController
             $revenue += $order->getTotalPrice();
         }
 
+        $today = new DateTime();
+
+        $weatherData['icons'] = [
+            '01d' => 'wi-day-sunny',
+            '02d' => 'wi-day-cloudy',
+            '03d' => 'wi-cloud',
+            '04d' => 'wi-cloudy',
+            '09d' => 'wi-showers',
+            '10d' => 'wi-rain',
+            '11d' => 'wi-thunderstorm',
+            '13d' => 'wi-snow',
+            '50d' => 'wi-fog',
+            '01n' => 'wi-day-sunny',
+            '02n' => 'wi-day-cloudy',
+            '03n' => 'wi-cloud',
+            '04n' => 'wi-cloudy',
+            '09n' => 'wi-showers',
+            '10n' => 'wi-rain',
+            '11n' => 'wi-thunderstorm',
+            '13n' => 'wi-snow',
+            '50n' => 'wi-fog'
+        ];
+
+        $weatherData['days'] = [
+            "Mon" => 'Lun',
+            'Tue' => 'Mar',
+            'Wed' => 'Mer',
+            'Thu' => 'Jeu',
+            'Fri' => 'Ven',
+            'Sat' => 'Sam',
+            'Sun' => 'Dim'
+        ];
+
+        $weatherData['months'] = [
+            1 => 'Janv',
+            2 => 'Févr',
+            3 => 'Mars',
+            4 => 'Avr',
+            5 => 'Mai',
+            6 => 'Juin',
+            7 => 'Juill',
+            8 => 'Août',
+            9 => 'Sept',
+            10 => 'Oct',
+            11 => 'Nov',
+            12 => 'Déc'
+        ];
+
+        $req = curl_init();
+        curl_setopt($req, CURLOPT_URL, "https://api.openweathermap.org/data/2.5/weather?zip=". $restaurant->getCity()->getZipCode() .",fr&lang=fr&units=metric&APPID=". getenv('OPENWEATHERMAP_API_KEY'));
+        curl_setopt($req, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+        curl_setopt($req, CURLOPT_RETURNTRANSFER, 1);
+
+        $response = curl_exec($req);
+        $weatherData['weather'] = json_decode($response, JSON_UNESCAPED_UNICODE);
+
+
 //        return $this->render('dump.html.twig', ['dump' => $recentOrders]);
         return $this->render('owner/dashboard.html.twig', [
             'data' => [
@@ -131,7 +191,9 @@ class OwnerController extends AbstractController
                 'clients' => $clients->count(),
             ],
             'restaurant' => $restaurant,
-            'recentOrders' => $recentOrders
+            'recentOrders' => $recentOrders,
+            'weatherData' => $weatherData,
+            'today' => $today
         ]);
     }
 
@@ -196,6 +258,21 @@ class OwnerController extends AbstractController
             'status' => true,
             'data' => $chartData
         ], 200, $serializer);
+    }
+
+
+    /**
+     * @Route("/owner/dashboard/orders", name="owner_orders")
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function orders()
+    {
+        $restaurant = $this->getUser()->getRestaurant();
+
+        return $this->render('owner/orders.html.twig', [
+            'orders' => $restaurant->getOrders()
+        ]);
     }
 
 }
