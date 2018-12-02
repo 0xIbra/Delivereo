@@ -1,3 +1,5 @@
+@import "globals";
+
 .credit-card-form{
   //display: none;
   margin-top: 20px ;
@@ -23,6 +25,36 @@
 
   img{
     margin-left: 3px;
+  }
+}
+
+
+@media (max-width: $small){
+
+  .row .col{
+    padding: 0 5px !important;
+  }
+
+  .container-fluid{
+    width: 100% !important;
+  }
+
+  .card{
+
+    .card-content{
+      padding: 5px 10px !important;
+    }
+  }
+  .credit-card-form{
+    margin-bottom: 20px !important;
+  }
+
+  .input-field.submit-wrapper{
+    margin-bottom: 15px !important;
+  }
+
+  .row-header{
+    font-size: 12pt !important;
   }
 }
 

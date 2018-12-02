@@ -112,7 +112,7 @@
                                         {% for order in app.user.orders %}
                                             <div class="col s12 m6 l4">
                                                 <div class="card basic modernize">
-                                                    <a class="modal-trigger address" data-id="{{ order.id }}" data-title="">
+                                                    <a href="{{ path('visit_order', { order: order.id }) }}" class="address">
                                                         <div class="card-content">
                                                             <span class="card-title">#{{ order.orderNumber|slice(0, 15) }}...</span>
                                                             <span class="address">{{ order.orderedAt|date('H\\hi d/m/Y') }}</span>

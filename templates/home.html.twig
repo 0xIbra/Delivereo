@@ -4,17 +4,26 @@
     {% include 'inc/home_navbar.html.twig' %}
 {% endblock %}
 
+{% block alerts %}
+    {% include 'inc/errors/errors.html.twig' %}
+{% endblock %}
+
 {% block body %}
     <section class="showcase bg showcase-bg">
         <div class="overlay"></div>
         <div class="container-fluid">
-            <div class="showcase-content">
+            <div class="showcase-content" style="position: relative;">
                 <h2 class="slogan">Je clique, je commande</h2>
                 <h4 class="sub-slogan">Commandez vos plats préférés chez les restaurants dans votre ville</h4>
-                {{ form_start(form) }}
-                    <div class="input-field flex">
-                        {{ form_widget(form.search, { 'attr': { 'class': 'modernize', 'placeholder': 'Entrer votre code postal' } }) }}
+                {{ form_start(form, { attr: { style: 'position: relative;' } }) }}
+                    <div class="input-field flex search-container">
+                        {{ form_widget(form.search, { 'attr': { 'class': 'modernize search-field', 'placeholder': 'Entrer votre code postal', 'maxlength': 5 } }) }}
                         {{ form_widget(form.Trouver, { 'attr': { 'class': 'modernize' } }) }}
+                    </div>
+                    <div class="searchResults">
+                        <ul class="results">
+
+                        </ul>
                     </div>
                 {{ form_end(form) }}
             </div>
@@ -122,7 +131,7 @@
                                         <div class="card-image">
                                             <i class="material-icons large">apps</i>
                                         </div>
-                                        <p>Ajoutez vos plats pour que les clients les voient</p>
+                                        <p>Ajoutez vos plats</p>
                                     </div>
                                 </div>
                             </div>
@@ -133,7 +142,7 @@
                                         <div class="card-image">
                                             <i class="material-icons large">add_alert</i>
                                         </div>
-                                        <p>Quand une commande est effectuée, c'est à vous de le faire liver au client</p>
+                                        <p>Quand une commande est effectuée, c'est à vous de la faire livrer au client</p>
                                     </div>
                                 </div>
                             </div>
@@ -173,59 +182,6 @@
                             </div>
                         </div>
                     {% endfor %}
-
-                    {#<div class="col s12 m6 l3">#}
-                        {#<div class="modern-card">#}
-                            {#<a href="void:javascript;" class="waves-effect linkify">#}
-                                {#<div class="modern-card-image">#}
-                                    {#<div class="modern-overlay"></div>#}
-                                    {#<img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1537554627/Delivereo/Assets/burger.jpg" alt="" class="modern-image">#}
-                                {#</div>#}
-                                {#<div class="modern-card-body">#}
-                                    {#<span>Burger</span>#}
-                                {#</div>#}
-                            {#</a>#}
-                        {#</div>#}
-                    {#</div>#}
-                    {#<div class="col s12 m6 l3">#}
-                        {#<div class="modern-card">#}
-                            {#<a href="void:javascript;" class="waves-effect linkify">#}
-                                {#<div class="modern-card-image">#}
-                                    {#<div class="modern-overlay"></div>#}
-                                    {#<img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1537554627/Delivereo/Assets/fastfood.jpg" alt="" class="modern-image">#}
-                                {#</div>#}
-                                {#<div class="modern-card-body">#}
-                                    {#<span>FastFood</span>#}
-                                {#</div>#}
-                            {#</a>#}
-                        {#</div>#}
-                    {#</div>#}
-                    {#<div class="col s12 m6 l3">#}
-                        {#<div class="modern-card">#}
-                            {#<a href="void:javascript;" class="waves-effect linkify">#}
-                                {#<div class="modern-card-image">#}
-                                    {#<div class="modern-overlay"></div>#}
-                                    {#<img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1537554631/Delivereo/Assets/pizza.jpg" alt="" class="modern-image">#}
-                                {#</div>#}
-                                {#<div class="modern-card-body">#}
-                                    {#<span>Pizza</span>#}
-                                {#</div>#}
-                            {#</a>#}
-                        {#</div>#}
-                    {#</div>#}
-                    {#<div class="col s12 m6 l3">#}
-                        {#<div class="modern-card">#}
-                            {#<a href="void:javascript;" class="waves-effect linkify">#}
-                                {#<div class="modern-card-image">#}
-                                    {#<div class="modern-overlay"></div>#}
-                                    {#<img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1537554627/Delivereo/Assets/desserts.jpg" alt="" class="modern-image">#}
-                                {#</div>#}
-                                {#<div class="modern-card-body">#}
-                                    {#<span>Desserts</span>#}
-                                {#</div>#}
-                            {#</a>#}
-                        {#</div>#}
-                    {#</div>#}
                 </div>
                 <div class="row">
                     <div class="col s12">
@@ -260,4 +216,40 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function (){
+            $('.search-field').on('keyup', function (){
+                $('.searchResults .results').empty();
+                if ($(this).val().length > 3)
+                {
+                    $.ajax({
+                        type: 'GET',
+                        url: '/city?zipCode='+ $(this).val(),
+                        success: function (response){
+                            console.log(response.data.data);
+                            $('.searchResults .results').empty();
+
+                            response.data.data.forEach(function (city, index) {
+                                var item = '<li class="result"><a href="/restaurants/'+ city.id +'" class="flex"><span class="material-icons">location_on</span><span class="value">'+ city.name +', '+ city.zip_code +'</span></a></li>';
+                                $('.searchResults .results').append(item);
+                            });
+                            $('.searchResults').addClass('active');
+                        }
+                    });
+                }
+            });
+
+            $('.search-field, .searchResults').on('focusout', function (){
+                setTimeout(function (){
+                    $('.searchResults').removeClass('active');
+                    $('.searchResults .results').empty();
+                    $(this).val('');
+                }, 4000);
+            });
+        });
+    </script>
 {% endblock %}

@@ -5,7 +5,7 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/restaurant.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
+    {#<link rel="stylesheet" href="{{ asset('css/cart.css') }}">#}
     <link rel="stylesheet" href="{{ asset('css/checkout.css') }}">
 {% endblock %}
 
@@ -72,7 +72,6 @@
                                         </div>
                                     </div>
                                 {% endfor %}
-                                {#<form>LALALALALA#}
                             </div>
                         </div>
                     </div>
@@ -116,12 +115,11 @@
                                 <img src="{{ asset('img/creditcard/visa.svg') }}" width="30" alt="Visa">
                                 <img src="{{ asset('img/creditcard/mastercard.svg') }}" width="30" alt="MasterCard">
                                 <img src="{{ asset('img/creditcard/amex.svg') }}" width="30" alt="American Express">
-                                <img src="{{ asset('img/creditcard/discover.svg') }}" width="30" alt="Discover">
                             </div>
 
                             <div class="credit-card-form">
                                 <span style="font-size: 11pt;color: #888888;font-weight: 500">Utilisez <b>4000 0000 0000 0077</b> si vous voulez commander</span>
-                                <div class="pad-10">
+                                <div style="padding: 10px 0 !important;">
                                     <div id="card-element">
                                     </div>
                                 </div>
@@ -141,6 +139,8 @@
         </div>
     </div>
 {% endblock %}
+
+{% block footer %}{% endblock %}
 
 {% block javascripts %}
     {{ parent() }}

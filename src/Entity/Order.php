@@ -26,6 +26,7 @@ class Order
      */
     private $orderNumber;
 
+
     /**
      * @ORM\Column(name="ordered_at", type="datetime")
      */
@@ -66,25 +67,12 @@ class Order
     private $items;
 
 
-    /**
-     * @ORM\Column(name="order_fulfilled", type="boolean", nullable=false)
-     */
-    private $orderFulfilled;
-
     public function __construct()
     {
         $this->restaurants = new ArrayCollection();
         $this->items = new ArrayCollection();
         $this->orderedAt = new \DateTime();
-        $this->orderFulfilled = false;
-    }
-
-    /**
-     * @ORM\PostPersist()
-     */
-    public function initOrderNumber()
-    {
-        $this->orderNumber = md5($this->id);
+        $this->orderNumber = uniqid();
     }
 
 
@@ -220,18 +208,6 @@ class Order
     public function setOrderNumber(string $orderNumber): self
     {
         $this->orderNumber = $orderNumber;
-
-        return $this;
-    }
-
-    public function getOrderFulfilled(): ?bool
-    {
-        return $this->orderFulfilled;
-    }
-
-    public function setOrderFulfilled(bool $orderFulfilled): self
-    {
-        $this->orderFulfilled = $orderFulfilled;
 
         return $this;
     }

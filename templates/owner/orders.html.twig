@@ -26,50 +26,46 @@
                         <div class="col s12">
                             <div class="card">
                                 <div style="position: relative;" class="card-content">
-                                    <div class="row">
-                                        <div class="col s12 m6">
-                                            <h4 style="text-align: left" class="heading">Commandes</h4>
-                                        </div>
-                                        <div class="col s12 m6">
-                                            <form>
-                                            <div style="position: absolute;top: 5px;right: 20px;" class="input-field">
-                                                <input type="text" class="modernize" placeholder="N°Commande">
+                                    {% if orders is empty %}
+                                        <h6 style="text-align: center;color: #999999;">Aucune commande</h6>
+                                    {% else %}
+                                        <div class="row">
+                                            <div class="col s12 m6">
+                                                <h4 style="text-align: left" class="heading">Commandes</h4>
                                             </div>
-                                            </form>
+                                            <div class="col s12 m6 hide-on-small-and-down">
+                                                <form>
+                                                    <div style="position: absolute;top: 5px;right: 20px;" class="input-field">
+                                                        <input type="text" class="modernize" placeholder="N°Commande">
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <table>
-                                        <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Consommateur</th>
-                                            <th>Commandée le</th>
-                                            <th>Statut</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        {% for order in orders %}
+                                        <table>
+                                            <thead>
                                             <tr>
-                                                <td><a href="#">#{{ order.orderNumber }}</a></td>
-                                                <td><a href="{{ path('visit_user', { user: order.consumer.id }) }}">{{ order.consumer.firstName }} {{ order.consumer.lastName }}</a></td>
-                                                <td><a href="#">{{ order.orderedAt|date('d/m/Y') }}</a></td>
-                                                <td>
-                                                    {% if order.orderFulfilled %}
-                                                        <a style="font-weight: bold;color: #5cb85c;">Livré</a>
-                                                    {% else %}
-                                                        <a style="font-weight: bold;color: #d9534f;">Non livré</a>
-                                                    {% endif %}
-                                                </td>
+                                                <th>#</th>
+                                                <th>Consommateur</th>
+                                                <th>Commandée le</th>
                                             </tr>
-                                        {% endfor %}
-                                        </tbody>
-                                    </table>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col s8 m5 l2 offset-s2 offset-m4 offset-l5">
-                                            <a href="{{ path('admin_users') }}?users=all" class="modernize flex justify-center "><b>Voir tout</b></a>
+                                            </thead>
+                                            <tbody>
+                                            {% for order in orders %}
+                                                <tr>
+                                                    <td><a href="#">#{{ order.orderNumber }}</a></td>
+                                                    <td><a href="{{ path('visit_user', { user: order.consumer.id }) }}">{{ order.consumer.firstName }} {{ order.consumer.lastName }}</a></td>
+                                                    <td><a href="#">{{ order.orderedAt|date('d/m/Y') }}</a></td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col s8 m5 l2 offset-s2 offset-m4 offset-l5">
+                                                <a href="{{ path('admin_users') }}?users=all" class="modernize flex justify-center "><b>Voir tout</b></a>
+                                            </div>
                                         </div>
-                                    </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

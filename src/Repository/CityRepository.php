@@ -20,6 +20,17 @@ class CityRepository extends ServiceEntityRepository
         parent::__construct($registry, City::class);
     }
 
+
+    public function searchByZipCode($zip)
+    {
+        $qb = $this->createQueryBuilder('c');
+        $qb->where('c.zipCode LIKE :zip')
+            ->setParameter('zip', $zip . '%')
+            ->setMaxResults(5);
+        return $qb->getQuery()->getResult();
+    }
+
+
     public function findByName($search)
     {
         $qb = $this->createQueryBuilder('c');

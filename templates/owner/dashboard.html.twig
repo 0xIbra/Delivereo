@@ -17,10 +17,10 @@
     <div class="page-wrapper">
         <div class="container-full">
             <div class="row">
-                <div class="col s12 m4 l2 no-padding">
+                <div class="col s12 l2 no-padding">
                     {% include 'owner/inc/sidebar.html.twig' %}
                 </div>
-                <div class="col s12 m8 l10">
+                <div class="col s12 l10">
                     <div class="row">
                         <div class="col s12 m6 l3">
                             <div class="card stats-mini-card">
@@ -101,9 +101,9 @@
                                             <tbody>
                                             {% for order in recentOrders %}
                                                 <tr>
-                                                    <td><a href="{{ path('owner_visit_order', {'order': order.id}) }}">#{{ order.orderNumber|slice(18) }}...</a></td>
+                                                    <td><a href="{{ path('visit_order', {'order': order.id}) }}">#{{ order.orderNumber|slice(18) }}...</a></td>
                                                     <td><a>{{ order.consumer.firstName }} {{ order.consumer.lastName }}</a></td>
-                                                    <td><a href="{{ path('owner_visit_order', {'order': order.id}) }}">{{ order.totalPrice|number_format(2, '.') }} EUR</a></td>
+                                                    <td><a href="{{ path('visit_order', {'order': order.id}) }}">{{ order.totalPrice|number_format(2, '.') }} EUR</a></td>
                                                 </tr>
                                             {% endfor %}
                                             </tbody>

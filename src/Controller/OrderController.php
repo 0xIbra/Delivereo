@@ -29,9 +29,11 @@ class OrderController extends AbstractController
     /**
      * @Route("/user/checkout", name="checkout_page")
      * @param Request $request
+     * @param ObjectManager $om
+     * @param \Swift_Mailer $mailer
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function checkout(Request $request, ObjectManager $om)
+    public function checkout(Request $request, ObjectManager $om, \Swift_Mailer $mailer)
     {
         if (!$this->isGranted('checkout', $this->getUser()->getCart()))
         {
@@ -87,21 +89,17 @@ class OrderController extends AbstractController
             $om->persist($cart);
             $om->flush();
 
-            // Need to re persist to save the orderNumber generated from persisted id
-            $om->persist($user);
-            $om->flush();
+
+            $message = (new \Swift_Message('Commande ' . $order->getOrderNumber()))
+                ->setFrom('delivereo.team@gmail.com')
+                ->setTo($user->getEmail())
+                ->setBody($this->renderView('order/email/confirmed.html.twig', [
+                    'order' => $order
+                ]), 'text/html');
+            $mailer->send($message);
 
 
             Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
-//            $payment = Charge::create([
-//                'amount' => bcmul($total, 100),
-//                'currency' => 'eur',
-//                'description' => 'Commande N°'. $order->getId(),
-//                'source' => $stripeToken,
-//                'application_fee' => 50,
-//                'transfer_group'
-//
-//            ]);
 
             $restaurants = $order->getRestaurants();
 
@@ -174,7 +172,7 @@ class OrderController extends AbstractController
 
 
     /**
-     * @Route("/owner/orders/{order}", name="owner_visit_order", requirements={"order"="\d+"})
+     * @Route("/user/orders/{order}", name="visit_order", requirements={"order"="\d+"})
      * @param Order|null $order
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */

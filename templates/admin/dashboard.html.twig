@@ -6,11 +6,15 @@
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/restaurant.css') }}">
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+    <style>
+        .card-content{
+            padding: 10px 0 !important;
+        }
 
-    {#<meta name="collectedFees" content="{{ collectedFees }}">#}
-    {#<meta name="restaurants" content="{{ totalRestaurants }}">#}
-    {#<meta name="traffic" content="{{ traffic }}">#}
-    {#<meta name="users" content="{{ totalUsers }}">#}
+        .row .col{
+            /*padding: 10px 7px !important;*/
+        }
+    </style>
 {% endblock %}
 
 {% block alerts %}
@@ -34,7 +38,7 @@
                                 </div>
                                 <div class="stats-card-content">
                                     <span class="value">€ {{ data.collectedFees|number_format(2, '.') }}</span>
-                                    <span class="type">Frais d'utilisation</span>
+                                    <span class="type">Revenus</span>
                                 </div>
                             </div>
                         </div>
@@ -170,13 +174,17 @@
                 success: function (response){
                     console.log(response.data.data.data.collectedFees);
                     var ctx = document.getElementById('salesChart').getContext('2d');
+                    // ctx.height = 500;
                     var chart = new Chart(ctx, {
                         type: 'line',
+                        options: {
+                            maintainAspectRatio: false,
+                        },
                         data: {
                             labels: response.data.data.dates,
                             datasets: [
                                 {
-                                    label: 'Frais d\'utilisation',
+                                    label: 'Revenus',
                                     data: response.data.data.data.collectedFees,
                                     backgroundColor: [
                                         'rgba(0, 194, 146, 0.5)',

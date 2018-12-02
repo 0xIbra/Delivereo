@@ -1,4 +1,4 @@
-<div class="sidebar hide-on-small-and-down fixed">
+<div class="sidebar hide-on-med-and-down fixed">
     <li class="sidebar-profile-link">
         <a href="{{ path('fos_user_profile_show') }}" class="waves-effect">
             <div class="image-container">
@@ -17,6 +17,9 @@
     </li>
     <li><a href="{{ path('owner_dashboard') }}" class="waves-effect"><i class="material-icons">show_chart</i>Tableau de bord</a></li>
     <li><a href="{{ path('owner_orders') }}" class="waves-effect"><i class="material-icons">dashboard</i>Commandes</a></li>
+    {% if app.user.restaurant is not null %}
+        <li><a href="{{ path('restaurant_info', { restaurant: app.user.restaurant.id }) }}"><i class="material-icons">business</i>Mon Restaurant</a></li>
+    {% endif %}
 
 </div>
 
@@ -45,6 +48,9 @@
     <li><a class="subheader">Admin</a></li>
     <li><a href="{{ path('owner_dashboard') }}" class="waves-effect"><i class="material-icons">show_chart</i>Tableau de bord</a></li>
     <li><a href="{{ path('owner_orders') }}" class="waves-effect"><i class="material-icons">dashboard</i>Commandes</a></li>
+    {% if app.user.restaurant is not null %}
+        <li><a href="{{ path('restaurant_info', { restaurant: app.user.restaurant.id }) }}"><i class="material-icons">business</i>Mon Restaurant</a></li>
+    {% endif %}
 </ul>
 
 <div class="sidebar-btn-container">

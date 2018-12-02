@@ -19,6 +19,17 @@ class RestaurantRepository extends ServiceEntityRepository
         parent::__construct($registry, Restaurant::class);
     }
 
+
+    public function findByCategories($categories){
+        $qb = $this->createQueryBuilder('r');
+        $qb->join('r.categories', 'c')
+            ->where('c.id IN (:categories)')
+            ->setParameter('categories', $categories)
+            ->andWhere('r.enabled = true')
+            ->andWhere('r.published = true');
+        return $qb->getQuery()->getResult();
+    }
+
     public function countRestaurants()
     {
         $qb = $this->createQueryBuilder('r');

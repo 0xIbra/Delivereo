@@ -139,7 +139,7 @@
                                                         <i class="material-icons">edit</i>
                                                     </a>
                                                 {% endif %}
-                                                <a href="#item-modal" class="modal-trigger menu-card" data-title="{{ menu.name }}"
+                                                <a {% if is_granted('ROLE_CONSUMER') %}href="#item-modal"{% endif %} class="modal-trigger menu-card" data-title="{{ menu.name }}"
                                                    data-description="{{ menu.description }}" data-price="{{ menu.price }}" data-id="{{ menu.id }}">
                                                     <div class="card-content">
                                                         <span class="card-title">{{ menu.name }}</span>
@@ -220,7 +220,7 @@
                             </div>
                         </div>
                         <div class="col s6 m8 l9">
-                            <a id="addtocart" class="modal-close modal-success waves-effect waves-light btn-flat">Ajouter au panier</a>
+                            <a id="addtocart" class="modal-close modal-success waves-effect waves-light btn-flat">Panier</a>
                         </div>
                     </div>
                 </div>

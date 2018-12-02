@@ -679,6 +679,10 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
   .card.custom {
     height: 170px; } }
 @media (max-width: 601px) {
+  .hr-card {
+    padding-bottom: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.15); }
+
   .card.basic.modernize .card-content .card-title {
     font-size: 11pt !important;
     margin-bottom: 0 !important; }
@@ -1014,6 +1018,40 @@ a.img-btn {
     color: rgba(0, 0, 0, 0.2); }
     .heading-breadcrumbs span.step.active {
       color: rgba(0, 0, 0, 0.8) !important; }
+
+.input-field.flex.search-container {
+  margin: 0;
+  padding: 0; }
+  .input-field.flex.search-container .search-field {
+    margin: 0; }
+
+.searchResults {
+  background: #eeeeee;
+  z-index: 700;
+  position: absolute;
+  top: 40px;
+  border-radius: 0 0 2px 2px;
+  display: block;
+  width: 100%;
+  height: 0;
+  opacity: 0;
+  transition: ease-in .3s; }
+  .searchResults.active {
+    height: auto !important;
+    opacity: 1 !important;
+    transition: ease-in .3s; }
+  .searchResults ul.results {
+    margin: 0;
+    text-align: left;
+    color: #444444; }
+    .searchResults ul.results li.result {
+      padding: 10px; }
+      .searchResults ul.results li.result:hover {
+        background: rgba(0, 0, 0, 0.05); }
+      .searchResults ul.results li.result span.material-icons {
+        color: #777; }
+      .searchResults ul.results li.result span.value {
+        font-weight: bold; }
 
 @media (max-width: 601px) {
   .heading-breadcrumbs span.step {

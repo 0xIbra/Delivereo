@@ -7,6 +7,7 @@ use App\Entity\DisLike;
 use App\Entity\Image;
 use App\Entity\Like;
 use App\Entity\Restaurant;
+use App\Form\CategoryFormType;
 use App\Form\HomeSearchType;
 use App\Form\RestaurantModifyFormType;
 use App\Form\SearchCustomFormType;
@@ -71,12 +72,36 @@ class RestaurantController extends AbstractController
      * @param City $city
      * @return Response
      */
-    public function findRestaurantsByCity(City $city, ObjectManager $om)
+    public function findRestaurantsByCity(City $city = null, Request $request, ObjectManager $om)
     {
+        if ($city === null)
+        {
+            FlashMessage::message($this->get('session')->getFlashBag(), 'danger', 'Ville non trouvée');
+            return $this->redirectToRoute('homepage');
+        }
         $restaurants = $om->getRepository(Restaurant::class)->findBy(['city' => $city, 'enabled' => true, 'published' => true]);
+
+        $form = $this->createForm(CategoryFormType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $categories = $form->getData()['category'];
+            if ($categories->isEmpty())
+            {
+                return $this->redirectToRoute('find_restaurants_by_city', ['city' => $city->getId()]);
+            }
+            $restaurants = $om->getRepository(Restaurant::class)->findByCategories($categories);
+            return $this->render('restaurant/search.html.twig', [
+                'restaurants' => $restaurants,
+                'city' => $city,
+                'form' => $form->createView()
+            ]);
+        }
+
         return $this->render('restaurant/search.html.twig', [
             'restaurants' => $restaurants,
-            'city' => $city
+            'city' => $city,
+            'form' => $form->createView()
         ]);
     }
 
