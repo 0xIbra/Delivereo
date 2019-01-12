@@ -958,6 +958,13 @@ a.img-btn {
 
 .modal.modernize {
   overflow-y: hidden !important; }
+  .modal.modernize.scroll {
+    overflow-y: scroll !important; }
+  .modal.modernize .close-btn {
+    position: absolute !important;
+    right: 5px !important;
+    top: 5px !important;
+    color: #444444 !important; }
   .modal.modernize .modal-success {
     background: #5cb85c;
     color: #eeeeee; }

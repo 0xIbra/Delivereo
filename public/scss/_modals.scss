@@ -1,7 +1,21 @@
 @import "breakpoints";
 
+
 .modal.modernize{
-  overflow-y: hidden !important;
+  overflow-y: hidden;
+
+  &.scroll{
+    overflow-y: scroll !important;
+  }
+
+  .close-btn{
+    position: absolute !important;
+    right: 5px !important;
+    top: 5px !important;
+    color: $dark !important;
+
+  }
+
   .modal-success{
     background: $success;
     color: #eeeeee;

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Utils\JSON;
 use FOS\UserBundle\Model\UserManagerInterface;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,6 +15,25 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class AuthController extends AbstractController
 {
+
+
+    /**
+     * @param SerializerInterface $serializer
+     * @return Response
+     *
+     * @Route("/api/auth/check", name="api_check_auth", methods={"POST"})
+     */
+    public function isAuth(SerializerInterface $serializer)
+    {
+        if ($this->getUser() === null)
+        {
+            return JSON::JSONResponse([
+                'status' => true,
+                'code' => Response::HTTP_OK,
+                'message' => 'Vous êtes connecté'
+            ], Response::HTTP_OK, $serializer);
+        }
+    }
 
     /**
      * @param SerializerInterface $serializer

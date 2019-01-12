@@ -60,13 +60,20 @@
                             </div>
                             <div class="row">
                                 <div class="col s12 ">
-                                    <a href="{{ path('fos_user_change_password') }}" class="modernize flex justify-center">
-                                        <span class="material-icons">lock</span>
-                                        <span>Désactiver</span>
-                                    </a>
+                                    {% if user.enabled %}
+                                        <a href="{{ path('admin_deactivate_user', {user: user.id}) }}" class="modernize flex justify-center">
+                                            <span class="material-icons">lock</span>
+                                            <span>Désactiver</span>
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ path('admin_activate_user', {user: user.id}) }}" class="modernize flex justify-center">
+                                            <span class="material-icons">lock_open</span>
+                                            <span>Activer</span>
+                                        </a>
+                                    {% endif %}
                                 </div>
                                 <div class="col s12 ">
-                                    <a href="{{ path('fos_user_profile_edit') }}" class="modernize danger flex justify-center">
+                                    <a href="{{ path('admin_delete_user', {user: user.id}) }}" class="modernize danger flex justify-center">
                                         <span class="material-icons">delete</span>
                                         <span>Supprimer</span>
                                     </a>

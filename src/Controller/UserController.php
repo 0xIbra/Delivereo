@@ -7,9 +7,11 @@ use App\Entity\City;
 use App\Entity\Image;
 use App\Entity\Social;
 use App\Entity\SocialLink;
+use App\Entity\User;
 use App\Form\AddressCustomFormType;
 use App\Form\AddressFormType;
 use App\Uploader\Uploader;
+use App\Utils\FlashMessage;
 use App\Utils\Validation;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -184,6 +186,16 @@ class UserController extends AbstractController
      */
     public function deleteAddress(Address $address, ObjectManager $om)
     {
+        $user = $this->getUser();
+        foreach ($user->getOrders() as $order)
+        {
+            if ($order->getDeliveryAddress() === $address)
+            {
+                FlashMessage::message($this->get('session')->getFlashBag(), 'danger', 'Vous ne pouvez pas supprimer cette adresse car elle est utilisée pour une commande');
+                return $this->redirectToRoute('fos_user_profile_show');
+            }
+        }
+
         $om->remove($address);
         $om->flush();
         $this->get('session')->getFlashBag()->add('danger', 'Suppression effectuée');

@@ -11,6 +11,7 @@ use DateInterval;
 use DatePeriod;
 use DateTime;
 use Doctrine\Common\Persistence\ObjectManager;
+use FOS\UserBundle\Model\UserManagerInterface;
 use JMS\Serializer\SerializerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Stripe\Account;
@@ -162,6 +163,46 @@ class AdminController extends AbstractController
             'user' => $user
         ]);
     }
+
+
+    /**
+     * @Route("/admin/user/{user}/deactivate", name="admin_deactivate_user", requirements={"user"="\d+"})
+     */
+    public function deactivateUser(User $user, ObjectManager $om, FlashBagInterface $flashBag)
+    {
+        $user->setEnabled(false);
+        $om->persist($user);
+        $om->flush();
+        FlashMessage::message($flashBag, 'success', 'Utilisateur #'. $user->getId(). ' desactivé');
+        return $this->redirectToRoute('admin_users');
+    }
+
+
+    /**
+     * @Route("/admin/user/{user}/activate", name="admin_activate_user", requirements={"user"="\d+"})
+     */
+    public function activateUser(User $user, ObjectManager $om, FlashBagInterface $flashBag)
+    {
+        $user->setEnabled(true);
+        $om->persist($user);
+        $om->flush();
+        FlashMessage::message($flashBag, 'success', 'Utilisateur #'. $user->getId(). ' activé');
+        return $this->redirectToRoute('admin_users');
+    }
+
+
+    /**
+     * @Route("/admin/users/{user}/delete", name="admin_delete_user", requirements={"user"="\d+"})
+     */
+    public function deleteUser(User $user, UserManagerInterface $manager, FlashBagInterface $flashBag)
+    {
+        FlashMessage::message($flashBag, 'success', 'Utilisateur #'. $user->getId() .' a été supprimé');
+        $manager->deleteUser($user);
+        return $this->redirectToRoute('admin_users');
+    }
+
+
+
 
 
     /**
