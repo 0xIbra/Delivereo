@@ -40,11 +40,6 @@ security:
                 authenticators:
                     - lexik_jwt_authentication.jwt_token_authenticator
 
-        api-access:
-            pattern: ^/api
-            stateless: true
-            
-
         refresh:
             pattern: ^/api/token/refresh
             stateless: true
