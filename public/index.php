@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 require __DIR__.'/../vendor/autoload.php';
 
 // Custom
-header("Access-Control-Allow-Origin: *");
+//header('Access-Control-Allow-Origin: "*"');
 
 // The check is to ensure we don't use .env in production
 if (!isset($_SERVER['APP_ENV'])) {

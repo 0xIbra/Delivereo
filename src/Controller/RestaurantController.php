@@ -29,6 +29,26 @@ class RestaurantController extends AbstractController
 {
 
     /**
+     * @Route("/api/restaurant/data/{restaurant}", name="getRestaurantData", requirements={"restaurant"="\d+"}, methods={"GET"})
+     *
+     * @param Restaurant $restaurant
+     * @param ObjectManager $om
+     * @param SerializerInterface $serializer
+     * @return Response
+     */
+    public function restaurantJson(Restaurant $restaurant = null, ObjectManager $om, SerializerInterface $serializer)
+    {
+        if (null === $restaurant)
+        {
+            return JSON::JSONResponse(['message' => 'Restaurant non trouvée', 'status' => false], Response::HTTP_NOT_FOUND, $serializer);
+        }
+
+        return JSON::JSONResponse($restaurant, Response::HTTP_OK, $serializer);
+    }
+
+
+
+    /**
      * @Route("/restaurant/{restaurant}", name="restaurant_info", requirements={"restaurant"="\d+"}, methods={"GET"})
      * @param Restaurant $restaurant
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
@@ -58,12 +78,22 @@ class RestaurantController extends AbstractController
     /**
      * @Route("/api/restaurant/{city}", name="restaurantsByCity", methods={"GET"}, requirements={"city"="\d+"})
      * @param City $city
+     * @param ObjectManager $om
      * @param SerializerInterface $serializer
      * @return Response
      */
-    public function findRestaurantsByCityJson(City $city, SerializerInterface $serializer)
+    public function findRestaurantsByCityJson(City $city, Request $request, ObjectManager $om, SerializerInterface $serializer)
     {
-        return JSON::JSONResponse($city->getRestaurants(), Response::HTTP_OK, $serializer);
+        if ($request->query->has('categories')) {
+            $categories = explode(',', $request->query->get('categories'));
+            $categories = array_unique($categories);
+
+            $restaurants = $om->getRepository(Restaurant::class)->findByCategories($categories);
+            return JSON::JSONResponse($restaurants, Response::HTTP_OK, $serializer);
+        }
+
+        $restaurants = $om->getRepository(Restaurant::class)->findBy(['city' => $city, 'enabled' => true, 'published' => true]);
+        return JSON::JSONResponse($restaurants, Response::HTTP_OK, $serializer);
     }
 
 

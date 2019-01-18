@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
@@ -33,11 +34,13 @@ class Category
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Restaurant", mappedBy="categories")
+     * @Serializer\Exclude()
      */
     private $restaurants;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="category", cascade={"persist"})
+     * @Serializer\Exclude()
      */
     private $menus;
 

@@ -53,7 +53,7 @@ class CityController extends AbstractController
 
 
     /**
-     * @Route("/city", name="city_json", methods={"GET"})
+     * @Route("/api/city", name="city_json", methods={"GET"})
      *
      * @param Request $request
      * @param ObjectManager $om
@@ -76,6 +76,19 @@ class CityController extends AbstractController
             'status' => true,
             'data' => $cities
         ], 200, $serializer);
+    }
+
+
+    /**
+     * @Route("/api/get/city/{city}", name="getOneCityJson", requirements={"city"="\d+"}, methods={"GET"})
+     */
+    public function oneCityJson(City $city, Request $request, SerializerInterface $serializer)
+    {
+        if (null === $city)
+        {
+            return JSON::JSONResponse(['status' => false, 'message' => 'Ville non trouvée'], Response::HTTP_NOT_FOUND, $serializer);
+        }
+        return JSON::JSONResponse($city, Response::HTTP_OK, $serializer);
     }
 
 }

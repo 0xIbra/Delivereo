@@ -21,7 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="user")
- * @Serializer\ExclusionPolicy("all")
+// * @Serializer\ExclusionPolicy("all")
  */
 class User extends BaseUser
 {
@@ -47,6 +47,7 @@ class User extends BaseUser
     /**
      * @ORM\Column(name="last_name", type="string", nullable=true)
      * @Assert\NotBlank(message="Le nom ne doit pas être vide.")
+     * @Serializer\Expose()
      */
     private $lastName;
 
@@ -63,12 +64,14 @@ class User extends BaseUser
      * @var Image
      * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
+     * @Serializer\Expose()
      */
     private $image;
 
     /**
      * @var Gender
-     * @ORM\ManyToOne(targetEntity="App\Entity\Gender")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Gender", cascade={"persist"})
+     * @Serializer\Expose()
      */
     private $gender;
 
@@ -94,6 +97,7 @@ class User extends BaseUser
      * @var SocialLink
      * @ORM\OneToMany(targetEntity="App\Entity\SocialLink", mappedBy="user", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
+     * @Serializer\Expose()
      */
     private $socialLinks;
 
@@ -101,6 +105,7 @@ class User extends BaseUser
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Restaurant", inversedBy="owner", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
+     * @Serializer\Expose()
      */
     private $restaurant;
 
@@ -113,6 +118,7 @@ class User extends BaseUser
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Cart", inversedBy="consumer", cascade={"persist", "remove"})
+     * @Serializer\Expose()
      */
     private $cart;
 
@@ -120,6 +126,7 @@ class User extends BaseUser
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Order", mappedBy="consumer")
      * @ORM\JoinColumn(nullable=true)
+     * @Serializer\Expose()
      */
     private $orders;
 
@@ -133,6 +140,7 @@ class User extends BaseUser
 
     /**
      * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     * @Serializer\Expose()
      */
     private $createdAt;
 

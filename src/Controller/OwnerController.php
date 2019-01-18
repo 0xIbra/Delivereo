@@ -160,18 +160,18 @@ class OwnerController extends AbstractController
         ];
 
         $weatherData['months'] = [
-            1 => 'Janv',
-            2 => 'Févr',
-            3 => 'Mars',
-            4 => 'Avr',
-            5 => 'Mai',
-            6 => 'Juin',
-            7 => 'Juill',
-            8 => 'Août',
-            9 => 'Sept',
-            10 => 'Oct',
-            11 => 'Nov',
-            12 => 'Déc'
+            '01' => 'Janv',
+            '02' => 'Févr',
+            '03' => 'Mars',
+            '04' => 'Avr',
+            '05' => 'Mai',
+            '06' => 'Juin',
+            '07' => 'Juill',
+            '08' => 'Août',
+            '09' => 'Sept',
+            '10' => 'Oct',
+            '11' => 'Nov',
+            '12' => 'Déc'
         ];
 
         $req = curl_init();

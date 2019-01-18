@@ -319,7 +319,7 @@
                 {
                     $.ajax({
                         type: 'GET',
-                        url: '/city?zipCode='+ $(this).val(),
+                        url: '/api/city?zipCode='+ $(this).val(),
                         success: function (response){
                             console.log(response.data.data);
                             $('.searchResults .results').empty();

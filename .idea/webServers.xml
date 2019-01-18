@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="571874f3-891b-4660-9b45-c4fb9d175403" name="Server" url="http://192.168.1.44">
-        <fileTransfer host="192.168.1.44" port="22" rootFolder="/var/www/html/delivereo.tk/" accessType="SFTP">
+        <fileTransfer host="192.168.1.44" port="22" rootFolder="/var/www/html/back.delivereo.tk/" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" shareSSLContext="true" />
           </advancedOptions>
