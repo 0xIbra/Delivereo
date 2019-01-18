@@ -1,0 +1,251 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord | Delivereo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/restaurant.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/weather-icons.min.css') }}">
+{% endblock %}
+
+{% block alerts %}
+    {% include 'inc/errors/errors.html.twig' %}
+{% endblock %}
+
+{% block body %}
+    <div class="page-wrapper">
+        <div class="container-full">
+            <div class="row">
+                <div class="col s12 l2 no-padding">
+                    {% include 'owner/inc/sidebar.html.twig' %}
+                </div>
+                <div class="col s12 l10">
+                    <div class="row">
+                        <div class="col s12 m6 l3">
+                            <div class="card stats-mini-card">
+                                <div class="card-logo green-color">
+                                    <i class="material-icons">euro_symbol</i>
+                                </div>
+                                <div class="stats-card-content">
+                                    <span class="value">€ {{ data.revenue|number_format(2, '.') }}</span>
+                                    <span class="type">Revenus</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12 m6 l3">
+                            <div class="card stats-mini-card">
+                                <div class="card-logo purple-color">
+                                    <i class="material-icons">shopping_cart</i>
+                                </div>
+                                <div class="stats-card-content">
+                                    <span class="value">{{ data.orders }}</span>
+                                    <span class="type">Commandes</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12 m6 l3">
+                            <div class="card stats-mini-card">
+                                <div class="card-logo blue-color">
+                                    <i class="material-icons">thumbs_up_down</i>
+                                </div>
+                                <div class="stats-card-content">
+                                    <span class="value">
+                                        <span style="color: #5cb85c;font-weight: bold;display: inline;">{{ restaurant.likes|length }}</span>
+                                        -
+                                        <span style="color: #d9534f;font-weight: bold;display: inline;">{{ restaurant.dislikes|length }}</span>
+                                    </span>
+                                    <span class="type">Coeurs</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12 m6 l3">
+                            <div class="card stats-mini-card">
+                                <div class="card-logo orange-color">
+                                    <i class="material-icons">people</i>
+                                </div>
+                                <div class="stats-card-content">
+                                    <span class="value">{{ data.clients }}</span>
+                                    <span class="type">Clients</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12">
+                            <div class="card">
+                                <div class="card-content">
+                                    <h4 class="heading">Semaine</h4>
+                                    <canvas id="salesChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12 l8">
+                            <div class="card">
+                                <div class="card-content">
+                                    <h4 class="heading">Commandes récentes</h4>
+                                    {% if recentOrders is empty %}
+                                        <h6 style="text-align: center;color: #999999;">Aucune commande</h6>
+                                    {% else %}
+                                        <table class="striped">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Utilisateur</th>
+                                                <th>Prix Total</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for order in recentOrders %}
+                                                <tr>
+                                                    <td><a href="{{ path('visit_order', {'order': order.id}) }}">#{{ order.orderNumber|slice(18) }}...</a></td>
+                                                    <td><a>{{ order.consumer.firstName }} {{ order.consumer.lastName }}</a></td>
+                                                    <td><a href="{{ path('visit_order', {'order': order.id}) }}">{{ order.totalPrice|number_format(2, '.') }} EUR</a></td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12 l4">
+                            <div class="card weather-card">
+                                <div class="card-content">
+                                    <span class="card-title center">Météo</span>
+                                    <div class="row weather-icon-container">
+                                        <div class="col s5 ">
+                                            <i class="wi {{ weatherData['icons'][weatherData['weather']['weather'][0]['icon']] }} icon"></i>
+                                        </div>
+                                        <div class="col s7 weather-info">
+                                            <span class="weather">{{ weatherData['weather']['weather'][0]['description']|capitalize }}</span>
+                                            <span class="sub-weather">{{ weatherData['days'][today|date('D')] }}, {{ weatherData['months'][today|date('m')] }} {{ today|date('Y') }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s12 weather-city flex align-center justify-space-between">
+                                            <div class="city-container">
+                                                <span class="city">{{ restaurant.city.name }}</span>
+                                                <span class="country">France</span>
+                                            </div>
+                                            <div class="temperature-container">
+                                                <span class="temp">{{ weatherData['weather']['main']['temp']|number_format }}°C</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script>
+        $(document).ready(function (){
+            $.ajax({
+                type: 'GET',
+                url: '/owner/dashboard/data',
+                success: function (response){
+                    console.log(response);
+                    var ctx = document.getElementById('salesChart').getContext('2d');
+                    var chart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: response.data.data.dates,
+                            datasets: [
+                                {
+                                    label: 'Clients',
+                                    data: response.data.data.data.clients,
+                                    backgroundColor: [
+                                        'rgba(251, 150, 120, 0.7)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(251, 150, 120,0.7)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1
+                                },
+                                {
+                                    label: 'Commandes',
+                                    data: response.data.data.data.orders,
+                                    backgroundColor: [
+                                        'rgba(171, 140, 228, 0.7)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(171, 140, 228,0.7)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1
+                                },
+                                {
+                                    label: 'Revenus',
+                                    data: response.data.data.data.revenue,
+                                    backgroundColor: [
+                                        'rgba(0, 194, 146, 0.7)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(0, 194, 146,0.7)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1
+                                }
+                            ]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero:true
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                },
+                error: function (error) {
+                    $('#salesChart').replaceWith('<h6 style="margin: 0 !important;text-align: center;color: #999999;">Erreur lors de la récupération des données</h6>');
+                }
+            });
+        });
+    </script>
+{% endblock %}

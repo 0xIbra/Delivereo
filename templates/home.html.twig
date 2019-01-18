@@ -1,0 +1,346 @@
+{% extends 'base.html.twig' %}
+
+{% block navbar %}
+    {% include 'inc/home_navbar.html.twig' %}
+{% endblock %}
+
+{% block alerts %}
+    {% include 'inc/errors/errors.html.twig' %}
+{% endblock %}
+
+{% block body %}
+    <section class="showcase bg showcase-bg">
+        <div class="overlay"></div>
+        <div class="container-fluid">
+            <div class="showcase-content" style="position: relative;">
+                <h2 class="slogan">Je clique, je commande</h2>
+                <h4 class="sub-slogan">Commandez vos plats préférés chez les restaurants dans votre ville</h4>
+                {{ form_start(form, { attr: { style: 'position: relative;' } }) }}
+                    <div class="input-field flex search-container">
+                        {{ form_widget(form.search, { 'attr': { 'class': 'modernize search-field', 'placeholder': 'Entrer votre code postal', 'maxlength': 5 } }) }}
+                        {{ form_widget(form.Trouver, { 'attr': { 'class': 'modernize' } }) }}
+                    </div>
+                    <div class="searchResults">
+                        <ul class="results">
+
+                        </ul>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </section>
+
+    <section class="showcase">
+        <div class="container-fluid">
+            <div class="showcase-heading">
+                <h1 class="heading">Comment ca marche ?</h1>
+            </div>
+            <div class="showcase-content no-padding">
+                <div class="row m-auto">
+                    <div class="col s12 l8 offset-l2">
+                        <ul class="tabs">
+                            <li class="tab col s6 l6"><a href="#clients" class="active">Clients</a></li>
+                            <li class="tab col s6 l6"><a href="#restaurants">Restaurants</a></li>
+                        </ul>
+                    </div>
+                    <div class="col s12 tab-window" id="clients">
+                        <h3 class="heading">Client</h3>
+                        <div class="row">
+                            <div class="col s12 m6 l3">
+                                <div class="card custom">
+                                    <div class="card-content">
+                                        <div class="card-image">
+                                            <i class="material-icons large">account_circle</i>
+                                        </div>
+                                        <p>Créez un compte pour pouvoir commander</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col s12 m6 l3">
+                                <div class="card custom">
+                                    <div class="card-content">
+                                        <div class="card-image">
+                                            <i class="material-icons large">home</i>
+                                        </div>
+                                        <p>Trouver les restaurants proches de chez vous</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col s12 m6 l3">
+                                <div class="card custom">
+                                    <div class="card-content">
+                                        <div class="card-image">
+                                            <i class="material-icons large">add_shopping_cart</i>
+                                        </div>
+                                        <p>Choisissez votre mode de paiement et placez votre commande</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col s12 m6 l3">
+                                <div class="card custom">
+                                    <div class="card-content">
+                                        <div class="card-image">
+                                            <i class="material-icons large">access_time</i>
+                                        </div>
+                                        <p>Recevez votre commande</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        {% if not is_granted('ROLE_CONSUMER') %}
+                            <div class="row">
+                                <div class="col s12">
+                                    <a href="{{ path('partner') }}" class="modernize bold waves-effect">Procédez à l'ouverture</a>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col s12 tab-window" id="restaurants">
+                        <h3 class="heading">Restaurant</h3>
+                        <div class="row">
+                            <div class="col s12 m6 l3">
+                                <div class="card custom">
+                                    <div class="card-content">
+                                        <div class="card-image">
+                                            <i class="material-icons large">account_circle</i>
+                                        </div>
+                                        <p>Créez un compte pour pouvoir ouvrir votre restaurant</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col s12 m6 l3">
+                                <div class="card custom">
+                                    <div class="card-content">
+                                        <div class="card-image">
+                                            <i class="material-icons large">add_to_queue</i>
+                                        </div>
+                                        <p>Ouvrez votre restaurant en fournissant les informations nécessaires</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col s12 m6 l3">
+                                <div class="card custom">
+                                    <div class="card-content">
+                                        <div class="card-image">
+                                            <i class="material-icons large">apps</i>
+                                        </div>
+                                        <p>Ajoutez vos plats</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col s12 m6 l3">
+                                <div class="card custom">
+                                    <div class="card-content">
+                                        <div class="card-image">
+                                            <i class="material-icons large">add_alert</i>
+                                        </div>
+                                        <p>Quand une commande est effectuée, c'est à vous de la faire livrer au client</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col s12">
+                                <a href="{{ path('partner') }}" class="modernize bold waves-effect">Procédez à l'ouverture</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="showcase bg-white">
+        <div class="container-fluid">
+            <div class="showcase-heading p-20-0">
+                <h1 class="heading">Categories</h1>
+            </div>
+            <div class="showcase-content no-padding">
+                <div class="row">
+
+                    {% for category in categories %}
+                        <div class="col s12 m6 l3">
+                            <div class="modern-card">
+                                <a href="void:javascript;" class="waves-effect linkify">
+                                    <div class="modern-card-image">
+                                        <div class="modern-overlay"></div>
+                                        <img src="{{ category.image.url }}" alt="{{ category.image.title }}">
+                                    </div>
+                                    <div class="modern-card-body">
+                                        <span>{{ category.name }}</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <a href="void:javascript;" class="modernize bold waves-effect">Voir tout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="showcase" id="mobileversion">
+        <div class="container-fluid">
+            <div class="showcase-heading">
+                <h1 class="heading">Disponible sur Android</h1>
+            </div>
+            <div class="showcase-content no-padding">
+                <div class="row">
+                    <div class="col s12 m6 l4 offset-l1">
+                        <div class="image-card">
+                            <img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1537554628/Delivereo/Assets/Android.png" alt="Android version">
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l7" id="content">
+                        <h4 class="heading">Essayez la version Android</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci cum delectus distinctio, dolore doloremque doloribus dolorum est illo ipsum libero magnam nam nihil nisi numquam quo quos repellat sed, voluptas.</p>
+                        <a href="void:javascript;">
+                            <img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1537554628/Delivereo/Assets/google-play-badge.svg" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="presentation" class="modal modernize scroll">
+        <div style="right: 5px;position: absolute; top: 5px;" class="close-btn">
+            <a class="modal-close">
+                <i class="material-icons">close</i>
+            </a>
+        </div>
+        <div class="modal-content">
+            <h4>Infos</h4>
+            <p>
+                Bonjour, ceci est une application de <b>démo</b>, et non pas une application en production. <br>
+                Elle permet aux <b>consommateurs</b> de commander des plats chez les restaurants de leurs villes, <br>
+                aux <b>gérants</b> des restaurants d'ajouter leur restaurant et proposer leurs plats sur la plateforme
+                <br>
+                et enfin les <b>administrateurs</b> peuvent tout gérer.
+            </p>
+            <h6><b>Paiements</b></h6>
+            <p>
+                Les paiements lors d'une commande sont géré à l'aide de la plateforme <b>Stripe</b>. <br>
+                Lorsqu'une commande est passée, <b>0,50 EUR</b> est débitée comme frais d'utilisation de nos services.
+            </p>
+            <p>
+                Lorsqu'un gérant ouvre son restaurant sur notre plateforme, <br> pour que les consommateurs puissent commander
+                <br>
+                chez son restaurant, il doit obligatoirement créer et connecter son compte <b>Stripe</b>. <br>
+                Une fois que le compte <b>Stripe</b> est crée, votre restaurant sera visible par les clients et vous pourrez voir les paiements sur votre tableau de bord sur <b>Delivereo</b>
+                <br>
+                mais aussi sur <b>Stripe</b>
+            </p>
+
+            <h6><b>Demandes d'ouvertures</b></h6>
+            <p>
+                Lorsqu'un utilisateur remplit et envoi sa demande d'ouverture de son restaurant, il est transmit aux administrateurs.
+                <br>
+                Les <b>administrateurs</b> peuvent <b>accepter</b> ou <b>refuser</b> votre demande. <br>
+                Lorsque votre demande est acceptée, vous recevez un mail en vous informant comme quoi votre demande a été acceptée,
+                <br>
+                et il ne vous reste qu'a créer votre compte <b>Stripe</b> à partir de la page de votre restaurant.
+            </p>
+            <h6><b>Données de test</b></h6>
+            <p>
+                Vous êtes le bienvenue pour tester toutes les fonctionnalités de cette application par vous-même. <br>
+                Si vous voulez avoir access au compte d'un <b>administrateur</b> pour accepter les demandes d'ouvertures
+                <br>
+                ou d'ailleurs voir les fonctionnalités de l'administrateur, connectez-vous avec le compte suivant.
+            </p>
+            <p>
+                <b>Nom d'utilisateur: admin</b> <br>
+                <b>Mot de passe: test123123</b>
+            </p>
+            <p>
+                Comme cette application est une appli Démo, les comptes qui sont crée avec <b>Stripe</b> sont aussi des comptes démo.
+                Cela vous permet de passer des commandes comme si c'était une application en production.
+                Vous pouvez passer des commandes avec une carte bancaire spéciale de test fournis par <b>Stripe</b>. <br>
+            </p>
+            <p>
+                <b>Numero de carte: 4000 0000 0000 0077</b> <br>
+                <b>Exp: n'importe </b> <br>
+                <b>CVC: n'importe </b> <br>
+                <b>Code postal: n'importe</b>
+            </p>
+
+            <h6><b>Données techniques</b></h6>
+            <p>
+                Cette application a été developpée en <b>PHP</b> avec le Framework <b>Symfony 4</b>. <br>
+                <b>Outils externes utilisés:</b> <br>
+                <b>Stripe PHP Gateway</b> <br>
+                <b>Stripe API</b> <br>
+                <b>Cloudinary CDN</b> <br>
+                <b>JWT pour l'authentification de l'application mobile</b> <br>
+                <b>ChartJS sur le Front End</b> <br>
+            </p>
+            <p>
+                Toutes les images présentes sur l'application à part des logos, <br>
+                sont hébergé sur un CDN. <br>
+                <b>Cloudinary</b> CDN propose un client PHP pour une gestion facile des images.
+            </p>
+
+            <h6><b>Version Android</b></h6>
+            <p>
+                La version <b>Android</b> n'est pas prête encore. <br>
+            </p>
+
+            <h6><b>Code source</b></h6>
+            <p>
+                L'ensemble de ce projet est hebergé sur mon <a href="https://gitlab.com/kratos95" target="_blank" class="redirect"><b>Gitlab</b></a>.
+            </p>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function (){
+            $('#presentation').modal('open');
+            $('.search-field').on('keyup', function (){
+                $('.searchResults .results').empty();
+                if ($(this).val().length > 3)
+                {
+                    $.ajax({
+                        type: 'GET',
+                        url: '/api/city?zipCode='+ $(this).val(),
+                        success: function (response){
+                            console.log(response.data.data);
+                            $('.searchResults .results').empty();
+
+                            response.data.data.forEach(function (city, index) {
+                                var item = '<li class="result"><a href="/restaurants/'+ city.id +'" class="flex"><span class="material-icons">location_on</span><span class="value">'+ city.name +', '+ city.zip_code +'</span></a></li>';
+                                $('.searchResults .results').append(item);
+                            });
+                            $('.searchResults').addClass('active');
+                        }
+                    });
+                }
+            });
+
+            $('.search-field, .searchResults').on('focusout', function (){
+                setTimeout(function (){
+                    $('.searchResults').removeClass('active');
+                    $('.searchResults .results').empty();
+                    $(this).val('');
+                }, 4000);
+            });
+        });
+    </script>
+{% endblock %}

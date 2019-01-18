@@ -1,0 +1,7 @@
+{% if is_granted('ROLE_ADMIN') %}
+    <span class="ville">Administrateur</span>
+{% elseif is_granted('ROLE_OWNER') %}
+    <span class="ville">Partenaire</span>
+{% else %}
+    <span class="ville">Consommateur</span>
+{% endif %}

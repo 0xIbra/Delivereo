@@ -1,0 +1,106 @@
+.sidenav{
+
+  li{
+    .user-view{
+
+      .background{
+        img{
+          max-width: 100% !important;
+        }
+
+        .background-overlay{
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          background: rgba(0, 0, 0, 0.55);
+        }
+      }
+    }
+  }
+
+  li{
+    a{
+      &:hover{
+        color: $greenLight !important;
+        i.material-icons{
+          color: inherit !important;
+        }
+      }
+    }
+  }
+
+}
+
+
+.sidebar{
+  border-right: 1px solid rgba(0,0,0,0.1);
+  background: #fff !important;
+  padding-top: 20px;
+
+  &.fixed{
+    position: fixed;
+    width: 17%;
+    height: 100%;
+  }
+
+  li{
+
+    &.sidebar-profile-link{
+
+      a{
+        div.image-container{
+          margin-right: 15px !important;
+        }
+
+        div.user-info{
+          font-size: 11pt !important;
+        }
+      }
+    }
+
+    a{
+      display: flex;
+      align-items: center !important;
+      padding: 10px 20px;
+      font-size: 11pt;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      border-top: 1px solid rgba(0,0,0,0.1);
+
+      i.material-icons{
+        margin-right: 10px;
+      }
+
+      &:hover{
+        color: $greenLight !important;
+      }
+    }
+  }
+}
+
+@media (max-width: $medium) {
+  .sidebar{
+
+    &.fixed{
+      width: 34% !important;
+    }
+
+    li{
+
+      &.sidebar-profile-link{
+
+        a{
+
+          div.user-info{
+            font-size: 11pt !important;
+          }
+        }
+      }
+
+      a{
+        font-size: 12pt !important;
+      }
+    }
+  }
+}

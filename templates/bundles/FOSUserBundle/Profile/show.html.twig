@@ -1,0 +1,298 @@
+{% extends 'bundles/FOSUserBundle/layout.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}{{ app.user.firstName }} {{ app.user.lastName }} | Delivereo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/restaurant.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+{% endblock %}
+
+{% block fos_user_content %}
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col s12 m5 l4">
+                    <div class="card" id="profileimage">
+                        <div class="card-content">
+                            <div class="image-wrapper">
+                                {% if app.user.image is null %}
+                                    {% if app.user.gender.id == 1 %}
+                                        <img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540289616/boss.png" alt="Default photo">
+                                    {% elseif app.user.gender.id == 2 %}
+                                        <img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540298272/croupier.png" alt="Default photo">
+                                    {% endif %}
+                                {% else %}
+                                    <img src="{{ app.user.image.url }}" alt="Photo de {{ app.user.firstname }} {{ app.user.lastName }}">
+                                {% endif %}
+                            </div>
+                            <div class="profile-cred">
+                                <span class="profile-title">{{ app.user.firstName }} {{ app.user.lastName }}</span>
+                                <div class="location flex align-center justify-center">
+                                    {% include 'inc/user_type.html.twig' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" id="profileinfo">
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="col s12">
+                                    <span class="subheader">Informations</span>
+                                    <div class="info">
+                                        <span class="material-icons">account_circle</span>
+                                        <span class="value">{{ app.user.username }}</span>
+                                    </div>
+                                    <div class="info">
+                                        <span class="material-icons">mail</span>
+                                        <span><a href="mailto:{{ app.user.email }}">{{ app.user.email }}</a></span>
+                                    </div>
+                                    <div class="info">
+                                        <span class="material-icons">wc</span>
+                                        <span class="value">{{ app.user.gender.name }}</span>
+                                    </div>
+                                    <span class="subheader">Reseaux sociaux</span>
+                                    <div class="social-icons flex align-center">
+                                        {% for social in app.user.socialLinks %}
+                                            <a href="{{ social.url }}" target="_blank" class="icon-wrapper">
+                                                <span class="icon fa fa-{{ social.type.shortcode }}"></span>
+                                            </a>
+                                        {% endfor %}
+
+                                        <a href="#socialmodal" class="icon-wrapper modal-trigger">
+                                            <span class="icon fa fa-plus-square-o"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12 ">
+                                    <a href="{{ path('fos_user_profile_edit') }}" class="modernize flex justify-center">
+                                        <span class="material-icons">account_circle</span>
+                                        <span>Modifier</span>
+                                    </a>
+                                </div>
+                                <div class="col s12 ">
+                                    <a href="{{ path('fos_user_change_password') }}" class="modernize flex justify-center">
+                                        <span class="material-icons">lock</span>
+                                        <span>Mot de passe</span>
+                                    </a>
+                                </div>
+                                {#<div class="flex buttons-row">#}
+                                    {#<a href="{{ path('fos_user_profile_edit') }}" class="modernize flex justify-center">#}
+                                        {#<span class="material-icons">account_circle</span>#}
+                                        {#<span>Modifier</span>#}
+                                    {#</a>#}
+                                    {#<a href="{{ path('fos_user_change_password') }}" class="modernize flex justify-center">#}
+                                        {#<span class="material-icons">lock</span>#}
+                                        {#<span>Mot de passe</span>#}
+                                    {#</a>#}
+                                {#</div>#}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m7 l8">
+                    {% if is_granted('ROLE_CONSUMER') %}
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="col s12">
+                                        {% block alerts %}
+                                            {% include 'inc/errors/errors.html.twig' %}
+                                        {% endblock %}
+                                        <div class="flex align-center">
+                                            <div class="row-header">Commandes</div>
+                                        </div>
+                                    </div>
+                                    {% if app.user.orders is empty %}
+                                        <h6 style="margin: 0 !important;text-align: center;color: #999999;">Aucune commande</h6>
+                                    {% else %}
+                                        {% for order in app.user.orders %}
+                                            <div class="col s12 m6 l4">
+                                                <div class="card basic modernize">
+                                                    <a href="{{ path('visit_order', { order: order.id }) }}" class="address">
+                                                        <div class="card-content">
+                                                            <span class="card-title">#{{ order.orderNumber|slice(0, 15) }}...</span>
+                                                            <span class="address">{{ order.orderedAt|date('H\\hi d/m/Y') }}</span>
+                                                            <span class="address">{{ order.totalPrice|number_format(2, '.') }} EUR</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="flex align-center">
+                                        <div class="row-header">Adresses</div>
+                                        <a href="{{ path('add_address') }}" class="modal-trigger flex align-center add-btn">
+                                            <span class="material-icons">add</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                {% if app.user.addresses is empty %}
+                                    <h6 style="margin: 0 !important;text-align: center;color: #999999;">Aucune adresse</h6>
+                                {% else %}
+                                    {% for address in app.user.addresses %}
+                                        <div class="col s12 m6 l4">
+                                            <div class="card basic modernize">
+                                                <a href="#addressmodal" class="modal-trigger address" data-id="{{ address.id }}" data-title="{{ address.name }}"
+                                                   data-line1="{{ address.line1 }}" data-city="{{ address.city.name }}, {{ address.city.zipCode }}"
+                                                   {% if address.line2 is not null %}data-line2="{{ address.line2 }}"{% endif %}>
+                                                    <div class="card-content">
+                                                        <span class="card-title">{{ address.name }}</span>
+                                                        <span class="address">{{ address.line1 }}</span>
+                                                        <span class="address">{{ address.city.name }}, {{ address.city.zipCode }}</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if is_granted('ROLE_OWNER') and app.user.restaurant is not null %}
+                        {% if is_granted('view', app.user.restaurant) %}
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <div class="flex align-center">
+                                                <div class="row-header">Restaurant</div>
+                                            </div>
+                                        </div>
+                                        {% if app.user.restaurant is null %}
+                                            <h6 style="margin: 0 !important;text-align: center;color: #999999;">Aucune Restaurant</h6>
+                                        {% else %}
+                                            <div class="col s12 m6 l4">
+                                                <div class="card basic modernize">
+                                                    <a href="{{ path('restaurant_info', { 'restaurant': app.user.restaurant.id }) }}">
+                                                        <div class="card-content">
+                                                            <span class="card-title">{{ app.user.restaurant.name }}</span>
+                                                            <span class="address">{{ app.user.restaurant.address.line1 }}</span>
+                                                            <span class="address">{{ app.user.restaurant.address.city.name }}, {{ app.user.restaurant.address.city.zipCode }}</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+
+        {% if app.user.orders is not empty %}
+            <div class="modal" id="orderModal">
+                <div class="modal-content">
+                    <h4 class="modal-title">Titre</h4>
+                    <br>
+                    <div class="divider"></div>
+                    <br>
+                    <span id="address" class="address">Adresse</span>
+                    <span class="address" id="line2">Complementaire</span>
+                    <span class="address" id="city">Ville</span>
+                </div>
+                <div class="modal-footer">
+                    <a href="" class="waves-effect btn-flat red" id="deletebtn">Supprimer</a>
+                    <a href="#" class="waves-effect btn-flat" id="editbtn">Modifier</a>
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="modal" id="addressmodal">
+            <div class="modal-content">
+                <h4 class="modal-title">Titre</h4>
+                <br>
+                <div class="divider"></div>
+                <br>
+                <span id="address" class="address">Adresse</span>
+                <span class="address" id="line2">Complementaire</span>
+                <span class="address" id="city">Ville</span>
+            </div>
+            <div class="modal-footer">
+                <a href="" class="waves-effect btn-flat red" id="deletebtn">Supprimer</a>
+                <a href="#" class="waves-effect btn-flat" id="editbtn">Modifier</a>
+            </div>
+        </div>
+
+        <div class="modal" id="socialmodal">
+            <div class="modal-content">
+                <h4 class="modal-title">Ajouter un reseau</h4>
+                <br>
+                <div class="divider"></div>
+                <form method="post" action="{{ path('add_social_link') }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token('intention') }}">
+                    <div class="input-field modernize">
+                        <select name="socialtype">
+                            <option value="1">Facebook</option>
+                            <option value="2">Instagram</option>
+                            <option value="3">LinkedIn</option>
+                            <option value="4">Twitter</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" class="modernize" name="socialurl" placeholder="Url">
+                    </div>
+                    <div class="input-field flex justify-center">
+                        <input type="submit" class="modernize btn" value="Ajouter">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        {% if is_granted('ROLE_OWNER') %}
+            <div class="modal" id="restaurantmodal">
+                <div class="modal-content">
+                    <h4 class="modal-title">Titre</h4>
+                    <br>
+                    <div class="divider"></div>
+                    <br>
+                    <span id="address" class="address">Adresse</span>
+                    <span class="address" id="line2">Complementaire</span>
+                    <span class="address" id="city">Ville</span>
+                </div>
+                <div class="modal-footer">
+                    <a href="" class="waves-effect btn-flat red" id="deletebtn">Supprimer</a>
+                    <a href="#" class="waves-effect btn-flat" id="editbtn">Modifier</a>
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('a.modal-trigger.address').click(function(){
+            $('#addressmodal #deletebtn').attr('href', '/user/address/delete/' + $(this).data('id'));
+            $('#addressmodal #editbtn').attr('href', '/user/address/edit/' + $(this).data('id'));
+            $('#addressmodal .modal-title').html($(this).data('title'));
+            $('#addressmodal #address').html($(this).data('line1'));
+            if ($(this).data('line2') !== undefined)
+            {
+                $('#addressmodal #line2').html($(this).data('line2'));
+            }else
+            {
+                $('#addressmodal #line2').html('');
+            }
+            $('#addressmodal #city').html($(this).data('city'));
+        });
+    </script>
+{% endblock %}

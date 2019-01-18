@@ -1,0 +1,32 @@
+{% extends "bundles/FOSUserBundle/layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}Activation | Delivereo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+{% endblock %}
+
+{% block fos_user_content %}
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col s12 m6 offset-m3">
+                <div class="card">
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="container-fluid">
+                                <h3 class="heading">Activation</h3>
+                                <p>
+                                    {{ 'registration.check_email'|trans({'%email%': user.email}) }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock fos_user_content %}
+
+{% block footer %}{% endblock %}

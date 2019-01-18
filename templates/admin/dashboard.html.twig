@@ -1,0 +1,270 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord | Delivereo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/restaurant.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+    <style>
+        .card-content{
+            padding: 10px 0 !important;
+        }
+
+        .row .col{
+            /*padding: 10px 7px !important;*/
+        }
+    </style>
+{% endblock %}
+
+{% block alerts %}
+    {% include 'inc/errors/errors.html.twig' %}
+{% endblock %}
+
+{% block body %}
+    <div class="page-wrapper">
+        <div class="container-full">
+            <div class="row">
+                {#{{ dump(dump) }}#}
+                <div class="col s12 m4 l2 no-padding">
+                    {% include 'admin/inc/sidebar.html.twig' %}
+                </div>
+                <div class="col s12 m8 l10">
+                    <div class="row">
+                        <div class="col s12 m6 l3">
+                            <div class="card stats-mini-card">
+                                <div class="card-logo green-color">
+                                    <i class="material-icons">euro_symbol</i>
+                                </div>
+                                <div class="stats-card-content">
+                                    <span class="value">€ {{ data.collectedFees|number_format(2, '.') }}</span>
+                                    <span class="type">Revenus</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12 m6 l3">
+                            <div class="card stats-mini-card">
+                                <div class="card-logo purple-color">
+                                    <i class="material-icons">business</i>
+                                </div>
+                                <div class="stats-card-content">
+                                    <span class="value">{{ data.totalRestaurants|number_format(0,',', ' ') }}</span>
+                                    <span class="type">Restaurants</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12 m6 l3">
+                            <div class="card stats-mini-card">
+                                <div class="card-logo blue-color">
+                                    <i class="material-icons">equalizer</i>
+                                </div>
+                                <div class="stats-card-content">
+                                    <span class="value">{{ data.traffic|number_format(0,',', ' ') }}</span>
+                                    <span class="type">Traffic</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12 m6 l3">
+                            <div class="card stats-mini-card">
+                                <div class="card-logo orange-color">
+                                    <i class="material-icons">people</i>
+                                </div>
+                                <div class="stats-card-content">
+                                    <span class="value">{{ data.totalUsers|number_format(0,',', ' ') }}</span>
+                                    <span class="type">Utilisateurs</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12">
+                            <div class="card">
+                                <div class="card-content">
+                                    <h4 class="heading">Semaine</h4>
+                                    <canvas id="salesChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12 m6">
+                            <div class="card">
+                                <div class="card-content">
+                                    <h4 class="heading">Inscriptions récentes</h4>
+                                    {% if data.recentUsers is empty %}
+                                        <h6 style="text-align: center;color: #999999;">Aucune inscriptions récentes</h6>
+                                    {% else %}
+                                        <table class="striped">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Utilisateur</th>
+                                                <th>Email</th>
+                                                <th>Inscris a</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for user in data.recentUsers %}
+                                                <tr>
+                                                    <td><a href="{{ path('visit_user', { user: user.id }) }}">{{ user.id }}.</a></td>
+                                                    <td><a href="{{ path('visit_user', { user: user.id }) }}">{{ user.firstName }} {{ user.lastName }}</a></td>
+                                                    <td><a href="{{ path('visit_user', { user: user.id }) }}">{{ user.email }}</a></td>
+                                                    <td><a href="{{ path('visit_user', { user: user.id }) }}">{{ user.createdAt|date('H\\hi') }}</a></td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12 m6">
+                            <div class="card">
+                                <div class="card-content">
+                                    <h4 class="heading">Demandes d'ouvertures</h4>
+                                    {% if data.restaurantApplications is empty %}
+                                        <h6 style="text-align: center;color: #999999;">Aucune demande d'ouverture</h6>
+                                    {% else %}
+                                        <table class="striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Restaurant</th>
+                                                    <th>Ville</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for application in data.restaurantApplications %}
+                                                    <tr>
+                                                        <td><a href="{{ path('visit_restaurant', { restaurant: application.id }) }}">{{ application.id }}.</a></td>
+                                                        <td><a href="{{ path('visit_restaurant', { restaurant: application.id }) }}">{{ application.name }}</a></td>
+                                                        <td><a href="{{ path('visit_restaurant', { restaurant: application.id }) }}">{{ application.city.name }}</a></td>
+                                                        <td style="width: 10px;"><a style="margin: 0" href="{{ path('accept_restaurant', { restaurant: application.id }) }}" class="modernize">Accepter</a></td>
+                                                        <td style="width: 10px;"><a style="margin: 0;" href="{{ path('refuse_restaurant', { restaurant: application.id }) }}" class="modernize danger">Refuser</a></td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+
+            $.ajax({
+                type: 'GET',
+                url: '/admin/dashboard/data',
+                success: function (response){
+                    console.log(response.data.data.data.collectedFees);
+                    var ctx = document.getElementById('salesChart').getContext('2d');
+                    // ctx.height = 500;
+                    var chart = new Chart(ctx, {
+                        type: 'line',
+                        options: {
+                            maintainAspectRatio: false,
+                        },
+                        data: {
+                            labels: response.data.data.dates,
+                            datasets: [
+                                {
+                                    label: 'Revenus',
+                                    data: response.data.data.data.collectedFees,
+                                    backgroundColor: [
+                                        'rgba(0, 194, 146, 0.5)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(0, 194, 146,0.7)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1
+                                },
+                                {
+                                    label: 'Utilisateurs',
+                                    data: response.data.data.data.users,
+                                    backgroundColor: [
+                                        'rgba(251, 150, 120, 0.5)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(251, 150, 120,0.7)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1
+                                },
+                                {
+                                    label: 'Restaurants',
+                                    data: response.data.data.data.restaurants,
+                                    backgroundColor: [
+                                        'rgba(171, 140, 228, 0.5)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(171, 140, 228,0.7)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1
+                                }
+                            ]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero:true
+                                    }
+                                }]
+                            }
+                        }
+                    });
+
+                },
+                error: function (req, status, error){
+
+                }
+            });
+
+        });
+    </script>
+{% endblock %}

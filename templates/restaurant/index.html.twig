@@ -1,0 +1,230 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ restaurant.name }} | Delivereo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/restaurant.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col s12 m5 l4">
+                    <div class="card" id="profileimage">
+                        <div class="card-content">
+                            <div class="image-wrapper">
+                                {% if restaurant.image is null %}
+                                    <img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1537554628/Delivereo/Assets/eat.jpg" alt="Default restaurant">
+                                {% else %}
+                                    <img src="{{ restaurant.image.url }}" alt="Photo du {{ restaurant.name }}">
+                                {% endif %}
+                            </div>
+                            <div class="profile-cred">
+                                <span class="profile-title">{{ restaurant.name }}</span>
+                                <div class="location flex align-center justify-center">
+                                    <i class="material-icons">location_on</i>
+                                    <span class="ville">{{ restaurant.city.name }}, {{ restaurant.city.zipCode }}</span>
+                                </div>
+                                <div class="rating flex justify-center">
+                                    {% if is_granted('ROLE_USER') %}
+                                        {% if is_granted('like', restaurant) %}
+                                            <a href="{{ path('add_like_restaurant', { 'restaurant': restaurant.id }) }}">
+                                                <div class="icon success">
+                                                    <i class="material-icons">thumb_up</i>
+                                                    <span>{{ restaurant.likes.count }}</span>
+                                                </div>
+                                            </a>
+                                            <a href="{{ path('add_dislike_restaurant', { 'restaurant': restaurant.id }) }}">
+                                                <div class="icon danger">
+                                                    <i class="material-icons">thumb_down</i>
+                                                    <span>{{ restaurant.dislikes.count }}</span>
+                                                </div>
+                                            </a>
+
+                                        {% else %}
+                                            <a>
+                                                <div class="icon success">
+                                                    <i class="material-icons">thumb_up</i>
+                                                    <span>{{ restaurant.likes.count }}</span>
+                                                </div>
+                                            </a>
+                                            <a>
+                                                <div class="icon danger">
+                                                    <i class="material-icons">thumb_down</i>
+                                                    <span>{{ restaurant.dislikes.count }}</span>
+                                                </div>
+                                            </a>
+                                        {% endif %}
+                                    {% else %}
+                                        <div class="icon success">
+                                            <i class="material-icons">thumb_up</i>
+                                            <span>{{ restaurant.likes.count }}</span>
+                                        </div>
+                                        <div class="icon danger">
+                                            <i class="material-icons">thumb_down</i>
+                                            <span>{{ restaurant.dislikes.count }}</span>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" id="profileinfo">
+                        <div class="card-content">
+                            <div>
+                                <span class="subheader">Horaires</span>
+                                <div class="">
+                                    <span class="status success">Ouvre a {{ restaurant.opensAt|date('H\\hi') }}</span>
+                                    <span class="status attention">Ferme a {{ restaurant.closesAt|date('H\\hi') }}</span>
+                                </div>
+                            </div>
+                            <span class="subheader">Contact</span>
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="row">
+                                        <div class="profile-contact flex justify-center ">
+                                            {% if restaurant.number is not null %}
+                                                <a href="tel:{{ restaurant.number }}" class="modernize flex align-center waves-effect waves-light">
+                                                    <i class="material-icons">phone_android</i>
+                                                    <span>Appeler</span>
+                                                </a>
+                                            {% endif %}
+                                            <a href="mailto:{{ restaurant.owner.email }}" class="modernize flex align-center waves-effect waves-light">
+                                                <i class="material-icons">mail_outline</i>
+                                                <span>Contacter</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% if is_granted('edit', restaurant) %}
+                                    <div class="row">
+                                        <div class="col s12 ">
+                                            <a href="{{ path('edit_restaurant', { 'restaurant': restaurant.id }) }}" class="modernize flex justify-center">
+                                                <span class="material-icons">account_circle</span>
+                                                <span>Modifier</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m7 l8">
+                    <div class="card" id="profilecontent">
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="flex align-center">
+                                        <span class="row-header">Menus</span>
+                                        {% if is_granted('edit', restaurant) %}
+                                            <a href="{{ path('add_menu', {'restaurant': restaurant.id}) }}" class="flex align-center add-btn">
+                                                <span class="material-icons">add</span>
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% block alerts %}
+                                    {% include 'inc/errors/errors.html.twig' %}
+                                {% endblock %}
+                                {% if restaurant.menus|length > 0 %}
+                                    {% for menu in restaurant.menus %}
+                                        <div class="col s12 m6">
+                                            <div class="card basic modernize">
+                                                {% if is_granted('edit', restaurant) %}
+                                                    <a href="#" class="edit-btn">
+                                                        <i class="material-icons">edit</i>
+                                                    </a>
+                                                {% endif %}
+                                                <a {% if is_granted('ROLE_CONSUMER') %}href="#item-modal"{% endif %} class="modal-trigger menu-card" data-title="{{ menu.name }}"
+                                                   data-description="{{ menu.description }}" data-price="{{ menu.price }}" data-id="{{ menu.id }}">
+                                                    <div class="card-content">
+                                                        <span class="card-title">{{ menu.name }}</span>
+                                                        <p>{{ menu.description }}</p>
+                                                        <div class="price">EUR {{ menu.price|number_format(2, '.') }}</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% if is_granted('edit', restaurant) %}
+                    <div class="col s12 m7 l8">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="col s12">
+                                        <div class="flex align-center">
+                                            <span class="row-header">Moyens de paiement</span>
+                                        </div>
+                                    </div>
+                                    {% if restaurant.stripeClient is null %}
+                                        <div class="col s12">
+                                            <div class="flex align-center ">
+                                                <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_E2NBCTLbP2MN2hCR0RBHuZymch6LCH81&scope=read_write" target="_blank" class="bg-stripe img-btn waves-effect">
+                                                    <img src="{{ asset('img/stripe_logo.png') }}" alt="">
+                                                </a>
+                                                <a href="{{ path('docs_stripe') }}" target="_blank" class="redirect" >Comment utiliser Stripe ?</a>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="col s12 m6 l4">
+                                            <div class="card stripe-card">
+                                                <a>
+                                                    <div class="card-content">
+                                                        <span class="card-title">{{ stripe.statement_descriptor }}</span>
+                                                        <p>ID : {{ stripe.id }}</p>
+
+                                                        <div class="logo">
+                                                            <img src="{{ asset('img/stripe_logo.png') }}" alt="Stripe Logo">
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                
+            </div>
+        </div>
+        {% if is_granted('ROLE_CONSUMER') and not is_granted('ROLE_OWNER') and not is_granted('ROLE_ADMIN') %}
+            <div class="modal modernize menu-display" id="item-modal" >
+                <div class="modal-content">
+                    <h4 class="modal-title">Burger</h4>
+                    <p class="description">Burger lorem ipsum dolor sit amet.</p>
+                    <span class="price">EUR 6.50</span>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col s6 m4 l3">
+                            <div class="quantity input">
+                                <button class="dec modernize">
+                                    <span class="material-icons">remove</span>
+                                </button>
+                                <span class="quantity count" data-quantity="1">1</span>
+                                <button class="inc modernize">
+                                    <span class="material-icons">add</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col s6 m8 l9">
+                            <a id="addtocart" class="modal-close modal-success waves-effect waves-light btn-flat">Panier</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

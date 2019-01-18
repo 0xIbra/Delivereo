@@ -1,0 +1,60 @@
+<div class="sidebar hide-on-med-and-down fixed">
+    <li class="sidebar-profile-link">
+        <a href="{{ path('fos_user_profile_show') }}" class="waves-effect">
+            <div class="image-container">
+                {% if app.user.image is not null %}
+                    <img src="{{ app.user.image.url }}" alt="Photo de {{ app.user.firstName }}" width="40" height="40" class="circle">
+                {% else %}
+                    {% if app.user.gender.id == 1 %}
+                        <img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540289616/boss.png" alt="Default photo" width="40" height="40" class="circle">
+                    {% elseif app.user.gender.id == 2 %}
+                        <img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540298272/croupier.png" alt="Default photo" width="40" height="40" class="circle">
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="user-info">{{ app.user.firstName }} {{ app.user.lastName }}</div>
+        </a>
+    </li>
+    <li><a href="{{ path('owner_dashboard') }}" class="waves-effect"><i class="material-icons">show_chart</i>Tableau de bord</a></li>
+    <li><a href="{{ path('owner_orders') }}" class="waves-effect"><i class="material-icons">dashboard</i>Commandes</a></li>
+    {% if app.user.restaurant is not null %}
+        <li><a href="{{ path('restaurant_info', { restaurant: app.user.restaurant.id }) }}"><i class="material-icons">business</i>Mon Restaurant</a></li>
+    {% endif %}
+
+</div>
+
+
+<ul id="dashboardSidebar" class="sidenav sidebar">
+    <li>
+        <div class="user-view">
+            <div class="background">
+                <div class="background-overlay"></div>
+                <img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540311324/businessman.jpg">
+            </div>
+            {% if app.user.image is null %}
+                {% if app.user.gender.id == 1 %}
+                    <img class="circle" src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540289616/boss.png" alt="Default photo">
+                {% elseif app.user.gender.id == 2 %}
+                    <img class="circle" src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540298272/croupier.png" alt="Default photo">
+                {% endif %}
+            {% else %}
+                <img src="{{ app.user.image.url }}" alt="Photo de {{ app.user.firstName }}" class="circle">
+            {% endif %}
+            <a href="{{ path('fos_user_profile_show') }}"><span class="white-text name">{{ app.user.firstName }} {{ app.user.lastName }}</span></a>
+            <a href="mailto:{{ app.user.email }}"><span class="white-text email">{{ app.user.email }}</span></a>
+        </div>
+    </li>
+
+    <li><a class="subheader">Admin</a></li>
+    <li><a href="{{ path('owner_dashboard') }}" class="waves-effect"><i class="material-icons">show_chart</i>Tableau de bord</a></li>
+    <li><a href="{{ path('owner_orders') }}" class="waves-effect"><i class="material-icons">dashboard</i>Commandes</a></li>
+    {% if app.user.restaurant is not null %}
+        <li><a href="{{ path('restaurant_info', { restaurant: app.user.restaurant.id }) }}"><i class="material-icons">business</i>Mon Restaurant</a></li>
+    {% endif %}
+</ul>
+
+<div class="sidebar-btn-container">
+    <a href="#dashboardSidebar" class="sidebar-btn left sidenav-trigger">
+        <i class="material-icons">keyboard_arrow_right</i>
+    </a>
+</div>

@@ -1,0 +1,15 @@
+.collection.modernize{
+  border: none !important;
+
+  .collection-item.modernize{
+    color: #333333;
+    margin: 5px 0;
+    box-shadow: none !important;
+    border: 1px solid rgba(0,0,0,0.04) !important;
+
+    &:hover{
+      color: $greenLight !important;
+      background: rgba(0,0,0,0.04) !important;
+    }
+  }
+}

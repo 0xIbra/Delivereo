@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ouverture restaurant | Delivereo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="page-wrapper">
+        <div class="row">
+            <div class="col s12 m8 l6 offset-m2 offset-l3">
+                <div class="card">
+                    <div class="card-content">
+                        <h3 class="heading">Ouverture restaurant</h3>
+                        {% block alerts %}
+                            {% include 'inc/errors/errors.html.twig' %}
+                        {% endblock %}
+                        {{ form_start(form) }}
+                        <div class="input-field">
+                            {{ form_widget(form.name) }}
+                        </div>
+                        <div class="input-field">
+                            {{ form_widget(form.number) }}
+                        </div>
+                        <div class="input-field modernize">
+                            {{ form_widget(form.opensAt) }}
+                        </div>
+                        <div class="input-field modernize">
+                            {{ form_widget(form.closesAt) }}
+                        </div>
+                        <div class="input-field modernize">
+                            {{ form_widget(form.categories) }}
+                        </div>
+                        <div class="input-field">
+                            {{ form_widget(form.address.line1) }}
+                        </div>
+                        <div class="input-field">
+                            {{ form_widget(form.address.line2) }}
+                        </div>
+                        <div class="input-field">
+                            {{ form_widget(form.address.city) }}
+                        </div>
+                        <div class="input-field">
+                            {{ form_widget(form.address.zipCode) }}
+                        </div>
+                        <div class="input-field submit-wrapper">
+                            <input type="submit" value="valider" class="btn modernize">
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

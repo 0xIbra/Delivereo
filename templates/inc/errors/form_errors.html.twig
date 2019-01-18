@@ -1,0 +1,5 @@
+{% for error in form.vars.errors.form.getErrors(true)  %}
+    <div class="alerts">
+        <div class="alert danger">{{ error.message }}</div>
+    </div>
+{% endfor %}

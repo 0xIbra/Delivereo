@@ -1,0 +1,53 @@
+.alert{
+  border-radius: 2px;
+  padding: 8px 10px;
+  margin: 5px 0;
+  color: #eeeeee;
+
+  &.danger{
+    background: $danger;
+  }
+
+  &.success{
+    background: $success;
+  }
+
+  &.default{
+    background: $default;
+    color: $dark;
+  }
+}
+
+
+/*
+========================================
+=========== FLOATING ALERTS ============
+========================================
+ */
+
+.floating-alerts{
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 700;
+  opacity: 0;
+  transform: translateX(150%);
+  transition: ease-in .6s;
+
+  .floating-alert{
+    border-radius: 3px;
+    margin-bottom: 5px !important;
+
+    &.danger{
+      background: rgba(217, 83, 79, .8);
+      color: #fff;
+      padding: 5px 15px;
+    }
+
+    &.success{
+      background: rgba(92, 184, 92, 0.8);
+      color: #fff;
+      padding: 5px 15px;
+    }
+  }
+}

@@ -1,0 +1,661 @@
+/**
+================================================
+================= CARD =========================
+================================================
+ */
+.card{
+  background-color: #ffffff !important;
+
+  &.no-shadow{
+    box-shadow: none !important;
+    border: 1.3px solid rgba(0,0,0,0.1);
+
+    &:hover{
+      box-shadow: none !important;
+    }
+  }
+
+  .card-content{
+
+
+    .heading{
+      text-align: center;
+      font-size: 18pt;
+    }
+
+    .small-header{
+      color: $dark;
+      font-size: 14pt;
+    }
+
+    .card-image{
+      i.material-icons.custom{
+        color: $dark;
+        font-size: 55pt;
+      }
+
+    }
+  }
+
+  .card-title.modernize{
+    display: block;
+    text-align: center;
+    padding-bottom: 20px;
+    color: $dark !important;
+  }
+
+  &:hover{
+    box-shadow: 0 0 30px rgba(0,0,0,0.1) !important;
+  }
+}
+/**
+================================================
+=================== CARD =======================
+================================================
+ */
+
+
+/**
+================================================
+================= MODERN CARD ==================
+================================================
+ */
+.modern-card{
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 4px;
+  margin: 10px 0;
+
+  a.linkify{
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  &:hover{
+    .modern-card-image .modern-overlay{
+      background: rgba(0,0,0,0.8) !important;
+    }
+    .modern-card-body{
+      color: $greenLight !important;
+    }
+  }
+
+  .modern-card-image{
+    position: relative;
+    width: 100%;
+
+    .modern-overlay{
+      position: absolute;
+      width: 100%;
+      height: 97%;
+      top: 0;
+      left: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 90;
+      transition: ease-in .1s;
+    }
+
+    img{
+      width: 100%;
+    }
+  }
+
+  .modern-card-body{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    color: #eeeeee;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span{
+      font-size: 18pt;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+}
+/**
+================================================
+================ MODERN CARD ===================
+================================================
+ */
+
+
+
+/**
+================================================
+=================== HR CARD ====================
+================================================
+ */
+
+.hr-card{
+  height: 100%;
+  overflow: hidden;
+  border-radius: 3px;
+  margin: 20px 0;
+  border-bottom: 1px solid rgba(0,0,0,.2);
+
+  .row{
+    margin-bottom: 0 !important;
+  }
+
+  .image{
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+
+    img{
+      width: 100%;
+    }
+  }
+
+  .card-body{
+
+    .title{
+      color: $dark;
+      font-size: 16pt;
+      display: block;
+    }
+
+    .rating{
+      display: flex;
+      margin-top: 10px;
+
+      .icon{
+        margin: 0 0 10px 0;
+        display: flex;
+
+        &.danger{
+          color: $danger;
+        }
+
+        &.success{
+          color: $success;
+        }
+
+        i.material-icons{
+          padding: 0 2px;
+          color: inherit;
+          cursor: pointer;
+
+          &:hover{
+            opacity: .8;
+          }
+        }
+
+        span{
+          color: inherit;
+          margin: 0 5px;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .category-list{
+
+      span{
+        margin-right: 3px;
+        color: #666;
+
+      }
+    }
+
+    .info{
+      margin-top: 5px;
+      color: #666666;
+      display: block;
+      span{
+        display: block !important;
+
+        &.status{
+          font-weight: bold;
+
+          &.danger{
+            color: $danger;
+          }
+
+          &.success{
+            color: $success;
+          }
+        }
+      }
+    }
+
+  }
+}
+
+/**
+================================================
+=================== HR CARD ====================
+================================================
+ */
+
+
+
+
+/**
+================================================
+================= IMAGE CARD ===================
+================================================
+ */
+
+.image-card{
+  height: 500px;
+
+  img{
+    height: 100%;
+  }
+}
+
+/**
+================================================
+================= IMAGE CARD ===================
+================================================
+ */
+
+
+
+/**
+================================================
+============== BASIC MODERN CARD ===============
+================================================
+ */
+
+.card.basic.modernize{
+  box-shadow: none !important;
+  border: 1.3px solid rgba(0,0,0,0.1);
+
+  a.edit-btn{
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: $dark;
+    border-left: 1px solid rgba(0,0,0,0.14);
+    border-bottom: 1px solid rgba(0,0,0,0.14);
+    padding: 2px 5px;
+    display: flex;
+    align-items: center;
+    border-radius: 0px 0 0 2px;
+    transition: ease-in .1s;
+
+    .material-icons{
+      font-size: 16pt;
+    }
+
+    &:hover{
+      background: rgba(0,0,0,0.05);
+
+      .material-icons{
+        color: $greenLight;
+      }
+    }
+  }
+
+  .card-content{
+    padding: 5px 10px !important;
+    .card-title{
+      font-size: 13pt;
+    }
+
+    p{
+      font-size: 10pt;
+      margin-bottom: 6px;
+    }
+
+    .on-card{
+
+      span.quantity.count{
+        font-size: 14pt;
+      }
+
+      button.modernize{
+
+        .material-icons{
+          font-size: 14pt;
+        }
+      }
+    }
+  }
+}
+
+/**
+================================================
+============== BASIC MODERN CARD ===============
+================================================
+ */
+
+
+
+/**
+================================================
+=============== STATS MINI CARD ================
+================================================
+ */
+
+.card.stats-mini-card{
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  box-shadow: 0 0 10px -4px rgba(0, 0, 0, 0.3);
+  display: flex;
+  padding: 20px;
+  align-items: center;
+
+  .card-logo{
+    margin-right: 10px;
+
+    &.green-color{
+      i.material-icons{
+        color: $moneyGreen !important;
+      }
+    }
+
+    &.purple-color{
+      i.material-icons{
+        color: $purple !important;
+      }
+    }
+
+    &.blue-color{
+      i.material-icons{
+        color: $blue !important;
+      }
+    }
+
+    &.orange-color{
+      i.material-icons{
+        color: $orangeModern !important;
+      }
+    }
+
+    i.material-icons{
+      font-size: 35pt;
+    }
+  }
+
+  .stats-card-content{
+
+    .value{
+      font-size: 16pt;
+    }
+
+    .type{
+      font-size: 12pt;
+      color: $grey;
+    }
+  }
+
+}
+
+/**
+================================================
+=============== STATS MINI CARD ================
+================================================
+ */
+
+
+.radio-card{
+  display: flex;
+  align-items: center;
+
+  .card.radio.modernize{
+    box-shadow: none !important;
+    border: 1.3px solid rgba(0,0,0,0.1);
+
+    a.edit-btn{
+      position: absolute;
+      right: 0;
+      top: 0;
+      color: $dark;
+      border-left: 1px solid rgba(0,0,0,0.14);
+      border-bottom: 1px solid rgba(0,0,0,0.14);
+      padding: 2px 5px;
+      display: flex;
+      align-items: center;
+      border-radius: 0px 0 0 2px;
+      transition: ease-in .1s;
+
+      .material-icons{
+        font-size: 16pt;
+      }
+
+      &:hover{
+        background: rgba(0,0,0,0.05);
+
+        .material-icons{
+          color: $greenLight;
+        }
+      }
+    }
+
+    .card-content{
+      padding: 5px 10px !important;
+      .card-title{
+        font-size: 13pt;
+
+        label{
+          font-size: 12pt !important;
+        }
+      }
+
+      p{
+        margin-bottom: 6px;
+      }
+    }
+  }
+}
+
+
+
+/**
+================================================
+================ STRIPE CARD ===================
+================================================
+ */
+
+.card.stripe-card{
+  background: $stripe !important;
+  color: #FFFFFF;
+  //box-shadow: 1px 1px 15px 1px rgba(0,0,0,0.3);
+
+  .card-content{
+    position: relative;
+    .card-title{
+      font-size: 13pt !important;
+    }
+
+    p{
+      font-size: 10pt !important;
+    }
+
+    .logo{
+      position: absolute;
+      right: 5px;
+      bottom: 0px;
+
+      img{
+        width: 40px;
+      }
+    }
+  }
+}
+
+/**
+================================================
+================ STRIPE CARD ===================
+================================================
+ */
+
+
+
+/**
+================================================
+================ WEATHER CARD ==================
+================================================
+ */
+
+
+.card.weather-card{
+
+  .card-content{
+    padding: 10px 11px;
+
+    .card-title{
+      padding-bottom: 10px;
+    }
+
+    .weather-icon-container{
+      background: #eceff1;
+      padding: 20px 5px;
+
+      .icon{
+        font-size: 50pt;
+        color: $dark;
+      }
+    }
+
+    .weather-info{
+      position: relative;
+
+      .weather{
+        font-size: 18pt;
+      }
+
+      .sub-weather{
+        font-size: 16px;
+        color: #777;
+      }
+    }
+
+    .weather-city{
+
+      .city-container{
+
+        .city{
+          font-size: 18pt;
+        }
+
+        .country{
+          font-size: 16px;
+          color: #777777;
+        }
+      }
+
+      .temperature-container{
+
+        .temp{
+          font-size: 18pt;
+        }
+      }
+    }
+
+  }
+}
+
+
+/**
+================================================
+================ WEATHER CARD ==================
+================================================
+ */
+
+
+
+
+
+
+
+/**
+================================================
+================= MEDIA QUERIES ===================
+================================================
+ */
+@media (min-width: $large) {
+  .card.custom{
+    height: 200px;
+  }
+}
+
+@media (min-width: $medium) and (max-width: $large) {
+  .cardc.custom{
+    height: 180px !important;
+  }
+}
+
+@media (min-width: $small) and (max-width: $medium) {
+  .card.custom{
+    height: 170px;
+  }
+}
+
+
+@media (max-width: $small) {
+
+  .hr-card{
+    padding-bottom: 15px;
+    border: 1px solid rgba(0,0,0,0.15);
+  }
+
+  .card.basic.modernize{
+
+    .card-content{
+
+      .card-title{
+        font-size: 11pt !important;
+        margin-bottom: 0 !important;
+      }
+
+      p{
+        font-size: 9pt !important;
+      }
+
+      .item-remove{
+
+        i.material-icons{
+          font-size: 16pt;
+        }
+      }
+
+      .on-card{
+
+        span.quantity.count{
+          font-size: 11pt !important;
+        }
+
+        button.modernize{
+
+          span.material-icons{
+            font-size: 14pt !important;
+          }
+        }
+      }
+    }
+  }
+
+  .hr-card{
+    //box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    .card-body{
+      width: 90%;
+      margin: auto;
+    }
+  }
+}
+
+/**
+================================================
+================= MEDIA QUERIES ===================
+================================================
+ */

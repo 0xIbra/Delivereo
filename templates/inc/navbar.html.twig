@@ -1,0 +1,81 @@
+<header>
+    <nav>
+        <div class="container-fluid">
+            <div class="nav-wrapper">
+                <a href="{{ path('homepage') }}" class="brand-logo left bold">Delivereo {% block subtitle %}{% endblock %}</a>
+                <a href="#" data-target="sidebar-nav" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    {% if not is_granted('ROLE_USER') and not is_granted('ROLE_OWNER') %}
+                        <li><a href="{{ path('partner') }}">Devenez partenaire</a></li>
+                    {% endif %}
+
+                    {% if is_granted('ROLE_OWNER') %}
+                        <li><a href="{{ path('owner_dashboard') }}">Tableau de bord</a></li>
+                    {% elseif is_granted('ROLE_ADMIN') %}
+                        <li><a href="{{ path('admin_dashboard') }}">Tableau de bord</a></li>
+                    {% elseif is_granted('ROLE_ADMIN') %}
+                        <li><a href="{{ path('admin_dashboard') }}" class="waves-effect"><i class="material-icons">show_chart</i>Tableau de bord</a></li>
+                    {% endif %}
+
+                    {% if is_granted('ROLE_CONSUMER') and not is_granted('ROLE_OWNER') and not is_granted('ROLE_ADMIN') %}
+                        <li><a href="{{ path('cart_page') }}"><i class="material-icons">shopping_cart</i></a></li>
+                    {% endif %}
+
+                    {% if not is_granted('ROLE_USER') %}
+                        <li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
+                        <li><a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
+                    {% elseif is_granted('ROLE_USER') %}
+                        <li><a href="{{ path('fos_user_profile_show') }}">Mon compte</a></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<ul id="sidebar-nav" class="sidenav">
+    {% if is_granted('ROLE_USER') %}
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <div class="background-overlay"></div>
+                    <img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540311324/businessman.jpg">
+                </div>
+                {% if app.user.image is null %}
+                    {% if app.user.gender.id == 1 %}
+                        <img class="circle" src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540289616/boss.png" alt="Default photo">
+                    {% elseif app.user.gender.id == 2 %}
+                        <img class="circle" src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540298272/croupier.png" alt="Default photo">
+                    {% endif %}
+                {% else %}
+                    <img src="{{ app.user.image.url }}" alt="Photo de {{ app.user.firstName }}" class="circle">
+                {% endif %}
+                <a href="{{ path('fos_user_profile_show') }}"><span class="white-text name">{{ app.user.firstName }} {{ app.user.lastName }}</span></a>
+                <a href="mailto:{{ app.user.email }}"><span class="white-text email">{{ app.user.email }}</span></a>
+            </div>
+        </li>
+    {% endif %}
+    <li><a class="subheader">Membre</a></li>
+    {% if not is_granted('ROLE_USER') %}
+        <li><a href="{{ path('partner') }}" class="waves-effect"><i class="material-icons">restaurant</i>Devenez partenaire</a></li>
+    {% endif %}
+
+    {% if is_granted('ROLE_OWNER') %}
+        <li><a href="{{ path('owner_dashboard') }}" class="waves-effect"><i class="material-icons">dashboard</i>Tableau de bord</a></li>
+    {% elseif is_granted('ROLE_ADMIN') %}
+        <li><a href="{{ path('admin_dashboard') }}" class="waves-effect"><i class="material-icons">dashboard</i>Tableau de bord</a></li>
+    {% endif %}
+
+    {% if is_granted('ROLE_CONSUMER') and not is_granted('ROLE_OWNER') and not is_granted('ROLE_ADMIN') %}
+        <li><a href="{{ path('cart_page') }}" class="waves-effect"><i class="material-icons">shopping_cart</i>Panier</a></li>
+    {% endif %}
+
+    {% if not is_granted('ROLE_USER') %}
+        <li><a class="waves-effect" href="{{ path('fos_user_security_login') }}"><i class="material-icons">account_circle</i>Connexion</a></li>
+        <li><a class="waves-effect" href="{{ path('fos_user_registration_register') }}"><i class="material-icons">format_align_left</i>Inscription</a></li>
+    {% else %}
+        <li><a href="{{ path('fos_user_profile_show') }}" class="waves-effect"><i class="material-icons">account_circle</i>Mon compte</a></li>
+        <li><a href="{{ path('fos_user_security_logout') }}" class="waves-effect"><i class="material-icons">power_settings_new</i>Déconnexion</a></li>
+    {% endif %}
+</ul>

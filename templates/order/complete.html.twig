@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande terminé | Delivereo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/restaurant.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/checkout.css') }}">
+{% endblock %}
+
+{% block alerts %}
+    {% include 'inc/errors/errors.html.twig' %}
+{% endblock %}
+
+{% block body %}
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            {% include 'order/order_breadcrumbs.html.twig' %}
+            <div class="row">
+                <div class="col s12 m8 l6 offset-m2 offset-l3">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="check_mark">
+                                <div class="sa-icon sa-success animate">
+                                    <span class="sa-line sa-tip animateSuccessTip"></span>
+                                    <span class="sa-line sa-long animateSuccessLong"></span>
+                                </div>
+                            </div>
+                            <br>
+                            <p>Commande effectué avec succés.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function (){
+            $('span.step.complete').addClass('active');
+
+            $('input[type="radio"]').on('change', function(){
+                if ($(this).is(':checked') && $(this).hasClass('credit-card-method')) {
+                    $('.credit-card-form').addClass('active')
+                }else
+                {
+                    $('.credit-card-form').removeClass('active')
+                }
+            });
+        });
+
+    </script>
+{% endblock %}

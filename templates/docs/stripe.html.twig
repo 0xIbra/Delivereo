@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stripe | Delivereo Docs{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/restaurant.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col s12 m8 offset-m2">
+                    <div class="card">
+                        <div class="card-content">
+                            <h5>Création d'un compte Stripe</h5>
+                            <p>
+                                Sur votre profil, cliquez sur le bouton Stripe et vous allez être redirigé sur la page d'enregistrement de Stripe.
+                                Remplissez le formulaire et une fois que vous avez créé votre compte vous allez être ramené sur votre profil à nouveau et votre compte de Stripe sera prêt
+                            </p>
+                            <p><b>Attention</b> à bien noter votre email et mot de passe de Stripe car vous en aurez besoin.</p>
+                            <br>
+                            <h5>Consultation Stripe</h5>
+                            <p>
+                                Vous pouvez consulter sur votre compte Stripe, toutes les informations concernant vos revenus et vous pouvez meme effectuer des remboursemens sur votre compte Stripe.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

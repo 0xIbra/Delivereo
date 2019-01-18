@@ -1,4 +1,7 @@
 {
+    "cloudinary/cloudinary_php": {
+        "version": "1.10.0"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -83,8 +86,29 @@
     "friendsofsymfony/user-bundle": {
         "version": "v2.1.2"
     },
+    "gesdinet/jwt-refresh-token-bundle": {
+        "version": "v0.4.0"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
+    },
+    "jms/metadata": {
+        "version": "1.6.0"
+    },
+    "jms/parser-lib": {
+        "version": "1.0.0"
+    },
+    "jms/serializer": {
+        "version": "1.13.0"
+    },
+    "jms/serializer-bundle": {
+        "version": "2.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "2.0",
+            "ref": "fe60ce509ef04a3f40da96e3979bc8d9b13b2372"
+        }
     },
     "lcobucci/jwt": {
         "version": "3.2.4"
@@ -104,11 +128,23 @@
     "namshi/jose": {
         "version": "7.2.3"
     },
+    "nelmio/cors-bundle": {
+        "version": "1.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.5",
+            "ref": "f0436fc35fca88eada758311f8de43bfb61f1980"
+        }
+    },
     "nikic/php-parser": {
         "version": "v4.0.3"
     },
     "ocramius/proxy-manager": {
         "version": "2.1.1"
+    },
+    "phpcollection/phpcollection": {
+        "version": "0.5.0"
     },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
@@ -118,6 +154,9 @@
     },
     "phpdocumentor/type-resolver": {
         "version": "0.4.0"
+    },
+    "phpoption/phpoption": {
+        "version": "1.5.0"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -143,8 +182,20 @@
             "ref": "fb7e19da7f013d0d422fa9bce16f5c510e27609b"
         }
     },
+    "stripe/stripe-php": {
+        "version": "v6.22.1"
+    },
     "swiftmailer/swiftmailer": {
         "version": "v6.1.2"
+    },
+    "symfony/apache-pack": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "c82bead70f9a4f656354a193df7bf0ca2114efa0"
+        }
     },
     "symfony/asset": {
         "version": "v4.1.3"

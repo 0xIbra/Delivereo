@@ -1,0 +1,223 @@
+{% extends 'bundles/FOSUserBundle/layout.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}{{ user.firstName }} {{ user.lastName }} | Delivereo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/restaurant.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+{% endblock %}
+
+{% block fos_user_content %}
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col s12 m5 l4">
+                    <div class="card" id="profileimage">
+                        <div class="card-content">
+                            <div class="image-wrapper">
+                                {% if user.image is null %}
+                                    {% if user.gender.id == 1 %}
+                                        <img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540289616/boss.png" alt="Default photo">
+                                    {% elseif user.gender.id == 2 %}
+                                        <img src="https://res.cloudinary.com/dqwg570oo/image/upload/v1540298272/croupier.png" alt="Default photo">
+                                    {% endif %}
+                                {% else %}
+                                    <img src="{{ user.image.url }}" alt="Photo de {{ user.firstname }} {{ user.lastName }}">
+                                {% endif %}
+                            </div>
+                            <div class="profile-cred">
+                                <span class="profile-title">{{ user.firstName }} {{ user.lastName }}</span>
+                                <div class="location flex align-center justify-center">
+                                    {% if user.hasRole('ROLE_CONSUMER') %}
+                                        <span class="ville">Consommateur</span>
+                                    {% elseif user.hasRole('ROLE_OWNER') %}
+                                        <span class="ville">Partenaire</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" id="profileinfo">
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="col s12">
+                                    <span class="subheader">Informations</span>
+                                    <div class="info">
+                                        <span class="material-icons">account_circle</span>
+                                        <span class="value">{{ user.username }}</span>
+                                    </div>
+                                    <div class="info">
+                                        <span class="material-icons">mail</span>
+                                        <span><a href="mailto:{{ user.email }}">{{ user.email }}</a></span>
+                                    </div>
+                                    <div class="info">
+                                        <span class="material-icons">wc</span>
+                                        <span class="value">{{ user.gender.name }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12 ">
+                                    {% if user.enabled %}
+                                        <a href="{{ path('admin_deactivate_user', {user: user.id}) }}" class="modernize flex justify-center">
+                                            <span class="material-icons">lock</span>
+                                            <span>Désactiver</span>
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ path('admin_activate_user', {user: user.id}) }}" class="modernize flex justify-center">
+                                            <span class="material-icons">lock_open</span>
+                                            <span>Activer</span>
+                                        </a>
+                                    {% endif %}
+                                </div>
+                                <div class="col s12 ">
+                                    <a href="{{ path('admin_delete_user', {user: user.id}) }}" class="modernize danger flex justify-center">
+                                        <span class="material-icons">delete</span>
+                                        <span>Supprimer</span>
+                                    </a>
+                                </div>
+                                {#<div class="flex buttons-row">#}
+                                {#<a href="{{ path('fos_user_profile_edit') }}" class="modernize flex justify-center">#}
+                                {#<span class="material-icons">account_circle</span>#}
+                                {#<span>Modifier</span>#}
+                                {#</a>#}
+                                {#<a href="{{ path('fos_user_change_password') }}" class="modernize flex justify-center">#}
+                                {#<span class="material-icons">lock</span>#}
+                                {#<span>Mot de passe</span>#}
+                                {#</a>#}
+                                {#</div>#}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m7 l8">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="col s12">
+                                    {% block alerts %}
+                                        {% include 'inc/errors/errors.html.twig' %}
+                                    {% endblock %}
+                                    <div class="flex align-center">
+                                        <div class="row-header">Commandes</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="flex align-center">
+                                        <div class="row-header">Adresses</div>
+                                    </div>
+                                </div>
+                                {% for address in user.addresses %}
+                                    <div class="col s12 m6 l4">
+                                        <div class="card basic modernize">
+                                            <a href="#addressmodal" class="modal-trigger address" data-id="{{ address.id }}" data-title="{{ address.name }}"
+                                               data-line1="{{ address.line1 }}" data-city="{{ address.city.name }}, {{ address.city.zipCode }}"
+                                               {% if address.line2 is not null %}data-line2="{{ address.line2 }}"{% endif %}>
+                                                <div class="card-content">
+                                                    <span class="card-title">{{ address.name }}</span>
+                                                    <span class="address">{{ address.line1 }}</span>
+                                                    <span class="address">{{ address.city.name }}, {{ address.city.zipCode }}</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if is_granted('ROLE_OWNER') and user.restaurant is not null %}
+                        {% if is_granted('view', user.restaurant) %}
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <div class="flex align-center">
+                                                <div class="row-header">Restaurant</div>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m6 l4">
+                                            <div class="card basic modernize">
+                                                <a href="{{ path('restaurant_info', { 'restaurant': user.restaurant.id }) }}">
+                                                    <div class="card-content">
+                                                        <span class="card-title">{{ user.restaurant.name }}</span>
+                                                        <span class="address">{{ user.restaurant.address.line1 }}</span>
+                                                        <span class="address">{{ user.restaurant.address.city.name }}, {{ user.restaurant.address.city.zipCode }}</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+
+
+        {#<div class="modal" id="addressmodal">#}
+            {#<div class="modal-content">#}
+                {#<h4 class="modal-title">Titre</h4>#}
+                {#<br>#}
+                {#<div class="divider"></div>#}
+                {#<br>#}
+                {#<span id="address" class="address">Adresse</span>#}
+                {#<span class="address" id="line2">Complementaire</span>#}
+                {#<span class="address" id="city">Ville</span>#}
+            {#</div>#}
+            {#<div class="modal-footer">#}
+                {#<a href="" class="waves-effect btn-flat red" id="deletebtn">Supprimer</a>#}
+                {#<a href="#" class="waves-effect btn-flat" id="editbtn">Modifier</a>#}
+            {#</div>#}
+        {#</div>#}
+
+        <div class="modal" id="restaurantmodal">
+            <div class="modal-content">
+                <h4 class="modal-title">Titre</h4>
+                <br>
+                <div class="divider"></div>
+                <br>
+                <span id="address" class="address">Adresse</span>
+                <span class="address" id="line2">Complementaire</span>
+                <span class="address" id="city">Ville</span>
+            </div>
+            <div class="modal-footer">
+                <a href="" class="waves-effect btn-flat red" id="deletebtn">Supprimer</a>
+                <a href="#" class="waves-effect btn-flat" id="editbtn">Modifier</a>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        // $('a.modal-trigger.address').click(function(){
+        //     $('#addressmodal #deletebtn').attr('href', '/user/address/delete/' + $(this).data('id'));
+        //     $('#addressmodal #editbtn').attr('href', '/user/address/edit/' + $(this).data('id'));
+        //     $('#addressmodal .modal-title').html($(this).data('title'));
+        //     $('#addressmodal #address').html($(this).data('line1'));
+        //     if ($(this).data('line2') !== undefined)
+        //     {
+        //         $('#addressmodal #line2').html($(this).data('line2'));
+        //     }else
+        //     {
+        //         $('#addressmodal #line2').html('');
+        //     }
+        //     $('#addressmodal #city').html($(this).data('city'));
+        // });
+    </script>
+{% endblock %}

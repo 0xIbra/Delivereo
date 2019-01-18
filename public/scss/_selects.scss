@@ -1,0 +1,18 @@
+.input-field.modernize{
+  .select-wrapper{
+    background: #eeeeee;
+    padding: 0 5px;
+
+    input{
+      border-bottom: none !important;
+    }
+
+    ul.dropdown-content{
+      li{
+        span{
+          color: #444 !important;
+        }
+      }
+    }
+  }
+}

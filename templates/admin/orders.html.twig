@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commandes | Delivereo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('restaurant.css') }}">
+    <link rel="stylesheet" href="{{ asset('profile.css') }}">
+{% endblock %}
+
+{% block alerts %}
+    {% include 'inc/errors/errors.html.twig' %}
+{% endblock %}
+
+{% block body %}
+    <div class="page-wrapper">
+        <div class="container-full">
+            <div class="row">
+                {#{{ dump(data.restaurantApplications) }}#}
+                <div class="col s12 m4 l2 no-padding">
+                    {% include 'admin/inc/sidebar.html.twig' %}
+                </div>
+                <div class="col s12 m8 l10">
+                    <div class="row">
+
+                        <div class="col s12">
+                            <div class="card">
+                                <div style="position: relative;" class="card-content">
+                                    <div class="row">
+                                        <div class="col s12 m6">
+                                            <h4 style="text-align: left" class="heading">Commandes</h4>
+                                        </div>
+                                        <div class="col s12 m6 hide-on-small-and-down">
+                                            {#<form>#}
+                                            <div style="position: absolute;top: 5px;right: 20px;" class="input-field">
+                                                <input type="text" class="modernize" placeholder="N°Commande">
+                                            </div>
+                                            {#</form>#}
+                                        </div>
+                                    </div>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Consommateur</th>
+                                            <th>Commandée le</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for order in orders %}
+                                            <tr>
+                                                <td><a href="#">#{{ order.orderNumber }}</a></td>
+                                                <td><a href="{{ path('visit_user', { user: order.consumer.id }) }}">{{ order.consumer.firstName }} {{ order.consumer.lastName }}</a></td>
+                                                <td><a href="#">{{ order.orderedAt|date('d/m/Y') }}</a></td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col s8 m5 l2 offset-s2 offset-m4 offset-l5">
+                                            <a href="{{ path('admin_users') }}?users=all" class="modernize flex justify-center "><b>Voir tout</b></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}{% endblock %}

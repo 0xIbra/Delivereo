@@ -3,8 +3,11 @@
 /.env
 /public/bundles/
 /var/
-/vendor/
+/vendor/*
 ###< symfony/framework-bundle ###
+
+!/vendor/friendsofsymfony/
+
 
 ###> symfony/phpunit-bridge ###
 .phpunit

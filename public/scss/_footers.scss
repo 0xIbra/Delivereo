@@ -1,0 +1,26 @@
+.page-footer.modernize{
+  background: $default !important;
+  color: $dark !important;
+  box-shadow: 0 0 39px -8px rgba(0,0,0,0.1);
+
+  .footer-title{
+    font-size: 25pt;
+    font-weight: bold;
+  }
+
+  .col-title{
+    font-size: 13pt !important;
+  }
+
+  .footer-copyright{
+    color: $dark !important;
+  }
+
+  a{
+
+    &:hover{
+      color: $greenLight !important;
+    }
+  }
+
+}

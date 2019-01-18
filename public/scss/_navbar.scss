@@ -1,0 +1,38 @@
+header{
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  top: 0;
+
+  nav{
+    background: #eeeeee;
+    color: #333333 !important;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+
+    &.top{
+      background: transparent !important;
+      color: #eeeeee !important;
+      box-shadow: none !important;
+    }
+
+    *{
+      color: inherit !important;
+    }
+
+    .brand-logo{
+      &.bold{
+        font-weight: 600 !important;
+      }
+    }
+
+    ul{
+
+      li{
+
+        a{
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

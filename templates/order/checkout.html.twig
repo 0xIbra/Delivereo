@@ -1,0 +1,163 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Validation de la commande | Delivereo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/restaurant.css') }}">
+    {#<link rel="stylesheet" href="{{ asset('css/cart.css') }}">#}
+    <link rel="stylesheet" href="{{ asset('css/checkout.css') }}">
+{% endblock %}
+
+{% block apiKeys %}
+    <meta id="stripe-key" content="{{ function_name('STRIPE_PUBLISHABLE_KEY') }}">
+{% endblock %}
+
+{% block alerts %}
+    {% include 'inc/errors/errors.html.twig' %}
+{% endblock %}
+
+{% block body %}
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            {% include 'order/order_breadcrumbs.html.twig' %}
+            <div class="row">
+                <div class="col s12 m12 l7">
+                    <div class="card">
+                        <div class="card-content">
+                            {{ form_start(payment, { 'attr': { 'id': 'payment-form' } }) }}
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="row-header">Panier</div>
+                                </div>
+
+                                {% for item in app.user.cart.items %}
+                                    <div class="col s12 l6 cart-item-container">
+                                        <div class="card basic modernize">
+                                            <a>
+                                                <div class="card-content">
+                                                    <span class="card-title">{{ item.menu.name }} x{{ item.quantity }}</span>
+                                                    <p>{{ item.menu.description }}</p>
+                                                    <div class="price">EUR {{ item.menu.price|number_format(2, '.') }}</div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                                <div class="col s12">
+                                    <div class="flex align-center">
+                                        <div class="row-header">Adresse de livraison</div>
+                                        <a href="{{ path('add_address') }}?redirect_uri={{ path('checkout_page') }}" class="modal-trigger flex align-center add-btn">
+                                            <span class="material-icons">add</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                {% for field in payment.address %}
+                                    <div class="col s12 m6 l4">
+                                        <div class="radio-card">
+                                            <p class="radio modernize">
+                                                <label>
+                                                    {{ form_widget(field, { 'attr': { 'class': 'address-radio-btn with-gap' } }) }}
+                                                    <span></span>
+                                                </label>
+                                            </p>
+                                            <div class="card radio modernize">
+                                                <div class="card-content">
+                                                    <span class="card-title">{{ form_label(field) }}</span>
+                                                    {#<p class="line1"></p>#}
+                                                    {#<div class="price"></div>#}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m12 l5">
+                    <div class="card">
+                        <div class="card-content">
+
+                            {% set total = 0 %}
+                            {% for item in app.user.cart.items %}
+                                {% set total = total + (item.menu.price * item.quantity) %}
+                                <div class="flex align-center justify-space-between line">
+                                    <span>{{ item.menu.name }} x{{ item.quantity }}</span>
+                                    <span>{{ (item.menu.price * item.quantity)|number_format(2, '.') }} EUR</span>
+                                </div>
+                            {% endfor %}
+                            <br>
+                            <div class="flex align-center justify-space-between line">
+                                <span>Total</span>
+                                <span>{{ total|number_format(2, '.') }} EUR</span>
+                            </div>
+                            <br>
+
+                            <div class="flex align-center">
+                                <p class="radio modernize">
+                                    <label>
+                                        {{ form_widget(payment.paymentMethod.1, { 'attr': { 'class': 'with-gap' } }) }}
+                                        <span>{{ form_label(payment.paymentMethod.1) }}</span>
+                                    </label>
+                                </p>
+                                <i style="font-size: 15pt" class="material-icons tooltip" data-position="right" data-tooltip="Payer quand c'est livré" >info_outline</i>
+                            </div>
+
+                            <div class="flex align-center credit-card-icons">
+                                <p class="radio modernize">
+                                    <label>
+                                        {{ form_widget(payment.paymentMethod.2, { 'attr': { 'class': 'with-gap credit-card-method' } }) }}
+                                        <span>{{ form_label(payment.paymentMethod.2) }}</span>
+                                    </label>
+                                </p>
+                                <img src="{{ asset('img/creditcard/visa.svg') }}" width="30" alt="Visa">
+                                <img src="{{ asset('img/creditcard/mastercard.svg') }}" width="30" alt="MasterCard">
+                                <img src="{{ asset('img/creditcard/amex.svg') }}" width="30" alt="American Express">
+                            </div>
+
+                            <div class="credit-card-form">
+                                <span style="font-size: 11pt;color: #888888;font-weight: 500">Utilisez <b>4000 0000 0000 0077</b> si vous voulez commander</span>
+                                <div style="padding: 10px 0 !important;">
+                                    <div id="card-element">
+                                    </div>
+                                </div>
+
+                                <div id="card-errors" role="alert"></div>
+                            </div>
+
+                            <div class="input-field submit-wrapper">
+                                {{ form_widget(payment.pay) }}
+                            </div>
+
+                            {{ form_end(payment) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        $(document).ready(function (){
+            $('span.step.checkout').addClass('active');
+            $('input[type="radio"]').on('change', function(){
+                if ($(this).is(':checked') && $(this).hasClass('credit-card-method')) {
+                    $('.credit-card-form').addClass('active')
+                }else
+                {
+                    $('.credit-card-form').removeClass('active')
+                }
+            });
+        });
+
+    </script>
+    <script src="{{ asset('js/stripe-checkout.js') }}"></script>
+{% endblock %}
