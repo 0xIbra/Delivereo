@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -14,23 +15,27 @@ class Address
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Serializer\Groups("front")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Le champ libellé ne doit pas être vide.")
+     * @Serializer\Groups("front")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Le champ adresse ne doit pas être vide.")
+     * @Serializer\Groups("front")
      */
     private $line1;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Serializer\Groups("front")
      */
     private $line2;
 
@@ -38,6 +43,7 @@ class Address
      * @var City
      * @ORM\ManyToOne(targetEntity="App\Entity\City")
      * @Assert\NotNull()
+     * @Serializer\Groups("front")
      */
     private $city;
 

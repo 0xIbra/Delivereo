@@ -57,17 +57,11 @@ class AuthController extends AbstractController
      * @param SerializerInterface $serializer
      * @return Response
      *
-     * @Route("/api/auth/me", name="get_user", methods={"GET", "POST"})
+     * @Route("/api/auth/me", name="get_user", methods={"GET"})
      */
     public function me(SerializerInterface $serializer)
     {
-        $res = [
-            'code' => Response::HTTP_OK,
-            'user' => $this->getUser()
-        ];
-        $response = new Response($serializer->serialize($res, 'json'));
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
+        return JSON::JSONResponseWithGroups($this->getUser(), Response::HTTP_OK, $serializer, ['front']);
     }
 
     /**
@@ -78,8 +72,9 @@ class AuthController extends AbstractController
      * @param UserManagerInterface $userManager
      * @param SerializerInterface $serializer
      * @return JsonResponse
+     * @throws \Exception
      */
-    public function register(Request $request, ValidatorInterface $validator, UserManagerInterface $userManager, SerializerInterface $serializer, UserPasswordEncoderInterface $encoder)
+    public function register(Request $request, ValidatorInterface $validator, UserManagerInterface $userManager, SerializerInterface $serializer)
     {
         $user = $serializer->deserialize($request->getContent(), User::class, 'json');
         $violations = $validator->validate($user);
@@ -103,13 +98,14 @@ class AuthController extends AbstractController
             $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
             $user->setPlainPassword($user->getPassword());
+            $user->setCreatedAt(new \DateTime());
             $userManager->updateUser($user);
             $code = Response::HTTP_CREATED;
             $status = 'success';
-            $message = "Utilisateur a été crée. Merci d'activer votre compte à partir de votre boîte mail.";
+            $message = "Inscription réussite. Merci d'activer votre compte à partir de votre boîte mail.";
         }else
         {
-            $code = Response::HTTP_BAD_REQUEST;
+            $code = Response::HTTP_NOT_FOUND;
             $status = 'failure';
             $message = "Email ou nom d'utilisateur existe déjà.";
         }

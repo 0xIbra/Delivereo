@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CartItemRepository")
@@ -13,12 +14,14 @@ class CartItem
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Serializer\Groups("cart")
      */
     private $id;
 
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Menu")
+     * @Serializer\Groups("cart")
      */
     private $menu;
 
@@ -30,6 +33,7 @@ class CartItem
 
     /**
      * @ORM\Column(name="quantity", type="integer", nullable=false)
+     * @Serializer\Groups("cart")
      */
     private $quantity;
 

@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -17,17 +18,20 @@ class Restaurant
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Serializer\Groups("front")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Le nom du restaurant est obligatoire.")
+     * @Serializer\Groups("front")
      */
     private $name;
 
     /**
      * @ORM\Column(name="number", type="string", length=20, nullable=true)
+     * @Serializer\Groups("front")
      *
      */
     private $number;
@@ -35,12 +39,14 @@ class Restaurant
     /**
      * @ORM\Column(type="time")
      * @Assert\NotNull(message="Les horaires sont obligatoires.")
+     * @Serializer\Groups("front")
      */
     private $opensAt;
 
     /**
      * @ORM\Column(type="time")
      * @Assert\NotNull(message="Les horaires sont obligatoires.")
+     * @Serializer\Groups("front")
      */
     private $closesAt;
 
@@ -64,23 +70,27 @@ class Restaurant
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="restaurants", cascade={"persist"})
+     * @Serializer\Groups("front")
      */
     private $categories;
 
     /**
      * @var Image
      * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade={"persist", "remove"})
+     * @Serializer\Groups("front")
      */
     private $image;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Like", mappedBy="target", cascade={"persist", "remove"})
+     * @Serializer\Groups("front")
      */
     private $likes;
 
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\DisLike", mappedBy="target", cascade={"persist", "remove"})
+     * @Serializer\Groups("front")
      */
     private $dislikes;
 
@@ -88,6 +98,7 @@ class Restaurant
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\User", mappedBy="restaurant")
      * @Assert\NotNull()
+     * @Serializer\Groups("front")
      */
     private $owner;
 
@@ -101,6 +112,7 @@ class Restaurant
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\City", inversedBy="restaurants")
      * @Assert\NotNull(message="Merci de entrer une ville valide.")
+     * @Serializer\Groups("front")
      */
     private $city;
 
@@ -108,12 +120,14 @@ class Restaurant
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Address", cascade={"persist", "remove"})
      * @Assert\NotNull(message="L'adresse est obligatoire.")
+     * @Serializer\Groups("front")
      */
     private $address;
 
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="restaurant", cascade={"persist", "remove"})
+     * @Serializer\Groups({"front"})
      */
     private $menus;
 

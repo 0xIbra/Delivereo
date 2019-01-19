@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CartRepository")
@@ -15,11 +16,13 @@ class Cart
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Serializer\Groups({"cart"})
      */
     private $id;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\User", mappedBy="cart")
+     * @Serializer\Groups({"cart"})
      */
     private $consumer;
 
@@ -27,6 +30,7 @@ class Cart
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\CartItem", mappedBy="cart", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
+     * @Serializer\Groups({"cart"})
      */
     private $items;
 

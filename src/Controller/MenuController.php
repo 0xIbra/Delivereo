@@ -59,6 +59,7 @@ class MenuController extends AbstractController
 
     /**
      * @Route("/user/cart/add", name="add_to_cart", methods={"POST"})
+     *
      * @param Request $request
      * @param ObjectManager $om
      * @param SerializerInterface $serializer

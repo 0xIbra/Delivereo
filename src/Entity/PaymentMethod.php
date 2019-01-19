@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PaymentMethodRepository")
@@ -23,6 +24,7 @@ class PaymentMethod
 
     /**
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @Serializer\Groups("front")
      */
     private $name;
 
@@ -54,4 +56,10 @@ class PaymentMethod
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
 }

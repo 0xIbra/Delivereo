@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OrderRepository")
@@ -17,35 +18,41 @@ class Order
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Serializer\Groups("front")
      */
     private $id;
 
 
     /**
      * @ORM\Column(name="order_number", type="string", length=255, nullable=true, unique=true)
+     * @Serializer\Groups("front")
      */
     private $orderNumber;
 
 
     /**
      * @ORM\Column(name="ordered_at", type="datetime")
+     * @Serializer\Groups("front")
      */
     private $orderedAt;
 
     /**
      * @ORM\Column(name="total_price", type="float")
+     * @Serializer\Groups("front")
      */
     private $totalPrice;
 
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\PaymentMethod")
+     * @Serializer\Groups("front")
      */
     private $paymentMethod;
 
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Address")
+     * @Serializer\Groups("front")
      */
     private $deliveryAddress;
 
@@ -58,11 +65,13 @@ class Order
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Restaurant", mappedBy="orders")
+     * @Serializer\Groups("front")
      */
     private $restaurants;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\OrderMenu", mappedBy="order", cascade={"persist", "remove"})
+     * @Serializer\Groups("front")
      */
     private $items;
 
