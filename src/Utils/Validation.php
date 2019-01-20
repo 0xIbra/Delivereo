@@ -31,4 +31,28 @@ class Validation
         }
     }
 
+
+    public static function validateforJson(ValidatorInterface $validator, $entity)
+    {
+        $violations = $validator->validate($entity);
+        $messages = [];
+        if ($violations->count() > 0)
+        {
+            foreach ($violations as $violation)
+            {
+                $messages[] = $violation->getMessage();
+            }
+            return [
+                'validation' => false,
+                'messages' => $messages
+            ];
+        } else
+        {
+            return [
+                'validation' => true,
+                'messages' => $messages
+            ];
+        }
+    }
+
 }

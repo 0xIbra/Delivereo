@@ -15,27 +15,27 @@ class Address
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Serializer\Groups("front")
+     * @Serializer\Groups({"owner", "admin"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Le champ libellé ne doit pas être vide.")
-     * @Serializer\Groups("front")
+     * @Serializer\Groups({"front", "owner", "customer"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Le champ adresse ne doit pas être vide.")
-     * @Serializer\Groups("front")
+     * @Serializer\Groups({"front", "owner", "customer"})
      */
     private $line1;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Serializer\Groups("front")
+     * @Serializer\Groups({"front", "owner", "customer"})
      */
     private $line2;
 
@@ -43,7 +43,7 @@ class Address
      * @var City
      * @ORM\ManyToOne(targetEntity="App\Entity\City")
      * @Assert\NotNull()
-     * @Serializer\Groups("front")
+     * @Serializer\Groups({"front", "owner", "customer"})
      */
     private $city;
 

@@ -2,10 +2,10 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="571874f3-891b-4660-9b45-c4fb9d175403" name="Server" url="http://192.168.1.44">
+      <webServer id="5125534f-f14f-4a7f-bbb2-f8212e23f7fe" name="ibra-server" url="http://192.168.1.44">
         <fileTransfer host="192.168.1.44" port="22" rootFolder="/var/www/html/back.delivereo.tk/" accessType="SFTP">
           <advancedOptions>
-            <advancedOptions dataProtectionLevel="Private" shareSSLContext="true" />
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
           <option name="port" value="22" />
         </fileTransfer>

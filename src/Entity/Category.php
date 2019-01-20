@@ -16,11 +16,13 @@ class Category
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Serializer\Groups({"customer", "owner"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Groups({"customer", "owner"})
      */
     private $name;
 
@@ -29,6 +31,7 @@ class Category
      * @var Image
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade={"persist"})
+     * @Serializer\Groups({"customer", "owner"})
      */
     private $image;
 

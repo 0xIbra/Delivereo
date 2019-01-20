@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -14,6 +15,7 @@ class Image
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Serializer\Groups({"front"})
      */
     private $id;
 
@@ -22,11 +24,13 @@ class Image
      *
      * @ORM\Column(name="title", type="string", length=255, nullable=true)
      * @Assert\NotBlank()
+     * @Serializer\Groups({"customer", "owner", "front"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Groups({"customer", "owner", "front"})
      */
     private $url;
 

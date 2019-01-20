@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -17,12 +18,14 @@ class Like
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Serializer\Groups({"customer", "owner"})
      */
     private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Restaurant", inversedBy="likes")
      * @Assert\NotNull()
+     * @Serializer\Groups({"customer", "owner"})
      */
     private $target;
 
@@ -35,6 +38,7 @@ class Like
 
     /**
      * @ORM\Column(name="issued_at", type="datetime", nullable=true)
+     * @Serializer\Groups({"customer", "owner"})
      */
     private $liked_at;
 

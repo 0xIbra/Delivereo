@@ -43,7 +43,7 @@ class RestaurantController extends AbstractController
             return JSON::JSONResponse(['message' => 'Restaurant non trouvée', 'status' => false], Response::HTTP_NOT_FOUND, $serializer);
         }
 
-        return JSON::JSONResponse($restaurant, Response::HTTP_OK, $serializer);
+        return JSON::JSONResponseWithGroups($restaurant, Response::HTTP_OK, $serializer, ['customer']);
     }
 
 
@@ -89,11 +89,11 @@ class RestaurantController extends AbstractController
             $categories = array_unique($categories);
 
             $restaurants = $om->getRepository(Restaurant::class)->findByCategories($categories);
-            return JSON::JSONResponse($restaurants, Response::HTTP_OK, $serializer);
+            return JSON::JSONResponseWithGroups($restaurants, Response::HTTP_OK, $serializer, ['customer']);
         }
 
         $restaurants = $om->getRepository(Restaurant::class)->findBy(['city' => $city, 'enabled' => true, 'published' => true]);
-        return JSON::JSONResponse($restaurants, Response::HTTP_OK, $serializer);
+        return JSON::JSONResponseWithGroups($restaurants, Response::HTTP_OK, $serializer, ['customer']);
     }
 
 

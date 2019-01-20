@@ -17,42 +17,42 @@ class Menu
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Serializer\Groups({"front", "cart"})
+     * @Serializer\Groups({"owner", "customer", "cart"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Le nom du menu est obligatoire.")
-     * @Serializer\Groups({"front", "cart"})
+     * @Serializer\Groups({"owner", "customer", "cart"})
      */
     private $name;
 
 
     /**
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
-     * @Serializer\Groups({"front", "cart"})
+     * @Serializer\Groups({"owner", "customer", "cart"})
      */
     private $description;
 
     /**
      * @ORM\Column(name="price", type="float")
      * @Assert\NotNull(message="Le prix du menu est obligatoire.")
-     * @Serializer\Groups({"front", "cart"})
+     * @Serializer\Groups({"owner", "customer", "cart"})
      */
     private $price;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
-     * @Serializer\Groups({"front", "cart"})
+     * @Serializer\Groups({"owner", "customer", "cart"})
      */
     private $image;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="menus")
      * @Assert\NotNull()
-     * @Serializer\Groups({"front", "cart"})
+     * @Serializer\Groups({"owner", "customer", "cart"})
      */
     private $category;
 
@@ -68,6 +68,7 @@ class Menu
      * @var Comment
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\Comment", inversedBy="targetMenu", cascade={"persist", "remove"})
+     * @Serializer\Groups({"admin", "owner", "customer"})
      */
     private $comments;
 

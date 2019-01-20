@@ -2,12 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Address;
 use App\Entity\Cart;
 use App\Entity\CartItem;
 use App\Entity\Category;
+use App\Entity\City;
 use App\Entity\Menu;
+use App\Entity\User;
 use App\Utils\JSON;
 use Doctrine\Common\Persistence\ObjectManager;
+use FOS\UserBundle\Model\UserManagerInterface;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,8 +20,45 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ApiController extends AbstractController
 {
+
+    /**
+     * @Route("/api/auth/address/add", name="addAddressJson", methods={"POST"})
+     *
+     * @param Request $request
+     * @param ObjectManager $om
+     * @param UserManagerInterface $userManager
+     * @param SerializerInterface $serializer
+     * @return Response
+     */
+    public function addAddressJson(Request $request, ObjectManager $om, UserManagerInterface $userManager, SerializerInterface $serializer)
+    {
+        $address = $serializer->deserialize($request->getContent(), Address::class, 'json');
+
+        $city = $om->getRepository(City::class)->findOneBy(['name' => $address->getCity()->getName(), 'zipCode' => $address->getCity()->getZipCode()]);
+        if ($city === null)
+        {
+            return JSON::JSONResponse([
+                'message' => 'Merci d\'entrer les données d\'une ville valide.',
+                'status' => false
+            ], Response::HTTP_BAD_REQUEST, $serializer);
+        }
+        $address->setCity($city);
+
+        $user = $this->getUser();
+        $user->addAddress($address);
+        $userManager->updateUser($user);
+        return JSON::JSONResponse([
+            'message' => 'Le nouveau adresse a été ajouté.',
+            'status' => true
+        ], Response::HTTP_CREATED, $serializer);
+    }
+
     /**
      * @Route("/api/categories/favourite", name="api_favourite_categories", methods={"GET"})
+     *
+     * @param ObjectManager $om
+     * @param SerializerInterface $serializer
+     * @return Response
      */
     public function getFavouriteCategories(ObjectManager $om, SerializerInterface $serializer)
     {

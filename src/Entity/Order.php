@@ -65,7 +65,6 @@ class Order
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Restaurant", mappedBy="orders")
-     * @Serializer\Groups("front")
      */
     private $restaurants;
 

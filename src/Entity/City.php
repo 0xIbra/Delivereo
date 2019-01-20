@@ -21,6 +21,7 @@ class City
 
     /**
      * @ORM\Column(name="name", type="string", length=255)
+     * @Serializer\Groups({"front", "owner", "customer"})
      */
     private $name;
 
@@ -28,6 +29,7 @@ class City
      * @var integer
      *
      * @ORM\Column(name="zip_code", type="integer")
+     * @Serializer\Groups({"front", "owner", "customer"})
      */
     private $zipCode;
 

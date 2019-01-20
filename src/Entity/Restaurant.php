@@ -18,20 +18,20 @@ class Restaurant
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Serializer\Groups("front")
+     * @Serializer\Groups({"front", "owner", "customer"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Le nom du restaurant est obligatoire.")
-     * @Serializer\Groups("front")
+     * @Serializer\Groups({"front", "owner", "customer"})
      */
     private $name;
 
     /**
      * @ORM\Column(name="number", type="string", length=20, nullable=true)
-     * @Serializer\Groups("front")
+     * @Serializer\Groups({"owner", "customer"})
      *
      */
     private $number;
@@ -39,58 +39,61 @@ class Restaurant
     /**
      * @ORM\Column(type="time")
      * @Assert\NotNull(message="Les horaires sont obligatoires.")
-     * @Serializer\Groups("front")
+     * @Serializer\Groups({"owner", "customer"})
      */
     private $opensAt;
 
     /**
      * @ORM\Column(type="time")
      * @Assert\NotNull(message="Les horaires sont obligatoires.")
-     * @Serializer\Groups("front")
+     * @Serializer\Groups({"owner", "customer"})
      */
     private $closesAt;
 
 
     /**
      * @ORM\Column(name="enabled", type="boolean")
+     * @Serializer\Groups({"owner", "admin"})
      */
     private $enabled;
 
 
     /**
      * @ORM\Column(name="published", type="boolean")
+     * @Serializer\Groups({"owner", "admin"})
      */
     private $published;
 
 
     /**
      * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     * @Serializer\Groups({"owner", "admin"})
      */
     private $createdAt;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="restaurants", cascade={"persist"})
-     * @Serializer\Groups("front")
+     * @Serializer\Groups({"owner", "customer"})
      */
     private $categories;
 
     /**
      * @var Image
      * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade={"persist", "remove"})
-     * @Serializer\Groups("front")
+     * @Serializer\Groups({"owner", "customer"})
      */
     private $image;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Like", mappedBy="target", cascade={"persist", "remove"})
-     * @Serializer\Groups("front")
+     * @Serializer\Groups({"owner", "customer"})
      */
     private $likes;
 
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\DisLike", mappedBy="target", cascade={"persist", "remove"})
-     * @Serializer\Groups("front")
+     * @Serializer\Groups({"owner", "customer"})
      */
     private $dislikes;
 
@@ -98,13 +101,14 @@ class Restaurant
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\User", mappedBy="restaurant")
      * @Assert\NotNull()
-     * @Serializer\Groups("front")
+     * @Serializer\Groups({"owner"})
      */
     private $owner;
 
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="managedRestaurant")
+     * @Serializer\Groups({"owner"})
      */
     private $managers;
 
@@ -112,7 +116,7 @@ class Restaurant
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\City", inversedBy="restaurants")
      * @Assert\NotNull(message="Merci de entrer une ville valide.")
-     * @Serializer\Groups("front")
+     * @Serializer\Groups({"owner", "customer", "front"})
      */
     private $city;
 
@@ -120,26 +124,28 @@ class Restaurant
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Address", cascade={"persist", "remove"})
      * @Assert\NotNull(message="L'adresse est obligatoire.")
-     * @Serializer\Groups("front")
+     * @Serializer\Groups({"owner", "customer", "front"})
      */
     private $address;
 
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Menu", mappedBy="restaurant", cascade={"persist", "remove"})
-     * @Serializer\Groups({"front"})
+     * @Serializer\Groups({"owner", "customer"})
      */
     private $menus;
 
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Order", inversedBy="restaurants")
+     * @Serializer\Groups({"owner"})
      */
     private $orders;
 
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\StripeClient", inversedBy="restaurant", cascade={"persist", "remove"})
+     * @Serializer\Groups({"owner"})
      */
     private $stripeClient;
 

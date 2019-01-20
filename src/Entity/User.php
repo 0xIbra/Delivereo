@@ -31,7 +31,7 @@ class User extends BaseUser
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      * @Serializer\Type("string")
-     * @Serializer\Groups({"cart", "front"})
+     * @Serializer\Groups({"front", "cart"})
      */
     protected $id;
 

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -16,6 +17,7 @@ class DisLike
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Serializer\Groups({"customer", "owner"})
      */
     private $id;
 
@@ -29,12 +31,14 @@ class DisLike
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="dislikes")
      * @Assert\NotNull()
+     * @Serializer\Groups({"owner", "admin"})
      */
     private $user;
 
 
     /**
      * @ORM\Column(name="disliked_at", type="datetime", nullable=true)
+     * @Serializer\Groups({"customer", "owner"})
      */
     private $disliked_at;
 
