@@ -15,7 +15,7 @@ class Address
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Serializer\Groups({"owner", "admin"})
+     * @Serializer\Groups({"owner", "admin", "front"})
      */
     private $id;
 

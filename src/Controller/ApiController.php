@@ -10,6 +10,7 @@ use App\Entity\City;
 use App\Entity\Menu;
 use App\Entity\User;
 use App\Utils\JSON;
+use App\Utils\Validation;
 use Doctrine\Common\Persistence\ObjectManager;
 use FOS\UserBundle\Model\UserManagerInterface;
 use JMS\Serializer\SerializerInterface;
@@ -17,9 +18,96 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class ApiController extends AbstractController
 {
+
+    /**
+     * @Route("/api/auth/address/edit", name="editAddressJson", methods={"PUT"})
+     *
+     * @param Request $request
+     * @param ObjectManager $om
+     * @param SerializerInterface $serializer
+     * @param ValidatorInterface $validator
+     * @return Response
+     */
+    public function editAddressJson(Request $request, ObjectManager $om, SerializerInterface $serializer, ValidatorInterface $validator)
+    {
+        $address = $serializer->deserialize($request->getContent(), Address::class, 'json');
+        $city = $om->getRepository(City::class)->findOneBy(['name' => $address->getCity()->getName(), 'zipCode' => $address->getCity()->getZipCode()]);
+        if ($city === null)
+        {
+            return JSON::JSONResponse([
+                'message' => 'Merci d\'indiquer une ville valide.',
+                'status' => false
+            ], Response::HTTP_BAD_REQUEST, $serializer);
+        }
+        $persistedAddress = $om->getRepository(Address::class)->find($address->getId());
+        if ($persistedAddress === null) {
+            return JSON::JSONResponse([
+                'message' => 'Adresse non trouvée.',
+                'status' => false
+            ], Response::HTTP_BAD_REQUEST, $serializer);
+        }
+        $persistedAddress->setLine1($address->getLine1());
+        $persistedAddress->setLine2($address->getLine2());
+        $persistedAddress->setCity($city);
+        $persistedAddress->setName($address->getName());
+        $validation = Validation::validateforJson($validator, $persistedAddress);
+        if (!$validation['validation'])
+        {
+            return JSON::JSONResponse([
+                'message' => $validation['messages'],
+                'status' => false
+            ], Response::HTTP_BAD_REQUEST, $serializer);
+        }
+
+
+        $om->persist($persistedAddress);
+        $om->flush();
+        return JSON::JSONResponse([
+            'message' => 'Adresse modifiée.',
+            'status' => true
+        ], Response::HTTP_ACCEPTED, $serializer);
+    }
+
+    /**
+     * @Route("/api/auth/address/delete", name="deleteAddressJson", methods={"DELETE"})
+     *
+     * @param Request $request
+     * @param ObjectManager $om
+     * @param SerializerInterface $serializer
+     * @return Response
+     */
+    public function deleteAddressJson(Request $request, ObjectManager $om, SerializerInterface $serializer)
+    {
+        if (!$request->request->has('addressId'))
+        {
+            return JSON::JSONResponse([
+                'message' => 'Merci de fournir l\'id de l\'addresse.',
+                'status' => false
+            ], Response::HTTP_BAD_REQUEST, $serializer);
+        }
+
+        $addressId = $request->request->get('addressId');
+        $address = $om->getRepository(Address::class)->find($addressId);
+        if ($address === null)
+        {
+            return JSON::JSONResponse([
+                'message' => 'L\'adresse n\'a pas été trouvée.',
+                'status' => false
+            ], Response::HTTP_BAD_REQUEST, $serializer);
+        }
+
+        $om->remove($address);
+        $om->flush();
+
+        return JSON::JSONResponse([
+            'message' => 'Adresse supprimée.',
+            'status' => true
+        ], Response::HTTP_ACCEPTED, $serializer);
+    }
 
     /**
      * @Route("/api/auth/address/add", name="addAddressJson", methods={"POST"})
