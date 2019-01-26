@@ -329,6 +329,12 @@ class User extends BaseUser
         return $this;
     }
 
+
+    public function hasAddress(Address $address)
+    {
+        return $this->addresses->contains($address);
+    }
+
     /**
      * @return Collection|Address[]
      */

@@ -10,6 +10,9 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class PaymentMethod
 {
+    const PAYMENT_ON_DELIVERY = 1;
+    const CREDIT_CARD = 2;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

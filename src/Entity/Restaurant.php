@@ -101,7 +101,7 @@ class Restaurant
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\User", mappedBy="restaurant")
      * @Assert\NotNull()
-     * @Serializer\Groups({"owner"})
+     * @Serializer\Groups({"owner", "front"})
      */
     private $owner;
 

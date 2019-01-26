@@ -8,12 +8,18 @@ use App\Entity\CartItem;
 use App\Entity\Category;
 use App\Entity\City;
 use App\Entity\Menu;
+use App\Entity\Order;
+use App\Entity\OrderMenu;
+use App\Entity\PaymentMethod;
 use App\Entity\User;
 use App\Utils\JSON;
 use App\Utils\Validation;
 use Doctrine\Common\Persistence\ObjectManager;
 use FOS\UserBundle\Model\UserManagerInterface;
 use JMS\Serializer\SerializerInterface;
+use Stripe\Charge;
+use Stripe\Stripe;
+use Stripe\Transfer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -176,12 +182,197 @@ class ApiController extends AbstractController
 
 
     /**
+     * @Route("/api/auth/cart/checkout", name="checkoutJson", methods={"POST"})
+     *
+     * @param Request $request
+     * @param ObjectManager $om
+     * @param SerializerInterface $serializer
+     * @return Response
+     * @throws \Exception
+     */
+    public function checkoutJson(Request $request, ObjectManager $om, SerializerInterface $serializer, \Swift_Mailer $mailer)
+    {
+        $cart = $this->getUser()->getCart();
+        if ($cart === null || $cart->getItems()->count() === 0)
+        {
+            return JSON::JSONResponse([
+                'message' => 'Vous n\'avez pas d\'elements dans votre panier.',
+                'status' => false
+            ], Response::HTTP_BAD_REQUEST, $serializer);
+        }
+
+        $data = json_decode($request->getContent(), JSON_UNESCAPED_UNICODE);
+
+        if ($data['stripe'])
+        {
+            if (empty($data['stripeToken']))
+            {
+                return JSON::JSONResponse([
+                    'message' => 'Bad Request.',
+                    'status' => false
+                ], Response::HTTP_BAD_REQUEST, $serializer);
+            }
+        }
+
+        if (empty($data['deliveryAddress']) || empty($data['paymentMethod']) || empty($data['cartId']))
+        {
+            return JSON::JSONResponse([
+                'message' => 'Mauvaise requette.',
+                'status' => false
+            ], Response::HTTP_BAD_REQUEST, $serializer);
+        }
+
+        $paymentMethod = $om->getRepository(PaymentMethod::class)->find($data['paymentMethod']['id']);
+        if ($paymentMethod === null)
+        {
+            return JSON::JSONResponse([
+                'message' => 'Erreur du mode de paiement.',
+                'status' => false
+            ], Response::HTTP_BAD_REQUEST, $serializer);
+        }
+
+        $deliveryAddress = $om->getRepository(Address::class)->find($data['deliveryAddress']['id']);
+        if ($deliveryAddress === null)
+        {
+            return JSON::JSONResponse([
+                'message' => 'Adresse de livraison fourni n\'a pas ete trouvee.',
+                'status' => false
+            ], Response::HTTP_BAD_REQUEST, $serializer);
+        }
+
+        $user = $this->getUser();
+        if (!$user->hasAddress($deliveryAddress))
+        {
+            return JSON::JSONResponse([
+                'message' => 'L\'adresse de livraison ne vous appartient pas.',
+                'status' => false
+            ], Response::HTTP_BAD_REQUEST, $serializer);
+        }
+
+        $cart = $om->getRepository(Cart::class)->find($data['cartId']);
+        if ($cart === null || $cart->getConsumer() !== $user)
+        {
+            return JSON::JSONResponse([
+                'message' => 'Erreur lors de la recuperation du panier',
+                'status' => false
+            ], Response::HTTP_BAD_REQUEST, $serializer);
+        }
+
+
+        $order = new Order();
+        $order->setConsumer($user);
+        $order->setPaymentMethod($paymentMethod);
+        $order->setDeliveryAddress($deliveryAddress);
+        $order->setOrderedAt(new \DateTime());
+
+        $totalAmount = 0;
+        $restaurants = [];
+
+        foreach ($cart->getItems() as $item)
+        {
+            $menu = $item->getMenu();
+            $totalAmount += $menu->getPrice() * $item->getQuantity();
+
+            $orderMenu = new OrderMenu();
+            $orderMenu->setMenu($menu);
+            $orderMenu->setQuantity($item->getQuantity());
+
+            $order->addItem($orderMenu);
+
+            $restaurant = $menu->getRestaurant();
+            if (!$order->getRestaurants()->contains($restaurant))
+            {
+                $order->addRestaurant($restaurant);
+                $restaurants[] = $restaurant;
+            }
+
+            $cart->removeItem($item);
+            $om->remove($item);
+        }
+
+        $order->setTotalPrice($totalAmount);
+
+        if ($paymentMethod->getId() === PaymentMethod::CREDIT_CARD)
+        {
+            Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
+
+
+
+            if ($order->getRestaurants()->count() > 1)
+            {
+                $orderNumber = $order->getOrderNumber();
+                $payments = Charge::create([
+                    'amount' => bcmul($order->getTotalPrice(), 100) + 50,
+                    'currency' => 'eur',
+                    'description' => 'Commande N°'. $orderNumber,
+                    'source' => $data['stripeToken'],
+                    'transfer_group' => "$orderNumber"
+                ]);
+
+                foreach ($order->getRestaurants() as $restaurant)
+                {
+                    $restaurantAmount = 0;
+                    foreach ($order->getItems() as $item)
+                    {
+                        if ($item->getMenu()->getRestaurant()->getId() === $restaurant->getId())
+                        {
+                            $restaurantAmount += ($item->getMenu()->getPrice() * $item->getQuantity());
+                        }
+                    }
+
+                    $transfer = Transfer::create([
+                        'amount' => bcmul($restaurantAmount, 100),
+                        'currency' => 'eur',
+                        'destination' => $restaurant->getStripeClient()->getAccountId(),
+                        'transfer_group' => "$orderNumber"
+                    ]);
+                }
+            } else
+            {
+                $payment = Charge::create([
+                    'amount' => bcmul($order->getTotalPrice(), 100) + 50,
+                    'currency' => 'eur',
+                    'description' => 'Commande N°'. $order->getOrderNumber(),
+                    'source' => $data['stripeToken'],
+                    'application_fee' => 50,
+                    'destination' => [
+                        'account' => $restaurants[0]->getStripeClient()->getAccountId()
+                    ]
+
+                ]);
+            }
+        }
+
+
+        $om->persist($order);
+        $om->persist($cart);
+        $om->flush();
+
+        $message = (new \Swift_Message('Commande ' . $order->getOrderNumber()))
+            ->setFrom('delivereo.team@gmail.com')
+            ->setTo($user->getEmail())
+            ->setBody($this->renderView('order/email/confirmed.html.twig', [
+                'order' => $order
+            ]), 'text/html');
+        $mailer->send($message);
+
+
+
+
+        return JSON::JSONResponse([
+            'message' => 'Commande effectuée avec succès.',
+            'status' => true
+        ], Response::HTTP_CREATED, $serializer);
+    }
+
+    /**
      * @Route("/api/auth/cart", name="getCartJsonData", methods={"GET"})
      *
      * @param SerializerInterface $serializer
+     * @param ObjectManager $om
      * @return Response
      */
-    public function cart(SerializerInterface $serializer)
+    public function cart(SerializerInterface $serializer, ObjectManager $om)
     {
         $user = $this->getUser();
         if ($user === null)
@@ -192,7 +383,17 @@ class ApiController extends AbstractController
             ], Response::HTTP_UNAUTHORIZED, $serializer);
         }
 
-        return JSON::JSONResponseWithGroups($user->getCart(), Response::HTTP_OK, $serializer, ['cart']);
+        $cart = $user->getCart();
+        if ($cart === null)
+        {
+            $cart = new Cart();
+            $user->setCart($cart);
+            $om->persist($user);
+            $om->flush();
+        }
+        $cart = $user->getCart();
+
+        return JSON::JSONResponseWithGroups($cart, Response::HTTP_OK, $serializer, ['cart']);
     }
 
 
