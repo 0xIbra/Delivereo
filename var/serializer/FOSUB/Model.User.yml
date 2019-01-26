@@ -1,0 +1,20 @@
+FOS\UserBundle\Model\User:
+#  exclusion_policy: ALL
+  properties:
+#    id:
+#      expose: true
+#      groups: [front, cart]
+    username:
+#      expose: true
+      groups: [front, cart]
+    email:
+#      expose: true
+      groups: [front, customer]
+    enabled:
+#      expose: true
+    roles:
+#      expose: true
+      groups: [front, cart]
+    password:
+      groups: [register]
+#      expose: true

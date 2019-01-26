@@ -2,12 +2,12 @@
 ###> symfony/framework-bundle ###
 /.env
 /public/bundles/
-/var/
+/var/*
 /vendor/*
 ###< symfony/framework-bundle ###
 
 !/vendor/friendsofsymfony/
-
+!/var/serializer/
 
 ###> symfony/phpunit-bridge ###
 .phpunit
