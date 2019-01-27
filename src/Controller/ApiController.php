@@ -11,9 +11,14 @@ use App\Entity\Menu;
 use App\Entity\Order;
 use App\Entity\OrderMenu;
 use App\Entity\PaymentMethod;
+use App\Entity\Restaurant;
 use App\Entity\User;
 use App\Utils\JSON;
 use App\Utils\Validation;
+use DateInterval;
+use DatePeriod;
+use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Persistence\ObjectManager;
 use FOS\UserBundle\Model\UserManagerInterface;
 use JMS\Serializer\SerializerInterface;
@@ -28,6 +33,138 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class ApiController extends AbstractController
 {
+
+    /**
+     * @Route("/api/weather", name="weatherApi", methods={"GET"})
+     *
+     * @param Request $request
+     * @param SerializerInterface $serializer
+     * @return Response
+     */
+    public function weather(Request $request, SerializerInterface $serializer)
+    {
+        if (!$request->query->has('zip'))
+        {
+            return JSON::JSONResponse([
+                'message' => 'Le code postal n\'a pas été fourni.',
+                'status' => false
+            ], Response::HTTP_BAD_REQUEST, $serializer);
+        }
+
+        $zip = $request->query->get('zip');
+
+        $req = curl_init();
+        curl_setopt($req, CURLOPT_URL, "https://api.openweathermap.org/data/2.5/weather?zip=". $zip .",fr&lang=fr&units=metric&APPID=". getenv('OPENWEATHERMAP_API_KEY'));
+        curl_setopt($req, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+        curl_setopt($req, CURLOPT_RETURNTRANSFER, 1);
+
+        $response = curl_exec($req);
+        $weather = json_decode($response, JSON_UNESCAPED_UNICODE);
+
+        return JSON::JSONResponse($weather, Response::HTTP_OK, $serializer);
+    }
+
+    /**
+     * @Route("/api/auth/owner/dashboard/data", name="ownerDashboardDataJson", methods={"GET"})
+     *
+     * @param Request $request
+     * @param ObjectManager $om
+     * @param SerializerInterface $serializer
+     * @return Response
+     * @throws \Exception
+     */
+    public function ownerDashboardDataJson(Request $request, ObjectManager $om, SerializerInterface $serializer)
+    {
+        $restaurant = $this->getUser()->getRestaurant();
+        if (!$this->isGranted('edit', $restaurant))
+        {
+            return JSON::JSONResponse([
+                'status' => false,
+                'message' => 'Aucun restaurant n\'a été trouvé'
+            ], Response::HTTP_BAD_REQUEST, $serializer);
+        }
+
+        $chartData = [];
+
+        $end = new DateTime('+1 day');
+        $end->setTime(0,0,2);
+        $period = new DatePeriod(
+            new DateTime('1 week ago'),
+            new DateInterval('P1D'),
+            $end
+        );
+
+        foreach ($period as $date)
+        {
+            $chartData['dates'][] = $date->format('d/m/Y');
+            $orders = $om->getRepository(Order::class)->findRestaurantOrdersByDate($restaurant, $date);
+            $revenue = 0;
+            $orderCount = count($orders);
+            $clients = new ArrayCollection();
+            foreach ($orders as $order)
+            {
+                $revenue += $order->getTotalPrice();
+                $consumer = $order->getConsumer();
+                if (!$clients->contains($consumer))
+                {
+                    $clients->add($consumer);
+                }
+            }
+
+            $chartData['revenue'][] = $revenue;
+            $chartData['orders'][] = $orderCount;
+            $chartData['clients'][] = $clients->count();
+        }
+
+        $chartData['status'] = true;
+
+        return JSON::JSONResponseWithGroups($chartData, Response::HTTP_OK, $serializer, ['owner', 'customer', 'front']);
+    }
+
+    /**
+     * @Route("/api/auth/owner/dashboard", name="ownerDashboardJson", methods={"GET"})
+     *
+     * @param Request $request
+     * @param ObjectManager $om
+     * @param SerializerInterface $serializer
+     * @return Response
+     */
+    public function ownerDashboardJson(Request $request, ObjectManager $om, SerializerInterface $serializer)
+    {
+        if (!$this->isGranted('edit', $this->getUser()->getRestaurant()))
+        {
+            return JSON::JSONResponse([
+                'message' => 'Vous n\'avez pas les droits pour accéder à cette page.',
+                'status' => false
+            ], Response::HTTP_UNAUTHORIZED, $serializer);
+        }
+
+        $user = $this->getUser();
+        $restaurant = $user->getRestaurant();
+        $recentOrders = $om->getRepository(Order::class)->recentRestaurantOrders($restaurant, 5);
+        $revenue = 0;
+        $orders = $restaurant->getOrders();
+        $totalOrders = $orders->count();
+        $clients = new ArrayCollection();
+        foreach ($orders as $order)
+        {
+            $consumer = $order->getConsumer();
+            if (!$clients->contains($consumer))
+            {
+                $clients->add($consumer);
+            }
+            $revenue += $order->getTotalPrice();
+        }
+
+        return JSON::JSONResponseWithGroups([
+            'revenue' => $revenue,
+            'recentOrders' => $recentOrders,
+            'clients' => $clients,
+            'totalOrders' => $totalOrders,
+            'likes' => $restaurant->getLikes(),
+            'dislikes' => $restaurant->getDislikes()
+        ], Response::HTTP_OK, $serializer, ['customer', 'owner', 'front']);
+    }
 
     /**
      * @Route("/api/auth/address/edit", name="editAddressJson", methods={"PUT"})

@@ -59,6 +59,7 @@ class Order
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="orders")
      * @ORM\JoinColumn(nullable=true)
+     * @Serializer\Groups({"owner", "admin"})
      */
     private $consumer;
 
