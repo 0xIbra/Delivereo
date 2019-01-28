@@ -35,6 +35,61 @@ class ApiController extends AbstractController
 {
 
     /**
+     * @Route("/api/auth/owner/orders/search", name="searchOwnerOrderJson", methods={"GET"})
+     *
+     * @param Request $request
+     * @param ObjectManager $om
+     * @param SerializerInterface $serializer
+     * @return Response
+     */
+    public function searchOwnerOrderJson(Request $request, ObjectManager $om, SerializerInterface $serializer)
+    {
+        if (!$this->isGranted('ROLE_OWNER'))
+        {
+            return JSON::JSONResponse([
+                'message' => 'Vous n\'avez pas les droits pour acceder a cette page.',
+                'status' => false
+            ], Response::HTTP_UNAUTHORIZED, $serializer);
+        }
+
+        if (!$request->query->has('query'))
+        {
+            return JSON::JSONResponse([
+                'message' => 'Le paramètre de recherche "query" n\'a pas été trouvé.',
+                'status' => false
+            ], Response::HTTP_BAD_REQUEST, $serializer);
+        }
+
+        $query = $request->query->get('query');
+
+        $orders = $om->getRepository(Order::class)->searchOrder($query);
+
+        return JSON::JSONResponseWithGroups($orders, Response::HTTP_OK, $serializer, ['front', 'customer', 'owner']);
+    }
+
+    /**
+     * @Route("/api/auth/owner/orders", name="getOwnerOrdersJson", methods={"GET"})
+     *
+     * @param SerializerInterface $serializer
+     * @return Response
+     */
+    public function getOwnerOrdersJson(SerializerInterface $serializer)
+    {
+        $user = $this->getUser();
+        if (!$this->isGranted('ROLE_OWNER') || !$this->isGranted('edit', $user->getRestaurant()))
+        {
+            return JSON::JSONResponse([
+                'message' => 'Vous n\'avez pas les droits pour acceder a cette page.',
+                'status' => false
+            ], Response::HTTP_UNAUTHORIZED, $serializer);
+        }
+        $orders = $user->getRestaurant()->getOrders();
+
+        return JSON::JSONResponseWithGroups($orders, Response::HTTP_OK, $serializer, ['customer', 'owner', 'front']);
+    }
+
+
+    /**
      * @Route("/api/weather", name="weatherApi", methods={"GET"})
      *
      * @param Request $request

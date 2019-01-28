@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Order;
 use App\Entity\Restaurant;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use http\Env\Request;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -21,6 +22,14 @@ class OrderRepository extends ServiceEntityRepository
         parent::__construct($registry, Order::class);
     }
 
+    public function searchOrder($query)
+    {
+        $qb = $this->createQueryBuilder('o');
+        $qb->where('o.orderNumber LIKE :query')
+            ->setParameter('query',$query . '%');
+
+        return $qb->getQuery()->getResult(Query::HYDRATE_OBJECT);
+    }
 
     public function countOrders()
     {
