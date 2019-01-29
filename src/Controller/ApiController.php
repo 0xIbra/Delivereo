@@ -35,6 +35,100 @@ class ApiController extends AbstractController
 {
 
     /**
+     * @Route("/api/auth/owner/restaurant/categories", name="ownerAddCategories", methods={"POST"})
+     *
+     * @param Request $request
+     * @param ObjectManager $om
+     * @param SerializerInterface $serializer
+     * @return Response
+     */
+    public function ownerAddCategories(Request $request, ObjectManager $om, SerializerInterface $serializer)
+    {
+        $restaurant = $this->getUser()->getRestaurant();
+        if (!$this->isGranted('edit', $restaurant))
+        {
+            return JSON::JSONResponse([
+                'message' => 'Vous n\'avez pas les droits pour acceder a cette page.',
+                'status' => false
+            ], Response::HTTP_UNAUTHORIZED, $serializer);
+        }
+
+        $categories = json_decode($request->getContent(), JSON_UNESCAPED_UNICODE);
+        if (!empty($categories))
+        {
+            foreach ($categories as $category)
+            {
+                $persistedCategory = $om->getRepository(Category::class)->find($category['id']);
+                if ($persistedCategory !== null)
+                {
+                    if (!$restaurant->getCategories()->contains($persistedCategory))
+                    {
+                        $restaurant->addCategory($persistedCategory);
+                    }
+                }
+            }
+        } else {
+            return JSON::JSONResponse([
+                'message' => 'Aucune categorie fourni.',
+                'status' => false
+            ], Response::HTTP_BAD_REQUEST, $serializer);
+        }
+
+        $om->persist($restaurant);
+        $om->flush();
+        return JSON::JSONResponse([
+            'message' => 'Les catégories ont été ajoutés.',
+            'status' => true
+        ], Response::HTTP_ACCEPTED, $serializer);
+    }
+
+    /**
+     * @Route("/api/auth/owner/restaurant/categories", name="ownerRemoveCategory", methods={"DELETE"})
+     *
+     * @param Request $request
+     * @param ObjectManager $om
+     * @param SerializerInterface $serializer
+     * @return Response
+     */
+    public function ownerRemoveCategory(Request $request, ObjectManager $om, SerializerInterface $serializer)
+    {
+        $restaurant = $this->getUser()->getRestaurant();
+        if (!$this->isGranted('edit', $restaurant))
+        {
+            return JSON::JSONResponse([
+                'message' => 'Vous n\'avez pas les droits pour acceder a cette page.',
+                'status' => false
+            ], Response::HTTP_UNAUTHORIZED, $serializer);
+        }
+
+        if (!$request->query->has('categoryId')) {
+            return JSON::JSONResponse([
+                'message' => 'Le paramètre "categoryId" n\'a pas été trouvée.',
+                'status' => false
+            ], Response::HTTP_BAD_REQUEST, $serializer);
+        }
+
+        $category = $om->getRepository(Category::class)->find($request->query->get('categoryId'));
+        if ($category === null)
+        {
+            return JSON::JSONResponse([
+                'message' => 'Une catégorie avec l\'id fourni n\'a pas été trouvée.',
+                'status' => false
+            ], Response::HTTP_BAD_REQUEST, $serializer);
+        }
+
+        $restaurant->removeCategory($category);
+        $om->persist($restaurant);
+        $om->flush();
+        $name = $category->getName();
+
+        return JSON::JSONResponse([
+            'message' => "La catégorie $name a bien été supprimée.",
+            'status' => true
+        ], Response::HTTP_ACCEPTED, $serializer);
+    }
+
+    /**
      * @Route("/api/auth/owner/orders/search", name="searchOwnerOrderJson", methods={"GET"})
      *
      * @param Request $request

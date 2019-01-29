@@ -38,6 +38,30 @@ class AuthController extends AbstractController
         $this->userManager = $userManager;
     }
 
+    /**
+     * @Route("/api/auth/owner/restaurant", name="myRestaurant", methods={"GET"})
+     *
+     * @param SerializerInterface $serializer
+     * @return Response
+     */
+    public function myRestaurant(SerializerInterface $serializer)
+    {
+        $restaurant = $this->getUser()->getRestaurant();
+        if (!$this->isGranted('edit', $restaurant))
+        {
+            return JSON::JSONResponse([
+                'message' => 'Vous n\'avez pas les droits pour acceder a cette page.',
+                'status' => false
+            ], Response::HTTP_UNAUTHORIZED, $serializer);
+        }
+
+        return JSON::JSONResponseWithGroups($restaurant, Response::HTTP_OK, $serializer, [
+            'front',
+            'customer',
+            'owner'
+        ]);
+    }
+
 
     /**
      * @Route("/api/auth/me/edit", name="editUserJson", methods={"PUT"})
@@ -204,10 +228,9 @@ class AuthController extends AbstractController
         if ($this->getUser() === null)
         {
             return JSON::JSONResponse([
-                'status' => true,
-                'code' => Response::HTTP_OK,
-                'message' => 'Vous êtes connecté'
-            ], Response::HTTP_OK, $serializer);
+                'status' => false,
+                'message' => 'Vous n\'êtes pas connecté'
+            ], Response::HTTP_UNAUTHORIZED, $serializer);
         }
     }
 
@@ -219,7 +242,7 @@ class AuthController extends AbstractController
      */
     public function me(SerializerInterface $serializer)
     {
-        return JSON::JSONResponseWithGroups($this->getUser(), Response::HTTP_OK, $serializer, ['front']);
+        return JSON::JSONResponseWithGroups($this->getUser(), Response::HTTP_OK, $serializer, ['front', 'owner']);
     }
 
     /**
