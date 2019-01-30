@@ -72,7 +72,7 @@ class Restaurant
     private $createdAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="restaurants", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="restaurants")
      * @Serializer\Groups({"owner", "customer"})
      */
     private $categories;
@@ -161,7 +161,6 @@ class Restaurant
         $this->managers = new ArrayCollection();
         $this->orders = new ArrayCollection();
     }
-
 
     public function getId(): ?int
     {

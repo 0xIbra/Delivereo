@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\StripeClientRepository")
@@ -19,6 +20,7 @@ class StripeClient
 
     /**
      * @ORM\Column(name="account_id", type="string", length=255, nullable=false, unique=true)
+     * @Serializer\Groups({"admin", "owner"})
      */
     private $accountId;
 

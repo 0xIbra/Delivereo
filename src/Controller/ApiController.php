@@ -35,6 +35,137 @@ class ApiController extends AbstractController
 {
 
     /**
+     * @Route("/api/auth/partner/application", name="apiApplication", methods={"POST"})
+     *
+     * @param Request $request
+     * @param ValidatorInterface $validator
+     * @param ObjectManager $om
+     * @param \Swift_Mailer $mailer
+     * @param SerializerInterface $serializer
+     * @return Response
+     * @throws \Exception
+     */
+    public function apiApplication(Request $request, ValidatorInterface $validator,
+                                   ObjectManager $om, \Swift_Mailer $mailer,
+                                   SerializerInterface $serializer)
+    {
+        $restaurant = $serializer->deserialize($request->getContent(), Restaurant::class, 'json');
+        $address = $restaurant->getAddress();
+        $city = $om->getRepository(City::class)->findOneBy([
+            'name' => $address->getCity()->getName(),
+            'zipCode' => $address->getCity()->getZipCode()
+        ]);
+        if ($city === null)
+        {
+            return JSON::JSONResponse([
+                'message' => 'Merci d\'entrer une ville valide.',
+                'status' => false
+            ], Response::HTTP_BAD_REQUEST, $serializer);
+        }
+
+        foreach ($restaurant->getCategories() as $category)
+        {
+            $persistedCategory = $om->getRepository(Category::class)->find($category->getId());
+            $restaurant->removeCategory($category);
+            if ($persistedCategory !== null)
+            {
+                $restaurant->addCategory($persistedCategory);
+            }
+        }
+
+        $user = $this->getUser();
+        $address->setCity($city);
+        $address->setName('Adresse du '. $restaurant->getName());
+
+        $restaurant->setAddress($address);
+        $restaurant->setCity($city);
+        $restaurant->setCreatedAt(new DateTime());
+        $restaurant->setOwner($user);
+        $restaurant->setEnabled(false);
+        $restaurant->setPublished(false);
+
+        $validation = Validation::validateforJson($validator, $restaurant);
+        if (!$validation['validation'])
+        {
+            return JSON::JSONResponse([
+                'message' => $validation['messages'],
+                'status' => $validation['validation']
+            ], Response::HTTP_BAD_REQUEST, $serializer);
+        }
+
+        $om->persist($restaurant);
+        $om->flush();
+        $message = (new \Swift_Message('Confirmation '. $restaurant->getName()))
+            ->setFrom('delivereo.team@gmail.com')
+            ->setTo($user->getEmail())
+            ->setBody($this->renderView('owner/email/pending.html.twig', [
+                'user' => $user,
+                'restaurant' => $restaurant
+            ]), 'text/html');
+        $mailer->send($message);
+
+
+        return JSON::JSONResponse([
+            'message' => 'Votre demande a été soumis et est en cours d\'étude.',
+            'status' => true
+        ], Response::HTTP_CREATED, $serializer);
+    }
+
+    /**
+     * @Route("/api/auth/owner/restaurant/menu", name="ownerCreateOrUpdateMenu", methods={"POST"})
+     *
+     * @param Request $request
+     * @param ObjectManager $om
+     * @param SerializerInterface $serializer
+     * @return Response
+     */
+    public function createOrUpdate(Request $request, ObjectManager $om, SerializerInterface $serializer)
+    {
+        $restaurant = $this->getUser()->getRestaurant();
+        if (!$this->isGranted('edit', $restaurant))
+        {
+            return JSON::JSONResponse([
+                'message' => 'Vous n\'avez pas les droits pour acceder a cette page.',
+                'status' => false
+            ], Response::HTTP_UNAUTHORIZED, $serializer);
+        }
+
+        $menu = $serializer->deserialize($request->getContent(), Menu::class, 'json');
+        if ($menu === null)
+        {
+            return JSON::JSONResponse([
+                'message' => 'Le contenu est incorrect.',
+                'status' => false
+            ], Response::HTTP_BAD_REQUEST, $serializer);
+        }
+
+        $category = $om->getRepository(Category::class)->find($menu->getCategory()->getId());
+        if ($menu->getId() === null)
+        {
+            $menu->setCategory($category);
+            $restaurant->addMenu($menu);
+            $om->persist($restaurant);
+            $om->flush();
+            return JSON::JSONResponse([
+                'message' => 'Le nouveau menu a été ajouté.',
+                'status' => true
+            ], Response::HTTP_ACCEPTED, $serializer);
+        } else {
+            $persistedMenu = $om->getRepository(Menu::class)->find($menu->getId());
+            $persistedMenu->setCategory($category);
+            $persistedMenu->setName($menu->getName());
+            $persistedMenu->setDescription($menu->getDescription());
+            $persistedMenu->setPrice($menu->getPrice());
+            $om->persist($persistedMenu);
+            $om->flush();
+            return JSON::JSONResponse([
+                'message' => 'Modification effectuée.',
+                'status' => true
+            ], Response::HTTP_ACCEPTED, $serializer);
+        }
+    }
+
+    /**
      * @Route("/api/auth/owner/restaurant/categories", name="ownerAddCategories", methods={"POST"})
      *
      * @param Request $request

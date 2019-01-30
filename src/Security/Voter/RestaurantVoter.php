@@ -63,16 +63,11 @@ class RestaurantVoter extends Voter
 
     public function canView(Restaurant $restaurant, $user)
     {
-        return $restaurant->isEnabled();
+        return $restaurant->isEnabled() || $restaurant->getOwner() === $user;
     }
 
     public function canEdit(Restaurant $restaurant, User $user)
     {
-        if (!$this->canView($restaurant, $user))
-        {
-            return false;
-        }
-
         return $user === $restaurant->getOwner();
     }
 
