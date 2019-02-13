@@ -5,11 +5,14 @@ namespace App\Controller;
 use App\Entity\Restaurant;
 use App\Entity\StripeClient;
 use App\Utils\FlashMessage;
+use App\Utils\JSON;
 use Doctrine\Common\Persistence\ObjectManager;
+use JMS\Serializer\SerializerInterface;
 use Stripe\Account;
 use Stripe\Stripe;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -69,6 +72,32 @@ class StripeController extends AbstractController
         return $this->redirectToRoute('restaurant_info', ['restaurant' => $restaurant->getId()]);
     }
 
+
+    /**
+     * @Route("/api/auth/owner/stripe/auth", name="stripeAuthManual", methods={"POST"})
+     *
+     * @param Request $request
+     * @param ObjectManager $om
+     * @param SerializerInterface $serializer
+     * @return Response
+     */
+    public function stripeAuthManual(Request $request, ObjectManager $om, SerializerInterface $serializer)
+    {
+        if (!$request->request->has('accountId'))
+        {
+            return JSON::JSONResponse([
+                'message' => 'Le parametre "accountId" n\'a pas été trouvé.',
+                'status' => false
+            ], Response::HTTP_BAD_REQUEST, $serializer);
+        }
+
+        $accountId = $request->request->get('accountId');
+        $user = $this->getUser();
+        Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
+        $stripe = Account::retrieve($accountId);
+
+        return $this->render('dump.html.twig', ['dump' => $stripe]);
+    }
 
     /**
      * @Route("/stripe/payment")

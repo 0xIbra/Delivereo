@@ -8,6 +8,8 @@
 
 !/vendor/friendsofsymfony/
 !/var/serializer/
+!/vendor/lexik/
+!/vendor/nelmio/
 
 ###> symfony/phpunit-bridge ###
 .phpunit
