@@ -1,2 +1,1 @@
-*.twig.html linguist-generated=true
-templates/* linguist-generated=true
+templates/bundles/* linguist-vendored
